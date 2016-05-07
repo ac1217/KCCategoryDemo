@@ -23,5 +23,18 @@
 // 通知相关宏
 #define KC_REMOVE_NOTIFICATION [KC_NOTIFICATION_CENTER removeObserver:self];
 #define KC_POST_NOTIFICATION(name,obj,info) [KC_NOTIFICATION_CENTER  postNotificationName:name object:obj userInfo:info];
+#define KC_ADD_NOTIFICATION_OBSERVER(selector,name) [KC_NOTIFICATION_CENTER addObserver:self selector:selector name:name object:nil];
+
+// 系统版本，设备相关
+#define KC_SYSTEM_VERSION [[[UIDevice currentDevice] systemVersion] floatValue]
+#define KC_IS_IOS8 KC_SYSTEM_VERSION >= 8.0
+#define KC_IS_IOS9 KC_SYSTEM_VERSION >= 9.0
+
+// 屏幕相关
+#define KC_SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+#define KC_SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
+
+//弱引用
+#define WS(weakSelf)  __weak __typeof(&*self)weakSelf = self;
 
 #endif /* KCMacro_h */

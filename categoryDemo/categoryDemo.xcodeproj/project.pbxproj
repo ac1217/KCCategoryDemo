@@ -24,6 +24,7 @@
 		072BFBE51CDC669600551444 /* UIImageView+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 072BFBD81CDC669600551444 /* UIImageView+KCExtension.m */; };
 		072BFBE61CDC669600551444 /* UIView+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 072BFBDA1CDC669600551444 /* UIView+KCExtension.m */; };
 		072BFBE71CDC669600551444 /* KCConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 072BFBDC1CDC669600551444 /* KCConst.m */; };
+		072BFBEA1CDDBD9100551444 /* UIDevice+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 072BFBE91CDDBD9100551444 /* UIDevice+KCExtension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,8 @@
 		072BFBDC1CDC669600551444 /* KCConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCConst.m; sourceTree = "<group>"; };
 		072BFBDD1CDC669600551444 /* KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCExtension.h; sourceTree = "<group>"; };
 		072BFBDE1CDC669600551444 /* KCMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCMacro.h; sourceTree = "<group>"; };
+		072BFBE81CDDBD9100551444 /* UIDevice+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+KCExtension.h"; sourceTree = "<group>"; };
+		072BFBE91CDDBD9100551444 /* UIDevice+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+KCExtension.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,8 +179,8 @@
 				072BFBCA1CDC669600551444 /* Category */,
 				072BFBDB1CDC669600551444 /* KCConst.h */,
 				072BFBDC1CDC669600551444 /* KCConst.m */,
-				072BFBDD1CDC669600551444 /* KCExtension.h */,
 				072BFBDE1CDC669600551444 /* KCMacro.h */,
+				072BFBDD1CDC669600551444 /* KCExtension.h */,
 			);
 			path = KCExtension;
 			sourceTree = SOURCE_ROOT;
@@ -201,6 +204,8 @@
 				072BFBD81CDC669600551444 /* UIImageView+KCExtension.m */,
 				072BFBD91CDC669600551444 /* UIView+KCExtension.h */,
 				072BFBDA1CDC669600551444 /* UIView+KCExtension.m */,
+				072BFBE81CDDBD9100551444 /* UIDevice+KCExtension.h */,
+				072BFBE91CDDBD9100551444 /* UIDevice+KCExtension.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -341,6 +346,7 @@
 				072BFB7F1CDC295C00551444 /* ViewController.m in Sources */,
 				072BFBE01CDC669600551444 /* NSDate+KCExtension.m in Sources */,
 				072BFBE21CDC669600551444 /* NSString+KCExtension.m in Sources */,
+				072BFBEA1CDDBD9100551444 /* UIDevice+KCExtension.m in Sources */,
 				072BFB7C1CDC295C00551444 /* AppDelegate.m in Sources */,
 				072BFBE61CDC669600551444 /* UIView+KCExtension.m in Sources */,
 				072BFBDF1CDC669600551444 /* NSArray+KCExtension.m in Sources */,
