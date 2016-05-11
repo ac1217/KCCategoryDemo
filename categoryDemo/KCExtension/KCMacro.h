@@ -15,6 +15,9 @@
 #define KC_RANDOM_COLOR KC_RGB_COLOR(arc4random_uniform(256),arc4random_uniform(256),arc4random_uniform(256))
 #define KC_HEX_COLOR(hexValue) KC_RGB_COLOR(((hexValue & 0xFF0000) >> 16)/255.0,((hexValue & 0xFF00) >> 8)/255.0,(hexValue & 0xFF)/255.0)
 
+// 字体相关
+#define KC_SYSTEM_FONT_SIZE(size) [UIFont systemFontOfSize:size]
+
 // 单例宏
 #define KC_NOTIFICATION_CENTER [NSNotificationCenter defaultCenter]
 #define KC_APPLICATION [UIApplication shareApplication]
@@ -23,6 +26,7 @@
 // 通知相关宏
 #define KC_REMOVE_NOTIFICATION [KC_NOTIFICATION_CENTER removeObserver:self];
 #define KC_POST_NOTIFICATION(name,obj,info) [KC_NOTIFICATION_CENTER  postNotificationName:name object:obj userInfo:info];
+// 此宏暂时有问题，需要调整
 #define KC_ADD_NOTIFICATION_OBSERVER(selector,name) [KC_NOTIFICATION_CENTER addObserver:self selector:selector name:name object:nil];
 
 // 系统版本，设备相关

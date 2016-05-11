@@ -25,6 +25,8 @@
 /*
  * 图片剪切缩放
  */
+// 圆角图片
+- (UIImage *)kc_roundedImageWithCornerRadius:(CGFloat)cornerRadius;
 // 圆形图片
 - (UIImage *)kc_circleImage;
 // 根据比例缩放图片

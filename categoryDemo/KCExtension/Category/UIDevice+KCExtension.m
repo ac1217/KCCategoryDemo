@@ -9,28 +9,28 @@
 #import "UIDevice+KCExtension.h"
 #import <sys/utsname.h>
 
-static NSString *const UIDeviceModelIPhone1G = @"iPhone 1G";
-static NSString *const UIDeviceModelIPhone3G = @"iPhone 3G";
-static NSString *const UIDeviceModelIPhone3GS = @"iPhone 3GS";
-static NSString *const UIDeviceModelIPhone4 = @"iPhone 4";
-static NSString *const UIDeviceModelVerizonIPhone4 = @"Verizon iPhone 4";
-static NSString *const UIDeviceModelIPhone4S = @"iPhone 4S";
-static NSString *const UIDeviceModelIPhone5 = @"iPhone 5";
-static NSString *const UIDeviceModelIPhone5s = @"iPhone 5s";
-static NSString *const UIDeviceModelIPhone6 = @"iPhone 6";
-static NSString *const UIDeviceModelIPhone6Plus = @"iPhone 6 Plus";
-static NSString *const UIDeviceModelIPhone6s = @"iPhone 6s";
-static NSString *const UIDeviceModelIPhone6sPlus = @"iPhone 6s Plus";
-static NSString *const UIDeviceModelSimulator = @"Simulator";
-static NSString *const UIDeviceModelIPodTouch1G = @"iPod Touch 1G";
-static NSString *const UIDeviceModelIPodTouch2G = @"iPod Touch 2G";
-static NSString *const UIDeviceModelIPodTouch3G = @"iPod Touch 3G";
-static NSString *const UIDeviceModelIPodTouch4G = @"iPod Touch 4G";
-static NSString *const UIDeviceModelIPad = @"iPad";
-static NSString *const UIDeviceModelIPad2WIFI = @"iPad 2 WIFI";
-static NSString *const UIDeviceModelIPad2CDMA = @"iPad 2 CDMA";
-static NSString *const UIDeviceModelIPad2GSM = @"iPad 2 GSM";
-static NSString *const UIDeviceModelIPad4WIFI = @"iPad 4 WIFI";
+NSString *const UIDeviceModelIPhone1G = @"iPhone 1G";
+NSString *const UIDeviceModelIPhone3G = @"iPhone 3G";
+NSString *const UIDeviceModelIPhone3GS = @"iPhone 3GS";
+NSString *const UIDeviceModelIPhone4 = @"iPhone 4";
+NSString *const UIDeviceModelVerizonIPhone4 = @"Verizon iPhone 4";
+NSString *const UIDeviceModelIPhone4S = @"iPhone 4S";
+NSString *const UIDeviceModelIPhone5 = @"iPhone 5";
+NSString *const UIDeviceModelIPhone5s = @"iPhone 5s";
+NSString *const UIDeviceModelIPhone6 = @"iPhone 6";
+NSString *const UIDeviceModelIPhone6Plus = @"iPhone 6 Plus";
+NSString *const UIDeviceModelIPhone6s = @"iPhone 6s";
+NSString *const UIDeviceModelIPhone6sPlus = @"iPhone 6s Plus";
+NSString *const UIDeviceModelSimulator = @"Simulator";
+NSString *const UIDeviceModelIPodTouch1G = @"iPod Touch 1G";
+NSString *const UIDeviceModelIPodTouch2G = @"iPod Touch 2G";
+NSString *const UIDeviceModelIPodTouch3G = @"iPod Touch 3G";
+NSString *const UIDeviceModelIPodTouch4G = @"iPod Touch 4G";
+NSString *const UIDeviceModelIPad = @"iPad";
+NSString *const UIDeviceModelIPad2WIFI = @"iPad 2 WIFI";
+NSString *const UIDeviceModelIPad2CDMA = @"iPad 2 CDMA";
+NSString *const UIDeviceModelIPad2GSM = @"iPad 2 GSM";
+NSString *const UIDeviceModelIPad4WIFI = @"iPad 4 WIFI";
 
 @implementation UIDevice (KCExtension)
 

@@ -84,7 +84,7 @@
 #pragma mark -颜色相关
 - (UIImage *)kc_renderImageWithColor:(UIColor *)color
 {
-    UIGraphicsBeginImageContextWithOptions(self.size, NO, self.scale);
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, 1);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextTranslateCTM(context, 0, self.size.height);
     CGContextScaleCTM(context, 1.0, -1.0);
@@ -112,9 +112,20 @@
 }
 
 #pragma mark -图片裁剪缩放相关
+- (UIImage *)kc_roundedImageWithCornerRadius:(CGFloat)cornerRadius
+{
+    CGRect rect = CGRectMake(0, 0, self.size.width, self.size.height);
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, 1.0);
+    [[UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:cornerRadius] addClip];
+    [self drawInRect:rect];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
 - (UIImage *)kc_circleImage
 {
-    UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0);
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, 1.0);
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGRect rect = CGRectMake(0, 0, self.size.width, self.size.height);
     CGContextAddEllipseInRect(ctx, rect);
