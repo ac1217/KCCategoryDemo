@@ -8,6 +8,8 @@
 
 #import "UIView+KCExtension.h"
 
+#import <objc/message.h>
+
 @implementation UIView (KCExtension)
 
 #pragma mark -frame相关
@@ -192,6 +194,68 @@
 + (UINib *)kc_xib { return [UINib nibWithNibName:NSStringFromClass(self) bundle:nil]; }
 
 
+/**********************/
+#pragma mark -显示红点
+- (void)setKc_badgeValue:(NSString *)kc_badgeValue
+{
+    UILabel *badgeValueLabel = objc_getAssociatedObject(self, @"kc_badgeValueLabel");
+    
+    if (!badgeValueLabel) {
+        badgeValueLabel = [[UILabel alloc] init];
+        badgeValueLabel.font = [UIFont systemFontOfSize:10];
+        badgeValueLabel.textColor = [UIColor whiteColor];
+        badgeValueLabel.textAlignment = NSTextAlignmentCenter;
+        badgeValueLabel.layer.backgroundColor = [UIColor redColor].CGColor;
+        [self addSubview:badgeValueLabel];
+        objc_setAssociatedObject(self, @"kc_badgeValueLabel", badgeValueLabel, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    
+    
+    if (kc_badgeValue) {
+        badgeValueLabel.hidden = NO;
+        badgeValueLabel.text = kc_badgeValue;
+        if (kc_badgeValue.length) {
+            
+            CGFloat h = 15;
+            CGFloat minW = h;
+            CGFloat w = [kc_badgeValue sizeWithAttributes:@{NSFontAttributeName : badgeValueLabel.font}].width + 8;
+            
+            w = w < minW ? minW : w;
+            
+            badgeValueLabel.frame = CGRectMake(self.frame.size.width - w, 0, w, h);
+            
+            badgeValueLabel.layer.cornerRadius = h * 0.5;
+            
+        }else {
+            
+            CGFloat wh = 8;
+            badgeValueLabel.frame = CGRectMake(self.frame.size.width - wh, 0, wh, wh);
+            
+            badgeValueLabel.layer.cornerRadius = wh * 0.5;
+        }
+    }else {
+        badgeValueLabel.hidden = YES;
+    }
+}
+
+- (NSString *)kc_badgeValue
+{
+    UILabel *badgeValueLabel = objc_getAssociatedObject(self, @"kc_badgeValueLabel");
+    return badgeValueLabel.text;
+}
+
+- (void)kc_setBadgeValue:(NSString *)badgeValue offset:(CGPoint)offset
+{
+    self.kc_badgeValue = badgeValue;
+    
+    UILabel *badgeValueLabel = objc_getAssociatedObject(self, @"kc_badgeValueLabel");
+    
+    CGRect temp = badgeValueLabel.frame;
+    temp.origin.y += offset.y;
+    temp.origin.x += offset.x;
+    
+    badgeValueLabel.frame = temp;
+}
 
 
 @end

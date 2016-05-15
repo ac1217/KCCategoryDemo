@@ -38,7 +38,12 @@
 #define KC_SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define KC_SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
+// 不同屏幕比例，以375 * 667为基准
+#define KC_HORIZONTAL_RATIO KC_SCREEN_WIDTH / 375
+#define KC_VERTICAL_RATIO KC_SCREEN_HEIGHT / 667
+
+
 //弱引用
-#define WS(weakSelf)  __weak __typeof(&*self)weakSelf = self;
+#define KC_WEAK_REFERENCE(weakSelf)  __weak __typeof(&*self)weakSelf = self;
 
 #endif /* KCMacro_h */

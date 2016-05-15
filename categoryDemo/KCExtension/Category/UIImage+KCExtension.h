@@ -18,7 +18,7 @@
  * 图片颜色设置
  */
 // 渲染某种颜色到整张图片中
-- (UIImage *)kc_renderImageWithColor:(UIColor *)color;
+- (UIImage *)kc_renderImageWithColor:(UIColor *)color level:(CGFloat)level;
 // 获取某种颜色的纯色图片
 + (UIImage *)kc_pureColorimageWithColor:(UIColor *)color;
 

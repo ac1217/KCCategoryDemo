@@ -19,7 +19,6 @@
 		072BFBE01CDC669600551444 /* NSDate+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 072BFBCE1CDC669600551444 /* NSDate+KCExtension.m */; };
 		072BFBE11CDC669600551444 /* NSDictionary+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 072BFBD01CDC669600551444 /* NSDictionary+KCExtension.m */; };
 		072BFBE21CDC669600551444 /* NSString+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 072BFBD21CDC669600551444 /* NSString+KCExtension.m */; };
-		072BFBE31CDC669600551444 /* UIButton+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 072BFBD41CDC669600551444 /* UIButton+KCExtension.m */; };
 		072BFBE41CDC669600551444 /* UIImage+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 072BFBD61CDC669600551444 /* UIImage+KCExtension.m */; };
 		072BFBE51CDC669600551444 /* UIImageView+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 072BFBD81CDC669600551444 /* UIImageView+KCExtension.m */; };
 		072BFBE61CDC669600551444 /* UIView+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 072BFBDA1CDC669600551444 /* UIView+KCExtension.m */; };
@@ -69,8 +68,6 @@
 		072BFBD01CDC669600551444 /* NSDictionary+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+KCExtension.m"; sourceTree = "<group>"; };
 		072BFBD11CDC669600551444 /* NSString+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+KCExtension.h"; sourceTree = "<group>"; };
 		072BFBD21CDC669600551444 /* NSString+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+KCExtension.m"; sourceTree = "<group>"; };
-		072BFBD31CDC669600551444 /* UIButton+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+KCExtension.h"; sourceTree = "<group>"; };
-		072BFBD41CDC669600551444 /* UIButton+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+KCExtension.m"; sourceTree = "<group>"; };
 		072BFBD51CDC669600551444 /* UIImage+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+KCExtension.h"; sourceTree = "<group>"; };
 		072BFBD61CDC669600551444 /* UIImage+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+KCExtension.m"; sourceTree = "<group>"; };
 		072BFBD71CDC669600551444 /* UIImageView+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+KCExtension.h"; sourceTree = "<group>"; };
@@ -196,8 +193,6 @@
 				072BFBD01CDC669600551444 /* NSDictionary+KCExtension.m */,
 				072BFBD11CDC669600551444 /* NSString+KCExtension.h */,
 				072BFBD21CDC669600551444 /* NSString+KCExtension.m */,
-				072BFBD31CDC669600551444 /* UIButton+KCExtension.h */,
-				072BFBD41CDC669600551444 /* UIButton+KCExtension.m */,
 				072BFBD51CDC669600551444 /* UIImage+KCExtension.h */,
 				072BFBD61CDC669600551444 /* UIImage+KCExtension.m */,
 				072BFBD71CDC669600551444 /* UIImageView+KCExtension.h */,
@@ -341,7 +336,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				072BFBE11CDC669600551444 /* NSDictionary+KCExtension.m in Sources */,
-				072BFBE31CDC669600551444 /* UIButton+KCExtension.m in Sources */,
 				072BFBE51CDC669600551444 /* UIImageView+KCExtension.m in Sources */,
 				072BFB7F1CDC295C00551444 /* ViewController.m in Sources */,
 				072BFBE01CDC669600551444 /* NSDate+KCExtension.m in Sources */,

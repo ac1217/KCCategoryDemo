@@ -57,5 +57,13 @@
 // 获取view的xib对象
 + (UINib *)kc_xib;
 
+/*
+ * 显示红点, 默认在右上角
+ */
+@property (nonatomic, copy) NSString *kc_badgeValue;
+- (void)kc_setBadgeValue:(NSString *)badgeValue offset:(CGPoint)offset;
+
+
+
 
 @end

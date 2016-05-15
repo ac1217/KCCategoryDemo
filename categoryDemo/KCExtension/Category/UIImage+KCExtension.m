@@ -82,20 +82,29 @@
 }
 
 #pragma mark -颜色相关
-- (UIImage *)kc_renderImageWithColor:(UIColor *)color
+- (UIImage *)kc_renderImageWithColor:(UIColor *)color level:(CGFloat)level
 {
-    UIGraphicsBeginImageContextWithOptions(self.size, NO, 1);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextTranslateCTM(context, 0, self.size.height);
-    CGContextScaleCTM(context, 1.0, -1.0);
-    CGContextSetBlendMode(context, kCGBlendModeNormal);
-    CGRect rect = CGRectMake(0, 0, self.size.width, self.size.height);
-    CGContextClipToMask(context, rect, self.CGImage);
-    [color setFill];
-    CGContextFillRect(context, rect);
-    UIImage*newImage = UIGraphicsGetImageFromCurrentImageContext();
+    CGRect imageRect = CGRectMake(0.0f, 0.0f, self.size.width, self.size.height);
+    
+    UIGraphicsBeginImageContextWithOptions(imageRect.size, NO, self.scale);
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    
+    [self drawInRect:imageRect];
+    
+    CGContextSetFillColorWithColor(ctx, [color CGColor]);
+    CGContextSetAlpha(ctx, level);
+    CGContextSetBlendMode(ctx, kCGBlendModeSourceAtop);
+    CGContextFillRect(ctx, imageRect);
+    
+    CGImageRef imageRef = CGBitmapContextCreateImage(ctx);
+    UIImage *image = [UIImage imageWithCGImage:imageRef
+                                             scale:self.scale
+                                       orientation:self.imageOrientation];
+    CGImageRelease(imageRef);
+    
     UIGraphicsEndImageContext();
-    return newImage;
+    
+    return image;
 
 }
 
