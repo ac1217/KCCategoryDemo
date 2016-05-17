@@ -6,7 +6,7 @@
 //  Copyright © 2016年 Erica. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface NSString (KCExtension)
 
@@ -38,5 +38,7 @@
 // 通过时间字符串生成时间
 - (NSDate *)kc_dateWithFormatter:(NSString *)fmt;
 
+- (CGSize)textSizeWithMaxSize:(CGSize)maxSize font:(UIFont *)font;
+- (CGSize)singleLineTextWithFont:(UIFont *)font;
 
 @end

@@ -11,6 +11,7 @@
 #import "KCExtension.h"
 
 @interface ViewController ()
+@property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (nonatomic, weak) UIView *v;
 @end
 
@@ -21,21 +22,23 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     
-    
-    UIButton *v = [UIButton new];
-    v.frame = CGRectMake(100, 100, 100, 100);
-    v.backgroundColor = [UIColor greenColor];
+    self.textView.kc_placeholder = @"hahahahah";
+    self.textView.text = @"jjjjj";
+    self.textView.font = [UIFont systemFontOfSize:22];
+    UILabel *v = [UILabel new];
+    v.layer.backgroundColor = [UIColor greenColor].CGColor;
     [self.view addSubview:v];
     
+    v.frame = CGRectMake(100, 100, 100, 100);
     v.kc_badgeValue = @"999";
     
     self.v = v;
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-//    self.v.kc_badgeValue = @"";
+//    self.v.kc_badgeValue = @"11";
     
-    [self.v kc_setBadgeValue:@"12" offset:CGPointMake(10, -10)];
+    
 }
 
 @end

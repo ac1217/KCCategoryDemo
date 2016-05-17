@@ -222,14 +222,14 @@
             
             w = w < minW ? minW : w;
             
-            badgeValueLabel.frame = CGRectMake(self.frame.size.width - w, 0, w, h);
+            badgeValueLabel.frame = CGRectMake(self.frame.size.width - w * 0.5, - h * 0.5, w, h);
             
             badgeValueLabel.layer.cornerRadius = h * 0.5;
             
         }else {
             
             CGFloat wh = 8;
-            badgeValueLabel.frame = CGRectMake(self.frame.size.width - wh, 0, wh, wh);
+            badgeValueLabel.frame = CGRectMake(self.frame.size.width - wh * 0.5, - wh * 0.5, wh, wh);
             
             badgeValueLabel.layer.cornerRadius = wh * 0.5;
         }
@@ -251,8 +251,8 @@
     UILabel *badgeValueLabel = objc_getAssociatedObject(self, @"kc_badgeValueLabel");
     
     CGRect temp = badgeValueLabel.frame;
-    temp.origin.y += offset.y;
-    temp.origin.x += offset.x;
+    temp.origin.x = self.frame.size.width - temp.size.width * 0.5 + offset.x;
+    temp.origin.y = - temp.size.height * 0.5 + offset.y;
     
     badgeValueLabel.frame = temp;
 }

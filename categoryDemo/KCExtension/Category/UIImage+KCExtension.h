@@ -20,7 +20,10 @@
 // 渲染某种颜色到整张图片中
 - (UIImage *)kc_renderImageWithColor:(UIColor *)color level:(CGFloat)level;
 // 获取某种颜色的纯色图片
+// 返回1x1大小
 + (UIImage *)kc_pureColorimageWithColor:(UIColor *)color;
+// 指定大小
++ (UIImage *)kc_pureColorimageWithColor:(UIColor *)color size:(CGSize)size;
 
 /*
  * 图片剪切缩放

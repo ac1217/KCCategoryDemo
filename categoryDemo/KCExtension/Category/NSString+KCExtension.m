@@ -101,5 +101,17 @@
     return [dateFmt dateFromString:self];
 }
 
+#pragma mark -文本size
+
+- (CGSize)textSizeWithMaxSize:(CGSize)maxSize font:(UIFont *)font
+{
+  return [self boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : font} context:nil].size;
+}
+
+- (CGSize)singleLineTextWithFont:(UIFont *)font
+{
+    return [self sizeWithAttributes:@{NSFontAttributeName : font}];
+}
+
 
 @end

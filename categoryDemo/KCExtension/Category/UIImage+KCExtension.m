@@ -108,9 +108,10 @@
 
 }
 
-+ (UIImage *)kc_pureColorimageWithColor:(UIColor *)color
+
++ (UIImage *)kc_pureColorimageWithColor:(UIColor *)color size:(CGSize)size
 {
-    CGRect rect = CGRectMake(0, 0, 1, 1);
+    CGRect rect = CGRectMake(0, 0, size.width, size.height);
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context  = UIGraphicsGetCurrentContext();
     CGContextSetFillColorWithColor(context, color.CGColor);
@@ -118,6 +119,11 @@
     UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return img;
+}
+
++ (UIImage *)kc_pureColorimageWithColor:(UIColor *)color
+{
+    return [self kc_pureColorimageWithColor:color size:CGSizeMake(1, 1)];
 }
 
 #pragma mark -图片裁剪缩放相关

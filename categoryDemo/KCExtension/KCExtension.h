@@ -18,5 +18,6 @@
 #import "NSDate+KCExtension.h"
 #import "NSArray+KCExtension.h"
 #import "NSDictionary+KCExtension.h"
+#import "UITextView+KCExtension.h"
 
 #endif /* KCExtension_h */
