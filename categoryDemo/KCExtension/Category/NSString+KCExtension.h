@@ -41,4 +41,6 @@
 - (CGSize)textSizeWithMaxSize:(CGSize)maxSize font:(UIFont *)font;
 - (CGSize)singleLineTextWithFont:(UIFont *)font;
 
+- (NSString *)MD5String;
+
 @end

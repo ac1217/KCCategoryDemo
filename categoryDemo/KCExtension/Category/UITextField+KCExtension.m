@@ -8,16 +8,18 @@
 
 #import "UITextField+KCExtension.h"
 
+static NSString *const KCTextFieldPlaceholderLabelKey = @"kc_textFieldPlaceholderLabel";
+
 @implementation UITextField (KCExtension)
 
 - (void)setKc_placeholderColor:(UIColor *)kc_placeholderColor
 {
-    [[self valueForKeyPath:@"placeholderLabel"] setTextColor:kc_placeholderColor];
+    [[self valueForKeyPath:KCTextFieldPlaceholderLabelKey] setTextColor:kc_placeholderColor];
 }
 
 - (UIColor *)kc_placeholderColor
 {
-    return [[self valueForKeyPath:@"placeholderLabel"] textColor];
+    return [[self valueForKeyPath:KCTextFieldPlaceholderLabelKey] textColor];
 }
 
 @end

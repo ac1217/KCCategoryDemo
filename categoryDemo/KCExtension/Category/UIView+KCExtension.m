@@ -10,7 +10,33 @@
 
 #import <objc/message.h>
 
+static NSString *const KCBadgeValueLabelKey = @"kc_badgeValueLabel";
+
+@interface UIView ()
+
+@property (nonatomic, strong) UILabel *kc_badgeValueLabel;
+@end
+
 @implementation UIView (KCExtension)
+
+#pragma mark -懒加载
+- (UILabel *)kc_badgeValueLabel
+{
+    UILabel *badgeValueLabel = objc_getAssociatedObject(self, (__bridge const void *)(KCBadgeValueLabelKey));
+    
+    if (!badgeValueLabel) {
+        badgeValueLabel = [[UILabel alloc] init];
+        badgeValueLabel.font = [UIFont systemFontOfSize:10];
+        badgeValueLabel.textColor = [UIColor whiteColor];
+        badgeValueLabel.textAlignment = NSTextAlignmentCenter;
+        badgeValueLabel.layer.backgroundColor = [UIColor redColor].CGColor;
+        [self addSubview:badgeValueLabel];
+        objc_setAssociatedObject(self, (__bridge const void *)(KCBadgeValueLabelKey), badgeValueLabel, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    
+    return badgeValueLabel;
+
+}
 
 #pragma mark -frame相关
 - (void)setKc_x:(CGFloat)kc_x
@@ -198,63 +224,82 @@
 #pragma mark -显示红点
 - (void)setKc_badgeValue:(NSString *)kc_badgeValue
 {
-    UILabel *badgeValueLabel = objc_getAssociatedObject(self, @"kc_badgeValueLabel");
-    
-    if (!badgeValueLabel) {
-        badgeValueLabel = [[UILabel alloc] init];
-        badgeValueLabel.font = [UIFont systemFontOfSize:10];
-        badgeValueLabel.textColor = [UIColor whiteColor];
-        badgeValueLabel.textAlignment = NSTextAlignmentCenter;
-        badgeValueLabel.layer.backgroundColor = [UIColor redColor].CGColor;
-        [self addSubview:badgeValueLabel];
-        objc_setAssociatedObject(self, @"kc_badgeValueLabel", badgeValueLabel, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }
     
     
     if (kc_badgeValue) {
-        badgeValueLabel.hidden = NO;
-        badgeValueLabel.text = kc_badgeValue;
+        self.kc_badgeValueLabel.hidden = NO;
+        self.kc_badgeValueLabel.text = kc_badgeValue;
         if (kc_badgeValue.length) {
             
             CGFloat h = 15;
             CGFloat minW = h;
-            CGFloat w = [kc_badgeValue sizeWithAttributes:@{NSFontAttributeName : badgeValueLabel.font}].width + 8;
+            CGFloat w = [kc_badgeValue sizeWithAttributes:@{NSFontAttributeName : self.kc_badgeValueLabel.font}].width + 8;
             
             w = w < minW ? minW : w;
             
-            badgeValueLabel.frame = CGRectMake(self.frame.size.width - w * 0.5, - h * 0.5, w, h);
+            self.kc_badgeValueLabel.frame = CGRectMake(self.frame.size.width - w * 0.5, - h * 0.5, w, h);
             
-            badgeValueLabel.layer.cornerRadius = h * 0.5;
+            self.kc_badgeValueLabel.layer.cornerRadius = h * 0.5;
             
         }else {
             
             CGFloat wh = 8;
-            badgeValueLabel.frame = CGRectMake(self.frame.size.width - wh * 0.5, - wh * 0.5, wh, wh);
+            self.kc_badgeValueLabel.frame = CGRectMake(self.frame.size.width - wh * 0.5, - wh * 0.5, wh, wh);
             
-            badgeValueLabel.layer.cornerRadius = wh * 0.5;
+            self.kc_badgeValueLabel.layer.cornerRadius = wh * 0.5;
         }
     }else {
-        badgeValueLabel.hidden = YES;
+        self.kc_badgeValueLabel.hidden = YES;
     }
 }
 
 - (NSString *)kc_badgeValue
 {
-    UILabel *badgeValueLabel = objc_getAssociatedObject(self, @"kc_badgeValueLabel");
-    return badgeValueLabel.text;
+    return self.kc_badgeValueLabel.text;
 }
 
 - (void)kc_setBadgeValue:(NSString *)badgeValue offset:(CGPoint)offset
 {
     self.kc_badgeValue = badgeValue;
     
-    UILabel *badgeValueLabel = objc_getAssociatedObject(self, @"kc_badgeValueLabel");
-    
-    CGRect temp = badgeValueLabel.frame;
+    CGRect temp = self.kc_badgeValueLabel.frame;
     temp.origin.x = self.frame.size.width - temp.size.width * 0.5 + offset.x;
     temp.origin.y = - temp.size.height * 0.5 + offset.y;
     
-    badgeValueLabel.frame = temp;
+    self.kc_badgeValueLabel.frame = temp;
+}
+
+/**********************/
+
+#pragma mark -layer
+- (void)setKc_layerBackgroundColor:(UIColor *)kc_layerBackgroundColor
+{
+    self.layer.backgroundColor = kc_layerBackgroundColor.CGColor;
+}
+
+- (UIColor *)kc_layerBackgroundColor
+{
+    return [UIColor colorWithCGColor:self.layer.backgroundColor];
+}
+
+- (void)setKc_layerBorderColor:(UIColor *)kc_layerBorderColor
+{
+    self.layer.borderColor = kc_layerBorderColor.CGColor;
+}
+
+- (UIColor *)kc_layerBorderColor
+{
+    return [UIColor colorWithCGColor:self.layer.borderColor];
+}
+
+- (void)setKc_layerCornerRadius:(CGFloat)kc_layerCornerRadius
+{
+    self.layer.cornerRadius = kc_layerCornerRadius;
+}
+
+- (CGFloat)kc_layerCornerRadius
+{
+    return self.layer.cornerRadius;
 }
 
 

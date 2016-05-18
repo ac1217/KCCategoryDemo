@@ -26,6 +26,7 @@
 		072BFBEA1CDDBD9100551444 /* UIDevice+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 072BFBE91CDDBD9100551444 /* UIDevice+KCExtension.m */; };
 		07FB90531CEAD3790022C104 /* UITextField+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FB90521CEAD3790022C104 /* UITextField+KCExtension.m */; };
 		07FB90561CEAD3D70022C104 /* UITextView+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FB90551CEAD3D70022C104 /* UITextView+KCExtension.m */; };
+		07FB90591CEB26850022C104 /* CALayer+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FB90581CEB26850022C104 /* CALayer+KCExtension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,8 @@
 		07FB90521CEAD3790022C104 /* UITextField+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+KCExtension.m"; sourceTree = "<group>"; };
 		07FB90541CEAD3D70022C104 /* UITextView+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+KCExtension.h"; sourceTree = "<group>"; };
 		07FB90551CEAD3D70022C104 /* UITextView+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+KCExtension.m"; sourceTree = "<group>"; };
+		07FB90571CEB26850022C104 /* CALayer+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+KCExtension.h"; sourceTree = "<group>"; };
+		07FB90581CEB26850022C104 /* CALayer+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+KCExtension.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +214,8 @@
 				07FB90521CEAD3790022C104 /* UITextField+KCExtension.m */,
 				07FB90541CEAD3D70022C104 /* UITextView+KCExtension.h */,
 				07FB90551CEAD3D70022C104 /* UITextView+KCExtension.m */,
+				07FB90571CEB26850022C104 /* CALayer+KCExtension.h */,
+				07FB90581CEB26850022C104 /* CALayer+KCExtension.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -347,6 +352,7 @@
 			files = (
 				072BFBE11CDC669600551444 /* NSDictionary+KCExtension.m in Sources */,
 				072BFBE51CDC669600551444 /* UIImageView+KCExtension.m in Sources */,
+				07FB90591CEB26850022C104 /* CALayer+KCExtension.m in Sources */,
 				072BFB7F1CDC295C00551444 /* ViewController.m in Sources */,
 				07FB90561CEAD3D70022C104 /* UITextView+KCExtension.m in Sources */,
 				072BFBE01CDC669600551444 /* NSDate+KCExtension.m in Sources */,

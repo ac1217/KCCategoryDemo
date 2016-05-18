@@ -12,6 +12,7 @@
 
 // 占位文字
 @property (nonatomic, copy) NSString *kc_placeholder;
+@property (nonatomic, strong) UIColor *kc_placeholderColor;
 
 
 @end

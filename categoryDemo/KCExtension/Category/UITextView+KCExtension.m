@@ -9,7 +9,41 @@
 #import "UITextView+KCExtension.h"
 #import <objc/message.h>
 
+static NSString *const KCTextViewPlaceholderLabelKey = @"kc_textViewPlaceholderLabel";
+
+@interface UITextView ()
+@property (nonatomic, strong) UILabel *kc_placeholderLabel;
+@end
+
 @implementation UITextView (KCExtension)
+
+- (UILabel *)kc_placeholderLabel
+{
+    UILabel *placeholderLabel = objc_getAssociatedObject(self, (__bridge const void *)(KCTextViewPlaceholderLabelKey));
+    if (!placeholderLabel) {
+        placeholderLabel = [[UILabel alloc] init];
+        placeholderLabel.font = self.font;
+        placeholderLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        placeholderLabel.textColor = [UIColor lightGrayColor];
+        placeholderLabel.numberOfLines = 0;
+        [self addSubview:placeholderLabel];
+        objc_setAssociatedObject(self, (__bridge const void *)(KCTextViewPlaceholderLabelKey), placeholderLabel, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        
+        CGFloat H = self.textContainer.lineFragmentPadding + self.textContainerInset.left;
+        CGFloat V = self.textContainerInset.top;
+        
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:placeholderLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1 constant:H]];
+        
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:placeholderLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1 constant:V]];
+        
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:placeholderLabel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeWidth multiplier:1 constant:H * -2]];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kc_textChange) name:UITextViewTextDidChangeNotification object:self];
+    }
+    
+    return placeholderLabel;
+
+}
 
 + (void)load
 {
@@ -60,51 +94,37 @@
 {
     [self kc_setFont:font];
     
-    UILabel *placeholderLabel = objc_getAssociatedObject(self, @"kc_placeholderLabel");
-    placeholderLabel.font = font;
+    self.kc_placeholderLabel.font = font;
     
 }
 
 - (void)setKc_placeholder:(NSString *)kc_placeholder
 {
-     UILabel *placeholderLabel = objc_getAssociatedObject(self, @"kc_placeholderLabel");
     
-    if (!placeholderLabel) {
-        placeholderLabel = [[UILabel alloc] init];
-        placeholderLabel.font = self.font;
-        placeholderLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        placeholderLabel.textColor = [UIColor lightGrayColor];
-        [self addSubview:placeholderLabel];
-        objc_setAssociatedObject(self, @"kc_placeholderLabel", placeholderLabel, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        
-        CGFloat H = 5;
-        CGFloat V = 8;
-        
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:placeholderLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1 constant:H]];
-        
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:placeholderLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1 constant:V]];
-        
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:placeholderLabel attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeRight multiplier:1 constant:H]];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kc_textChange) name:UITextViewTextDidChangeNotification object:self];
-    }
-    
-    placeholderLabel.text = kc_placeholder;
+    self.kc_placeholderLabel.text = kc_placeholder;
 
 }
 
 - (void)kc_textChange
 {
-    
-    UILabel *placeholderLabel = objc_getAssociatedObject(self, @"kc_placeholderLabel");
-    
-    placeholderLabel.hidden = self.hasText;
+    self.kc_placeholderLabel.hidden = self.hasText;
 }
 
 - (NSString *)kc_placeholder
 {
-    UILabel *placeholderLabel = objc_getAssociatedObject(self, @"kc_placeholderLabel");
-    return placeholderLabel.text;
+    return self.kc_placeholderLabel.text;
 }
+
+- (void)setKc_placeholderColor:(UIColor *)kc_placeholderColor
+{
+    [self.kc_placeholderLabel setTextColor:kc_placeholderColor];
+}
+
+- (UIColor *)kc_placeholderColor
+{
+    return [self.kc_placeholderLabel textColor];
+}
+
+
 
 @end

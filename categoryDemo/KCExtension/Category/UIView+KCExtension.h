@@ -63,7 +63,11 @@
 @property (nonatomic, copy) NSString *kc_badgeValue;
 - (void)kc_setBadgeValue:(NSString *)badgeValue offset:(CGPoint)offset;
 
-
-
+/*
+ * 图层相关
+ */
+@property (nonatomic, strong) UIColor *kc_layerBackgroundColor;
+@property (nonatomic, strong) UIColor *kc_layerBorderColor;
+@property (nonatomic, assign) CGFloat kc_layerCornerRadius;
 
 @end
