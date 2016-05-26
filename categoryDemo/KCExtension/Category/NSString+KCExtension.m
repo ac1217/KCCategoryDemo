@@ -105,33 +105,54 @@
 
 #pragma mark -文本size
 
-- (CGSize)textSizeWithMaxSize:(CGSize)maxSize font:(UIFont *)font
+- (CGSize)kc_textSizeWithMaxSize:(CGSize)maxSize font:(UIFont *)font
 {
   return [self boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : font} context:nil].size;
 }
 
-- (CGSize)singleLineTextWithFont:(UIFont *)font
+- (CGSize)kc_singleLineTextWithFont:(UIFont *)font
 {
     return [self sizeWithAttributes:@{NSFontAttributeName : font}];
 }
 
 
-- (NSString *)MD5String
+- (NSString *)kc_MD5String
 {
     const char *string = self.UTF8String;
     int length = (int)strlen(string);
     unsigned char bytes[CC_MD5_DIGEST_LENGTH];
     CC_MD5(string, length, bytes);
-    return [self stringFromBytes:bytes length:CC_MD5_DIGEST_LENGTH];
+    
+    
+    NSMutableString *mutableString = @"".mutableCopy;
+    for (int i = 0; i < CC_MD5_DIGEST_LENGTH; i++)
+        [mutableString appendFormat:@"%02x", bytes[i]];
+    
+    return [NSString stringWithString:mutableString];
+    
 }
 
-- (NSString *)stringFromBytes:(unsigned char *)bytes length:(int)length
+- (NSString *)kc_documentPath
 {
-    NSMutableString *mutableString = @"".mutableCopy;
-    for (int i = 0; i < length; i++)
-        [mutableString appendFormat:@"%02x", bytes[i]];
-    return [NSString stringWithString:mutableString];
+    NSString *document = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;
+    
+    return [document stringByAppendingPathComponent:self];
 }
+
+- (NSString *)kc_cachePath
+{
+    
+    NSString *cache = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).lastObject;
+    
+    return [cache stringByAppendingPathComponent:self];
+}
+
+
+- (NSString *)kc_tempPath
+{
+    return [NSTemporaryDirectory() stringByAppendingPathComponent:self];
+}
+
 
 
 @end

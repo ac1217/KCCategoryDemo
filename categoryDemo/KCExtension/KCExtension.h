@@ -19,5 +19,6 @@
 #import "NSArray+KCExtension.h"
 #import "NSDictionary+KCExtension.h"
 #import "UITextView+KCExtension.h"
+#import "UIColor+KCExtension.h"
 
 #endif /* KCExtension_h */

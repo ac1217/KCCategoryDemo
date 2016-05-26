@@ -34,7 +34,9 @@
 - (UIImage *)kc_circleImage;
 // 根据比例缩放图片
 - (UIImage *)kc_imageWithScale:(CGFloat)scale;
-// 指定宽度算
+// 指定宽度根据宽高比计算
 - (UIImage *)kc_imageWithWidth:(CGFloat)width;
+// 指定size
+- (UIImage *)kc_imageWithSize:(CGSize)size;
 
 @end

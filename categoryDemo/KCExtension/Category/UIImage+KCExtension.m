@@ -155,18 +155,19 @@
 {
     CGFloat w = self.size.width * scale;
     CGFloat h = self.size.height * scale;
-    UIGraphicsBeginImageContext(CGSizeMake(w, h));
-    [self drawInRect:CGRectMake(0, 0, w, h)];
-    UIImage* image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return image;
+    return [self kc_imageWithSize:CGSizeMake(w, h)];
 }
 
 - (UIImage *)kc_imageWithWidth:(CGFloat)width
 {
     CGFloat h = width * self.size.height / self.size.width;
-    UIGraphicsBeginImageContext(CGSizeMake(width, h));
-    [self drawInRect:CGRectMake(0, 0, width, h)];
+    return [self kc_imageWithSize:CGSizeMake(width, h)];
+}
+
+- (UIImage *)kc_imageWithSize:(CGSize)size
+{
+    UIGraphicsBeginImageContext(size);
+    [self drawInRect:CGRectMake(0, 0, size.width, size.height)];
     UIImage* image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;

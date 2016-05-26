@@ -85,4 +85,19 @@
 
 }
 
+
++ (NSDate *)kc_todayZero
+{
+    NSDate *now = [NSDate date];
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    
+    NSDateComponents *components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:now];
+    
+    NSDate *today = [calendar dateFromComponents:components];
+    
+    return today;
+
+}
+
 @end

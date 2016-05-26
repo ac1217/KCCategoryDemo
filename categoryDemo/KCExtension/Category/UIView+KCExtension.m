@@ -302,5 +302,21 @@ static NSString *const KCBadgeValueLabelKey = @"kc_badgeValueLabel";
     return self.layer.cornerRadius;
 }
 
+- (void)setKc_layerBorderWidth:(CGFloat)kc_layerBorderWidth
+{
+    self.layer.borderWidth = kc_layerBorderWidth;
+}
+
+- (CGFloat)kc_layerBorderWidth
+{
+    return self.layer.borderWidth;
+}
+
+- (void)kc_setLayerCornerRadiusWithClips:(CGFloat)cornerRadius
+{
+    self.kc_layerCornerRadius = cornerRadius;
+    self.clipsToBounds = YES;
+}
+
 
 @end

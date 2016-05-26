@@ -37,4 +37,9 @@
  */
 - (NSString *)kc_dateStringFromNowWithPrettyFormatter;
 
+/*
+ * 今天0点
+ */
++ (NSDate *)kc_todayZero;
+
 @end

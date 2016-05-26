@@ -38,9 +38,14 @@
 // 通过时间字符串生成时间
 - (NSDate *)kc_dateWithFormatter:(NSString *)fmt;
 
-- (CGSize)textSizeWithMaxSize:(CGSize)maxSize font:(UIFont *)font;
-- (CGSize)singleLineTextWithFont:(UIFont *)font;
+- (CGSize)kc_textSizeWithMaxSize:(CGSize)maxSize font:(UIFont *)font;
+- (CGSize)kc_singleLineTextWithFont:(UIFont *)font;
 
-- (NSString *)MD5String;
+- (NSString *)kc_MD5String;
+
+
+- (NSString *)kc_documentPath;
+- (NSString *)kc_cachePath;
+- (NSString *)kc_tempPath;
 
 @end

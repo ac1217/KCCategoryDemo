@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0702608E1CF6ECAB004D7670 /* UIColor+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0702608D1CF6ECAB004D7670 /* UIColor+KCExtension.m */; };
 		072BFB791CDC295C00551444 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 072BFB781CDC295C00551444 /* main.m */; };
 		072BFB7C1CDC295C00551444 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 072BFB7B1CDC295C00551444 /* AppDelegate.m */; };
 		072BFB7F1CDC295C00551444 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072BFB7E1CDC295C00551444 /* ViewController.m */; };
@@ -47,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0702608C1CF6ECAB004D7670 /* UIColor+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+KCExtension.h"; sourceTree = "<group>"; };
+		0702608D1CF6ECAB004D7670 /* UIColor+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+KCExtension.m"; sourceTree = "<group>"; };
 		072BFB741CDC295C00551444 /* categoryDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = categoryDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		072BFB781CDC295C00551444 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		072BFB7A1CDC295C00551444 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -216,6 +219,8 @@
 				07FB90551CEAD3D70022C104 /* UITextView+KCExtension.m */,
 				07FB90571CEB26850022C104 /* CALayer+KCExtension.h */,
 				07FB90581CEB26850022C104 /* CALayer+KCExtension.m */,
+				0702608C1CF6ECAB004D7670 /* UIColor+KCExtension.h */,
+				0702608D1CF6ECAB004D7670 /* UIColor+KCExtension.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -353,6 +358,7 @@
 				072BFBE11CDC669600551444 /* NSDictionary+KCExtension.m in Sources */,
 				072BFBE51CDC669600551444 /* UIImageView+KCExtension.m in Sources */,
 				07FB90591CEB26850022C104 /* CALayer+KCExtension.m in Sources */,
+				0702608E1CF6ECAB004D7670 /* UIColor+KCExtension.m in Sources */,
 				072BFB7F1CDC295C00551444 /* ViewController.m in Sources */,
 				07FB90561CEAD3D70022C104 /* UITextView+KCExtension.m in Sources */,
 				072BFBE01CDC669600551444 /* NSDate+KCExtension.m in Sources */,

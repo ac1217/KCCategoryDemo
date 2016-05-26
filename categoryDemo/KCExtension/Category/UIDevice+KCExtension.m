@@ -9,65 +9,70 @@
 #import "UIDevice+KCExtension.h"
 #import <sys/utsname.h>
 
-NSString *const UIDeviceModelIPhone1G = @"iPhone 1G";
-NSString *const UIDeviceModelIPhone3G = @"iPhone 3G";
-NSString *const UIDeviceModelIPhone3GS = @"iPhone 3GS";
-NSString *const UIDeviceModelIPhone4 = @"iPhone 4";
-NSString *const UIDeviceModelVerizonIPhone4 = @"Verizon iPhone 4";
-NSString *const UIDeviceModelIPhone4S = @"iPhone 4S";
-NSString *const UIDeviceModelIPhone5 = @"iPhone 5";
-NSString *const UIDeviceModelIPhone5s = @"iPhone 5s";
-NSString *const UIDeviceModelIPhone6 = @"iPhone 6";
-NSString *const UIDeviceModelIPhone6Plus = @"iPhone 6 Plus";
-NSString *const UIDeviceModelIPhone6s = @"iPhone 6s";
-NSString *const UIDeviceModelIPhone6sPlus = @"iPhone 6s Plus";
-NSString *const UIDeviceModelSimulator = @"Simulator";
-NSString *const UIDeviceModelIPodTouch1G = @"iPod Touch 1G";
-NSString *const UIDeviceModelIPodTouch2G = @"iPod Touch 2G";
-NSString *const UIDeviceModelIPodTouch3G = @"iPod Touch 3G";
-NSString *const UIDeviceModelIPodTouch4G = @"iPod Touch 4G";
-NSString *const UIDeviceModelIPad = @"iPad";
-NSString *const UIDeviceModelIPad2WIFI = @"iPad 2 WIFI";
-NSString *const UIDeviceModelIPad2CDMA = @"iPad 2 CDMA";
-NSString *const UIDeviceModelIPad2GSM = @"iPad 2 GSM";
-NSString *const UIDeviceModelIPad4WIFI = @"iPad 4 WIFI";
 
 @implementation UIDevice (KCExtension)
 
-+ (NSString*)kc_deviceModel
+- (NSString*)kc_deviceModel
 {
     struct utsname systemInfo;
     uname(&systemInfo);
-    NSString *deviceString = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
+    NSString *platform = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
     
-    if ([deviceString isEqualToString:@"iPhone1,1"])    return UIDeviceModelIPhone1G;
-    if ([deviceString isEqualToString:@"iPhone1,2"])    return UIDeviceModelIPhone3G;
-    if ([deviceString isEqualToString:@"iPhone2,1"])    return UIDeviceModelIPhone3GS;
-    if ([deviceString isEqualToString:@"iPhone3,1"])    return UIDeviceModelIPhone4;
-    if ([deviceString isEqualToString:@"iPhone3,2"])    return UIDeviceModelVerizonIPhone4;
-    if ([deviceString isEqualToString:@"iPhone4,1"])    return UIDeviceModelIPhone4S;
-    if ([deviceString isEqualToString:@"iPhone5,2"])    return UIDeviceModelIPhone5;
-    if ([deviceString isEqualToString:@"iPhone6,2"])    return UIDeviceModelIPhone5s;
-    if ([deviceString isEqualToString:@"iPhone7,2"])    return UIDeviceModelIPhone6;
-    if ([deviceString isEqualToString:@"iPhone7,1"])    return UIDeviceModelIPhone6Plus;
-    if ([deviceString isEqualToString:@"iPhone8,2"])    return UIDeviceModelIPhone6sPlus;
-    if ([deviceString isEqualToString:@"iPhone8,1"])    return UIDeviceModelIPhone6s;
+    if ([platform isEqualToString:@"iPhone1,1"])    return @"iPhone 1G";
+    if ([platform isEqualToString:@"iPhone1,2"])    return @"iPhone 3G";
+    if ([platform isEqualToString:@"iPhone2,1"])    return @"iPhone 3GS";
+    if ([platform isEqualToString:@"iPhone3,1"])    return @"iPhone 4 (GSM)";
+    if ([platform isEqualToString:@"iPhone3,3"])    return @"iPhone 4 (CDMA)";
+    if ([platform isEqualToString:@"iPhone4,1"])    return @"iPhone 4S";
+    if ([platform isEqualToString:@"iPhone5,1"])    return @"iPhone 5 (GSM)";
+    if ([platform isEqualToString:@"iPhone5,2"])    return @"iPhone 5 (CDMA)";
+    if ([platform isEqualToString:@"iPhone5,3"])    return @"iPhone 5c";
+    if ([platform isEqualToString:@"iPhone5,4"])    return @"iPhone 5c";
+    if ([platform isEqualToString:@"iPhone6,1"])    return @"iPhone 5s";
+    if ([platform isEqualToString:@"iPhone6,2"])    return @"iPhone 5s";
+    if ([platform isEqualToString:@"iPhone7,1"])    return @"iPhone 6 Plus";
+    if ([platform isEqualToString:@"iPhone7,2"])    return @"iPhone 6";
+    if ([platform isEqualToString:@"iPhone8,1"])    return @"iPhone 6s Plus";
+    if ([platform isEqualToString:@"iPhone8,2"])    return @"iPhone 6s";
     
-    if ([deviceString isEqualToString:@"i386"])         return UIDeviceModelSimulator;
-    if ([deviceString isEqualToString:@"x86_64"])       return UIDeviceModelSimulator;
+    if ([platform isEqualToString:@"iPod1,1"])      return @"iPod Touch 1G";
+    if ([platform isEqualToString:@"iPod2,1"])      return @"iPod Touch 2G";
+    if ([platform isEqualToString:@"iPod3,1"])      return @"iPod Touch 3G";
+    if ([platform isEqualToString:@"iPod4,1"])      return @"iPod Touch 4G";
+    if ([platform isEqualToString:@"iPod5,1"])      return @"iPod Touch 5G";
+    if ([platform isEqualToString:@"iPod7,1"])      return @"iPod Touch 6G";
     
-    if ([deviceString isEqualToString:@"iPod1,1"])      return UIDeviceModelIPodTouch1G;
-    if ([deviceString isEqualToString:@"iPod2,1"])      return UIDeviceModelIPodTouch2G;
-    if ([deviceString isEqualToString:@"iPod3,1"])      return UIDeviceModelIPodTouch3G;
-    if ([deviceString isEqualToString:@"iPod4,1"])      return UIDeviceModelIPodTouch4G;
-    if ([deviceString isEqualToString:@"iPad1,1"])      return UIDeviceModelIPad;
-    if ([deviceString isEqualToString:@"iPad2,1"])      return UIDeviceModelIPad2WIFI;
-    if ([deviceString isEqualToString:@"iPad2,2"])      return UIDeviceModelIPad2GSM;
-    if ([deviceString isEqualToString:@"iPad2,3"])      return UIDeviceModelIPad2CDMA;
-    if ([deviceString isEqualToString:@"iPad3,4"])      return UIDeviceModelIPad4WIFI;
-    NSLog(@"NOTE: Unknown device type: %@", deviceString);
+    if ([platform isEqualToString:@"iPad1,1"])      return @"iPad";
+    if ([platform isEqualToString:@"iPad2,1"])      return @"iPad 2 (WiFi)";
+    if ([platform isEqualToString:@"iPad2,2"])      return @"iPad 2 (GSM)";
+    if ([platform isEqualToString:@"iPad2,3"])      return @"iPad 2 (CDMA)";
+    if ([platform isEqualToString:@"iPad2,4"])      return @"iPad 2 (WiFi)";
+    if ([platform isEqualToString:@"iPad2,5"])      return @"iPad Mini (WiFi)";
+    if ([platform isEqualToString:@"iPad2,6"])      return @"iPad Mini (GSM)";
+    if ([platform isEqualToString:@"iPad2,7"])      return @"iPad Mini (CDMA)";
+    if ([platform isEqualToString:@"iPad3,1"])      return @"iPad 3 (WiFi)";
+    if ([platform isEqualToString:@"iPad3,2"])      return @"iPad 3 (CDMA)";
+    if ([platform isEqualToString:@"iPad3,3"])      return @"iPad 3 (GSM)";
+    if ([platform isEqualToString:@"iPad3,4"])      return @"iPad 4 (WiFi)";
+    if ([platform isEqualToString:@"iPad3,5"])      return @"iPad 4 (GSM)";
+    if ([platform isEqualToString:@"iPad3,6"])      return @"iPad 4 (CDMA)";
+    if ([platform isEqualToString:@"iPad4,1"])      return @"iPad Air (WiFi)";
+    if ([platform isEqualToString:@"iPad4,2"])      return @"iPad Air (GSM)";
+    if ([platform isEqualToString:@"iPad4,3"])      return @"iPad Air (CDMA)";
+    if ([platform isEqualToString:@"iPad4,4"])      return @"iPad Mini Retina (WiFi)";
+    if ([platform isEqualToString:@"iPad4,5"])      return @"iPad Mini Retina (Cellular)";
+    if ([platform isEqualToString:@"iPad4,7"])      return @"iPad Mini 3 (WiFi)";
+    if ([platform isEqualToString:@"iPad4,8"])      return @"iPad Mini 3 (Cellular)";
+    if ([platform isEqualToString:@"iPad4,9"])      return @"iPad Mini 3 (Cellular)";
+    if ([platform isEqualToString:@"iPad5,1"])      return @"iPad Mini 4 (WiFi)";
+    if ([platform isEqualToString:@"iPad5,2"])      return @"iPad Mini 4 (Cellular)";
+    if ([platform isEqualToString:@"iPad5,3"])      return @"iPad Air 2 (WiFi)";
+    if ([platform isEqualToString:@"iPad5,4"])      return @"iPad Air 2 (Cellular)";
     
-    return deviceString;
+    if ([platform isEqualToString:@"i386"])      return @"iPhone Simulator (i386)";
+    if ([platform isEqualToString:@"x86_64"])    return @"iPhone Simulator";
+    
+    return platform;
 
 }
 @end

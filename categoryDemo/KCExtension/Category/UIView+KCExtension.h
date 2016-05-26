@@ -68,6 +68,9 @@
  */
 @property (nonatomic, strong) UIColor *kc_layerBackgroundColor;
 @property (nonatomic, strong) UIColor *kc_layerBorderColor;
+@property (nonatomic, assign) CGFloat kc_layerBorderWidth;
 @property (nonatomic, assign) CGFloat kc_layerCornerRadius;
+
+- (void)kc_setLayerCornerRadiusWithClips:(CGFloat)cornerRadius;
 
 @end
