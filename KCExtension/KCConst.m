@@ -7,5 +7,5 @@
 //
 #import "KCConst.h"
 
-CGFloat const KC_DefaultAnimationDuration = 0.25;
-CGFloat const KC_DefaultMargin = 10;
+CGFloat const KCDefaultAnimationDuration = 0.25;
+CGFloat const KCDefaultMargin = 10;

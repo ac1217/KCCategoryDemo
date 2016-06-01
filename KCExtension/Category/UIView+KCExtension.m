@@ -39,6 +39,18 @@ static NSString *const KCBadgeValueLabelKey = @"kc_badgeValueLabel";
 }
 
 #pragma mark -frame相关
+
+- (void)setKc_center:(CGPoint)kc_center
+{
+    self.center = kc_center;
+    
+}
+
+- (CGPoint)kc_center
+{
+    return self.center;
+}
+
 - (void)setKc_x:(CGFloat)kc_x
 {
     CGRect frame = self.frame;

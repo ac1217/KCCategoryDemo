@@ -8,5 +8,5 @@
 
 @import UIKit;
 
-extern CGFloat const KC_DefaultAnimationDuration;
-extern CGFloat const KC_DefaultMargin;
+extern CGFloat const KCDefaultAnimationDuration;
+extern CGFloat const KCDefaultMargin;

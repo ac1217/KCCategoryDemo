@@ -20,5 +20,7 @@
 #import "NSDictionary+KCExtension.h"
 #import "UITextView+KCExtension.h"
 #import "UIColor+KCExtension.h"
+#import "UIDevice+KCExtension.h"
+#import "UITextField+KCExtension.h"
 
 #endif /* KCExtension_h */

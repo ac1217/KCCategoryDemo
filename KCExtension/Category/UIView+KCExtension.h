@@ -21,6 +21,7 @@
 @property (nonatomic, assign) CGFloat kc_width;
 @property (nonatomic, assign) CGFloat kc_height;
 @property (nonatomic, assign) CGSize kc_size;
+@property (nonatomic, assign) CGPoint kc_center;
 
 /*
  * transform后获取四个点真实坐标

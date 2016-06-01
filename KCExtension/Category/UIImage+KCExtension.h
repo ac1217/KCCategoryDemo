@@ -38,5 +38,16 @@
 - (UIImage *)kc_imageWithWidth:(CGFloat)width;
 // 指定size
 - (UIImage *)kc_imageWithSize:(CGSize)size;
+// 拉伸中间1像素点
+- (UIImage *)kc_resizedImage;
+
+/**
+ *  根据图片返回一张高斯模糊的图片
+ *
+ *  @param blur 模糊系数 (0 ~ 1)
+ *
+ *  @return 新的图片
+ */
+- (UIImage *)kc_blurImageWithRatio:(CGFloat)ratio;
 
 @end

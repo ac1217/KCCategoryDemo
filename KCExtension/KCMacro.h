@@ -41,6 +41,9 @@
 #define KC_HORIZONTAL_RATIO KC_SCREEN_WIDTH / 375
 #define KC_VERTICAL_RATIO KC_SCREEN_HEIGHT / 667
 
+#define KC_PUSH_VIEW_CONTROLLER(vc) [self.navigationController pushViewController:vc animated:YES];
+#define KC_PRESENT_VIEW_CONTROLLER(vc) [self presentViewController:vc animated:YES completion:nil];
+
 
 //弱引用
 #define KC_WEAK_REFERENCE(weakSelf)  __weak __typeof(&*self)weakSelf = self;
