@@ -46,7 +46,7 @@
 
 
 //弱引用
-#define KC_WEAK_REFERENCE(weakSelf)  __weak __typeof(&*self)weakSelf = self;
+#define KC_WEAK_SELF __weak __typeof(&*self)weakSelf = self;
 
 //KCLog日志输出方法
 

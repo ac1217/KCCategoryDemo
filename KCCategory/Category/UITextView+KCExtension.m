@@ -45,29 +45,32 @@ static NSString *const KCTextViewPlaceholderLabelKey = @"kc_textViewPlaceholderL
 
 }
 
-+ (void)load
-{
-    Method dealloc1 = class_getInstanceMethod(self, NSSelectorFromString(@"dealloc"));
-    Method dealloc2 = class_getInstanceMethod(self, @selector(kc_dealloc));
+__attribute__((constructor)) static void kc_UITextViewPatchEntry(void) {
+    
+    Class cls = [UITextView class];
+    
+    Method dealloc1 = class_getInstanceMethod(cls, NSSelectorFromString(@"dealloc"));
+    Method dealloc2 = class_getInstanceMethod(cls, @selector(kc_dealloc));
     
     method_exchangeImplementations(dealloc1 , dealloc2);
     
-    Method font1 = class_getInstanceMethod(self, @selector(setFont:));
-    Method font2 = class_getInstanceMethod(self, @selector(kc_setFont:));
+    Method font1 = class_getInstanceMethod(cls, @selector(setFont:));
+    Method font2 = class_getInstanceMethod(cls, @selector(kc_setFont:));
     
     method_exchangeImplementations(font1 , font2);
     
-    Method text1 = class_getInstanceMethod(self, @selector(setText:));
-    Method text2 = class_getInstanceMethod(self, @selector(kc_setText:));
+    Method text1 = class_getInstanceMethod(cls, @selector(setText:));
+    Method text2 = class_getInstanceMethod(cls, @selector(kc_setText:));
     
     method_exchangeImplementations(text1 , text2);
     
     
-    Method attrText1 = class_getInstanceMethod(self, @selector(setAttributedText:));
-    Method attrText2 = class_getInstanceMethod(self, @selector(kc_setAttributedText:));
+    Method attrText1 = class_getInstanceMethod(cls, @selector(setAttributedText:));
+    Method attrText2 = class_getInstanceMethod(cls, @selector(kc_setAttributedText:));
     
     method_exchangeImplementations(attrText1 , attrText2);
 }
+
 
 - (void)kc_dealloc
 {

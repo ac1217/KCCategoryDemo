@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 
-#import "KCExtension.h"
+#import "KCCategory.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *textView;
@@ -20,6 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
     
     
     self.textView.kc_placeholder = @"hahahahahdsf是否了解时发生地方第三方收到收到收到个谁打得过水果是发是嘎嘎嘎";
