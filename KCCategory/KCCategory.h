@@ -12,4 +12,6 @@
 #import "UIColor+KCExtension.h"
 #import "UIDevice+KCExtension.h"
 #import "UITextField+KCExtension.h"
+#import "UIViewController+KCExtension.h"
+#import "UINavigationBar+KCExtension.h"
 

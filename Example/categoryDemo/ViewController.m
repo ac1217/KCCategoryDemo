@@ -20,16 +20,35 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-////    self.view.backgroundColor = [UIColor redColor]
     
-    [self.imageView.image kc_blurImageWithRatio:0.1 competion:^(UIImage *img) {
-       
-        self.imageView.image = img;
-        
-    }];
     
-//    [self.imageView kc_blurEffectWithStyle:UIBlurEffectStyleDark];
+//    [self.navigationController.navigationBar setBackgroundImage:[UIImage kc_pureColorImageWithColor:[UIColor redColor]] forBarMetrics:UIBarMetricsDefault];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"sdfs" style:UIBarButtonItemStylePlain target:self action:@selector(jump)];
+    
+    self.kc_navgationBarBackgroundHidden = YES;
+}
+
+- (void)jump
+{
+    
+    [self.navigationController pushViewController:[[self class] new] animated:YES];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    
+    CGFloat offsetY = scrollView.contentOffset.y;
+    
+//    if (offsetY > 0) {
+//        [self kc_setNavigationBarBackgroundHidden:NO animate:YES];
+//    }else {
+//        
+//        [self kc_setNavigationBarBackgroundHidden:YES animate:YES];
+//    }
+    
+    self.kc_navgationBarBackgroundAlpha = (offsetY + 64)/64;
+    
 }
 
 
