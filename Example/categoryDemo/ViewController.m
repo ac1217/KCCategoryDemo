@@ -11,8 +11,9 @@
 #import "KCCategory.h"
 
 @interface ViewController ()
-@property (weak, nonatomic) IBOutlet UITextView *textView;
-@property (nonatomic, weak) UIView *v;
+
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+
 @end
 
 @implementation ViewController
@@ -20,29 +21,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+////    self.view.backgroundColor = [UIColor redColor]
     
+    [self.imageView.image kc_blurImageWithRatio:0.1 competion:^(UIImage *img) {
+       
+        self.imageView.image = img;
+        
+    }];
     
-    
-    self.textView.kc_placeholder = @"hahahahahdsf是否了解时发生地方第三方收到收到收到个谁打得过水果是发是嘎嘎嘎";
-    self.textView.text = @"jjjjj";
-    
-    self.textView.kc_placeholderColor = [UIColor redColor];
-//    self.textView.font = [UIFont systemFontOfSize:22];
-//    UILabel *v = [UILabel new];
-//    v.layer.backgroundColor = [UIColor greenColor].CGColor;
-//    [self.view addSubview:v];
-//    
-//    v.frame = CGRectMake(100, 100, 100, 100);
-//    v.kc_badgeValue = @"999";
-//    
-//    self.v = v;
+//    [self.imageView kc_blurEffectWithStyle:UIBlurEffectStyleDark];
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-//    self.v.kc_badgeValue = @"11";
-    
-    
-}
 
 
 

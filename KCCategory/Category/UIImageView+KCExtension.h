@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface UIImageView (KCExtension)
+// 给Imageview加毛玻璃效果，样式->UIBlurEffectStyle
+- (void)kc_blurEffectWithStyle:(UIBlurEffectStyle)style;
 
 @end

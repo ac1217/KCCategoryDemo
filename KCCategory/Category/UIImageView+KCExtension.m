@@ -10,4 +10,24 @@
 
 @implementation UIImageView (KCExtension)
 
+- (void)kc_blurEffectWithStyle:(UIBlurEffectStyle)style
+{
+    UIVisualEffectView *effectview = nil;
+    for (UIVisualEffectView *view in self.subviews) {
+        if ([view isKindOfClass:[UIVisualEffectView class]]) {
+            effectview = view;
+            break;
+        }
+    }
+    
+    if (!effectview) {
+        
+        UIBlurEffect *blur = [UIBlurEffect effectWithStyle:style];
+        effectview = [[UIVisualEffectView alloc] initWithEffect:blur];
+        [self addSubview:effectview];
+    }
+    
+    effectview.frame = self.bounds;
+
+}
 @end

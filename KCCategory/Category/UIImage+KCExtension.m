@@ -7,7 +7,7 @@
 //
 
 #import "UIImage+KCExtension.h"
-#import <Accelerate/Accelerate.h>
+@import Accelerate;
 
 @implementation UIImage (KCExtension)
 #pragma mark -图片方向相关
@@ -110,7 +110,7 @@
 }
 
 
-+ (UIImage *)kc_pureColorimageWithColor:(UIColor *)color size:(CGSize)size
++ (UIImage *)kc_pureColorImageWithColor:(UIColor *)color size:(CGSize)size
 {
     CGRect rect = CGRectMake(0, 0, size.width, size.height);
     UIGraphicsBeginImageContext(rect.size);
@@ -122,9 +122,9 @@
     return img;
 }
 
-+ (UIImage *)kc_pureColorimageWithColor:(UIColor *)color
++ (UIImage *)kc_pureColorImageWithColor:(UIColor *)color
 {
-    return [self kc_pureColorimageWithColor:color size:CGSizeMake(1, 1)];
+    return [self kc_pureColorImageWithColor:color size:CGSizeMake(1, 1)];
 }
 
 #pragma mark -图片裁剪缩放相关
@@ -186,95 +186,60 @@
  *
  *  @return 新的图片
  */
-- (UIImage *)kc_blurImageWithRatio:(CGFloat)ratio {
+
+
+- (UIImage *)kc_blurImageWithRatio:(CGFloat)ratio
+{
+    CIImage *inputImage = [CIImage imageWithCGImage:self.CGImage];
     
-    NSData *imageData = UIImageJPEGRepresentation(self, 1); // convert to jpeg
-    UIImage* destImage = [UIImage imageWithData:imageData];
+    CIImage *filtered = [[[inputImage imageByClampingToExtent] imageByApplyingFilter:@"CIGaussianBlur" withInputParameters:@{kCIInputRadiusKey:@(ratio*100)}] imageByCroppingToRect:inputImage.extent];
     
+    CGImageRef renderImage = [[CIContext contextWithOptions:nil] createCGImage:filtered fromRect:inputImage.extent];
     
-    if (ratio < 0.f || ratio > 1.f) {
-        ratio = 0.5f;
-    }
-    int boxSize = (int)(ratio * 40);
-    boxSize = boxSize - (boxSize % 2) + 1;
+    UIImage *img = [UIImage imageWithCGImage:renderImage];
     
-    CGImageRef img = destImage.CGImage;
+    CGImageRelease(renderImage);
     
-    vImage_Buffer inBuffer, outBuffer;
+    return img;
+}
+
+- (void)kc_blurImageWithRatio:(CGFloat)ratio competion:(void(^)(UIImage *img))competion {
     
-    vImage_Error error;
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        
+        UIImage *img = [self kc_blurImageWithRatio:ratio];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            !competion ? : competion(img);
+        });
+        
+    });
     
-    void *pixelBuffer;
+}
+
+
+- (UIImage *)kc_imageWithAlpha:(CGFloat)alpha
+{
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, 1);
     
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGRect area = CGRectMake(0, 0, self.size.width, self.size.height);
     
-    //create vImage_Buffer with data from CGImageRef
+    CGContextScaleCTM(ctx, 1, -1);
+    CGContextTranslateCTM(ctx, 0, -area.size.height);
     
-    CGDataProviderRef inProvider = CGImageGetDataProvider(img);
-    CFDataRef inBitmapData = CGDataProviderCopyData(inProvider);
+    CGContextSetBlendMode(ctx, kCGBlendModeMultiply);
     
+    CGContextSetAlpha(ctx, alpha);
     
-    inBuffer.width = CGImageGetWidth(img);
-    inBuffer.height = CGImageGetHeight(img);
-    inBuffer.rowBytes = CGImageGetBytesPerRow(img);
+    CGContextDrawImage(ctx, area, self.CGImage);
     
-    inBuffer.data = (void*)CFDataGetBytePtr(inBitmapData);
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     
-    //create vImage_Buffer for output
+    UIGraphicsEndImageContext();
     
-    pixelBuffer = malloc(CGImageGetBytesPerRow(img) * CGImageGetHeight(img));
-    
-    if(pixelBuffer == NULL)
-        NSLog(@"No pixelbuffer");
-    
-    outBuffer.data = pixelBuffer;
-    outBuffer.width = CGImageGetWidth(img);
-    outBuffer.height = CGImageGetHeight(img);
-    outBuffer.rowBytes = CGImageGetBytesPerRow(img);
-    
-    // Create a third buffer for intermediate processing
-    void *pixelBuffer2 = malloc(CGImageGetBytesPerRow(img) * CGImageGetHeight(img));
-    vImage_Buffer outBuffer2;
-    outBuffer2.data = pixelBuffer2;
-    outBuffer2.width = CGImageGetWidth(img);
-    outBuffer2.height = CGImageGetHeight(img);
-    outBuffer2.rowBytes = CGImageGetBytesPerRow(img);
-    
-    //perform convolution
-    error = vImageBoxConvolve_ARGB8888(&inBuffer, &outBuffer2, NULL, 0, 0, boxSize, boxSize, NULL, kvImageEdgeExtend);
-    if (error) {
-        NSLog(@"error from convolution %ld", error);
-    }
-    error = vImageBoxConvolve_ARGB8888(&outBuffer2, &inBuffer, NULL, 0, 0, boxSize, boxSize, NULL, kvImageEdgeExtend);
-    if (error) {
-        NSLog(@"error from convolution %ld", error);
-    }
-    error = vImageBoxConvolve_ARGB8888(&inBuffer, &outBuffer, NULL, 0, 0, boxSize, boxSize, NULL, kvImageEdgeExtend);
-    if (error) {
-        NSLog(@"error from convolution %ld", error);
-    }
-    
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGContextRef ctx = CGBitmapContextCreate(outBuffer.data,
-                                             outBuffer.width,
-                                             outBuffer.height,
-                                             8,
-                                             outBuffer.rowBytes,
-                                             colorSpace,
-                                             (CGBitmapInfo)kCGImageAlphaNoneSkipLast);
-    CGImageRef imageRef = CGBitmapContextCreateImage (ctx);
-    UIImage *returnImage = [UIImage imageWithCGImage:imageRef];
-    
-    //clean up
-    CGContextRelease(ctx);
-    CGColorSpaceRelease(colorSpace);
-    
-    free(pixelBuffer);
-    free(pixelBuffer2);
-    CFRelease(inBitmapData);
-    
-    CGImageRelease(imageRef);
-    
-    return returnImage;
+    return newImage;
 }
 
 @end

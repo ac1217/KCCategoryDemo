@@ -17,20 +17,49 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="skC-SP-HtG">
-                                <rect key="frame" x="84" y="146" width="240" height="128"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ocf-h7-ovZ">
+                                <rect key="frame" x="96" y="153" width="51" height="31"/>
+                            </switch>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="na1-Ut-JOp">
+                                <rect key="frame" x="5" y="236" width="150" height="2"/>
+                            </progressView>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Lwd-PT-HER">
+                                <rect key="frame" x="45" y="308" width="94" height="29"/>
+                            </stepper>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="pan-eY-Aoq">
+                                <rect key="frame" x="168" y="71" width="94" height="29"/>
+                            </stepper>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="To2-6q-R4f">
+                                <rect key="frame" x="181" y="156" width="121" height="29"/>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                </segments>
+                            </segmentedControl>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Xp-Xo-Mpb">
+                                <rect key="frame" x="222" y="236" width="51" height="31"/>
+                            </switch>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchImage4.7" translatesAutoresizingMaskIntoConstraints="NO" id="Cc8-0d-rZF">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Cc8-0d-rZF" secondAttribute="bottom" id="7ib-PL-DnC"/>
+                            <constraint firstItem="Cc8-0d-rZF" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Eeh-cs-dqk"/>
+                            <constraint firstAttribute="trailing" secondItem="Cc8-0d-rZF" secondAttribute="trailing" id="UsX-5w-Jm2"/>
+                            <constraint firstItem="Cc8-0d-rZF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="YWg-9T-Jjy"/>
+                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="textView" destination="skC-SP-HtG" id="Rqw-oz-loK"/>
+                        <outlet property="imageView" destination="Cc8-0d-rZF" id="2pF-db-hJX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
     </scenes>
+    <resources>
+        <image name="LaunchImage4.7" width="375" height="667"/>
+    </resources>
 </document>

@@ -21,9 +21,9 @@
 - (UIImage *)kc_renderImageWithColor:(UIColor *)color level:(CGFloat)level;
 // 获取某种颜色的纯色图片
 // 返回1x1大小
-+ (UIImage *)kc_pureColorimageWithColor:(UIColor *)color;
++ (UIImage *)kc_pureColorImageWithColor:(UIColor *)color;
 // 指定大小
-+ (UIImage *)kc_pureColorimageWithColor:(UIColor *)color size:(CGSize)size;
++ (UIImage *)kc_pureColorImageWithColor:(UIColor *)color size:(CGSize)size;
 
 /*
  * 图片剪切缩放
@@ -45,9 +45,13 @@
  *  根据图片返回一张高斯模糊的图片
  *
  *  @param blur 模糊系数 (0 ~ 1)
- *
- *  @return 新的图片
  */
+// 异步渲染，主线程回调
+- (void)kc_blurImageWithRatio:(CGFloat)ratio competion:(void(^)(UIImage *img))competion;
+// 同步渲染，会阻塞线程
 - (UIImage *)kc_blurImageWithRatio:(CGFloat)ratio;
+
+// 改变图片透明度
+- (UIImage *)kc_imageWithAlpha:(CGFloat)alpha;
 
 @end
