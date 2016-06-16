@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface UIColor (KCExtension)
+
 + (UIColor *)kc_colorWithHexValue:(unsigned)hexValue;
 
++ (UIColor *)kc_colorWithHexString:(NSString *)hexString;
 @end

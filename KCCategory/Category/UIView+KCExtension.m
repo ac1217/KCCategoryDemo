@@ -11,15 +11,34 @@
 #import <objc/message.h>
 
 static NSString *const KCBadgeValueLabelKey = @"kc_badgeValueLabel";
+static NSString *const KCBorderLayerKey = @"kc_borderLayer";
 
 @interface UIView ()
 
 @property (nonatomic, strong) UILabel *kc_badgeValueLabel;
+@property (nonatomic, strong) CAShapeLayer *kc_borderLayer;
 @end
 
 @implementation UIView (KCExtension)
 
 #pragma mark -懒加载
+
+- (CAShapeLayer *)kc_borderLayer
+{
+    CAShapeLayer *borderLayer = objc_getAssociatedObject(self, (__bridge const void *)(KCBorderLayerKey));
+    
+    if (!borderLayer) {
+        
+        borderLayer = [CAShapeLayer layer];
+        borderLayer.fillColor = [UIColor clearColor].CGColor;
+        [self.layer addSublayer:borderLayer];
+        objc_setAssociatedObject(self, (__bridge const void *)(KCBorderLayerKey), borderLayer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    
+    return borderLayer;
+    
+}
+
 - (UILabel *)kc_badgeValueLabel
 {
     UILabel *badgeValueLabel = objc_getAssociatedObject(self, (__bridge const void *)(KCBadgeValueLabelKey));
@@ -35,7 +54,7 @@ static NSString *const KCBadgeValueLabelKey = @"kc_badgeValueLabel";
     }
     
     return badgeValueLabel;
-
+    
 }
 
 #pragma mark -frame相关
@@ -328,6 +347,24 @@ static NSString *const KCBadgeValueLabelKey = @"kc_badgeValueLabel";
 {
     self.kc_layerCornerRadius = cornerRadius;
     self.clipsToBounds = YES;
+}
+
+
+- (void)kc_setBorderWithWidth:(CGFloat)width cornerRadius:(CGFloat)radius color:(UIColor *)color
+{
+    [self kc_setBorderWithWidth:width cornerRadius:radius color:color roundingCorners:UIRectCornerAllCorners];
+}
+
+
+- (void)kc_setBorderWithWidth:(CGFloat)width cornerRadius:(CGFloat)radius color:(UIColor *)color roundingCorners:(UIRectCorner)corners
+{
+    
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:CGRectInset(self.bounds, width, width) byRoundingCorners:corners cornerRadii:CGSizeMake(radius-width, radius-width)];
+    self.kc_borderLayer.path = path.CGPath;
+    self.kc_borderLayer.lineWidth = width;
+    self.kc_borderLayer.strokeColor = color.CGColor;
+    self.kc_borderLayer.frame = self.bounds;
+    
 }
 
 

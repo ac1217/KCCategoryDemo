@@ -74,4 +74,8 @@
 
 - (void)kc_setLayerCornerRadiusWithClips:(CGFloat)cornerRadius;
 
+- (void)kc_setBorderWithWidth:(CGFloat)width cornerRadius:(CGFloat)radius color:(UIColor *)color;
+
+- (void)kc_setBorderWithWidth:(CGFloat)width cornerRadius:(CGFloat)radius color:(UIColor *)color roundingCorners:(UIRectCorner)corners;
+
 @end

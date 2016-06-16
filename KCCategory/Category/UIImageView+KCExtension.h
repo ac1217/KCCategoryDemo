@@ -12,4 +12,6 @@
 // 给Imageview加毛玻璃效果，样式->UIBlurEffectStyle
 - (void)kc_blurEffectWithStyle:(UIBlurEffectStyle)style;
 
+- (void)kc_setCircleImage:(UIImage *)image;
+
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "UIImageView+KCExtension.h"
+#import "UIImage+KCExtension.h"
 
 @implementation UIImageView (KCExtension)
 
@@ -30,4 +31,11 @@
     effectview.frame = self.bounds;
 
 }
+
+
+- (void)kc_setCircleImage:(UIImage *)image
+{
+    self.image = image.kc_circleImage;
+}
+
 @end
