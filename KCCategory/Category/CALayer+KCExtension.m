@@ -42,7 +42,7 @@ static NSString *const KCCoverLayerKey = @"kc_coverLayer";
 {
     [self insertSublayer:self.kc_coverLayer above:self.sublayers.lastObject];
     
-    UIBezierPath *path = [UIBezierPath bezierPathWithRect:self.bounds];
+    UIBezierPath *path = [UIBezierPath bezierPathWithRect:CGRectInset(self.bounds, -1, -1)];
     
     [path appendPath:[UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:radius]];
     
