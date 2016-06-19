@@ -131,7 +131,7 @@
 - (UIImage *)kc_roundedImageWithCornerRadius:(CGFloat)cornerRadius
 {
     CGRect rect = CGRectMake(0, 0, self.size.width, self.size.height);
-    UIGraphicsBeginImageContextWithOptions(self.size, NO, 1.0);
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, [UIScreen mainScreen].scale);
     [[UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:cornerRadius] addClip];
     [self drawInRect:rect];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
@@ -139,9 +139,25 @@
     return image;
 }
 
+
+- (void)kc_roundedImageWithCornerRadius:(CGFloat)cornerRadius completion:(void(^)(UIImage *image))completion
+{
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        
+        UIImage *image = [self kc_roundedImageWithCornerRadius:cornerRadius];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            !completion ? : completion(image);
+            
+        });
+        
+    });
+}
+
 - (UIImage *)kc_circleImage
 {
-    UIGraphicsBeginImageContextWithOptions(self.size, NO, 1.0);
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, [UIScreen mainScreen].scale);
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGRect rect = CGRectMake(0, 0, self.size.width, self.size.height);
     CGContextAddEllipseInRect(ctx, rect);
@@ -149,7 +165,23 @@
     [self drawInRect:rect];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
+    
     return image;
+}
+
+- (void)kc_circleImageWithCompletion:(void(^)(UIImage *image))completion
+{
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+       
+        UIImage *circleImage = [self kc_circleImage];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+           
+            !completion ? : completion(circleImage);
+            
+        });
+        
+    });
 }
 
 - (UIImage *)kc_imageWithScale:(CGFloat)scale

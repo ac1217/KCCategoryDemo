@@ -32,10 +32,4 @@
 
 }
 
-
-- (void)kc_setCircleImage:(UIImage *)image
-{
-    self.image = image.kc_circleImage;
-}
-
 @end

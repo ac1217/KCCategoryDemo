@@ -24,9 +24,15 @@
     
 //    [self.navigationController.navigationBar setBackgroundImage:[UIImage kc_pureColorImageWithColor:[UIColor redColor]] forBarMetrics:UIBarMetricsDefault];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"sdfs" style:UIBarButtonItemStylePlain target:self action:@selector(jump)];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"sdfs" style:UIBarButtonItemStylePlain target:self action:@selector(jump)];
+//    
+//    self.kc_navgationBarBackgroundHidden = YES;
     
-    self.kc_navgationBarBackgroundHidden = YES;
+    self.imageView.image = [UIImage imageNamed:@"shareIcon"];
+    
+    [self.imageView kc_setRoundedCoverWithBackgroundColor:self.view.backgroundColor cornerRadius:self.imageView.kc_width*0.3];
+    
+    
 }
 
 - (void)jump

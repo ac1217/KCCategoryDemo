@@ -78,4 +78,8 @@
 
 - (void)kc_setBorderWithWidth:(CGFloat)width cornerRadius:(CGFloat)radius color:(UIColor *)color roundingCorners:(UIRectCorner)corners;
 
+
+// 增加圆角遮盖
+- (void)kc_setRoundedCoverWithBackgroundColor:(UIColor *)color cornerRadius:(CGFloat)radius;
+
 @end

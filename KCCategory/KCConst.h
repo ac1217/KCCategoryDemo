@@ -6,7 +6,7 @@
 //  Copyright © 2016年 Erica. All rights reserved.
 //
 
-@import UIKit;
+#import <UIKit/UIKit.h>
 
 extern CGFloat const KCDefaultAnimationDuration;
 extern CGFloat const KCDefaultMargin;

@@ -6,8 +6,11 @@
 //  Copyright © 2016年 Erica. All rights reserved.
 //
 
-#import <QuartzCore/QuartzCore.h>
+#import <UIKit/UIKit.h>
 
 @interface CALayer (KCExtension)
 
+
+// 增加圆角遮盖
+- (void)kc_setRoundedCoverWithBackgroundColor:(CGColorRef)color cornerRadius:(CGFloat)radius;
 @end

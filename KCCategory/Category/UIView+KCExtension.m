@@ -7,7 +7,7 @@
 //
 
 #import "UIView+KCExtension.h"
-
+#import "CALayer+KCExtension.h"
 #import <objc/message.h>
 
 static NSString *const KCBadgeValueLabelKey = @"kc_badgeValueLabel";
@@ -365,6 +365,12 @@ static NSString *const KCBorderLayerKey = @"kc_borderLayer";
     self.kc_borderLayer.strokeColor = color.CGColor;
     self.kc_borderLayer.frame = self.bounds;
     
+}
+
+
+- (void)kc_setRoundedCoverWithBackgroundColor:(UIColor *)color cornerRadius:(CGFloat)radius
+{
+    [self.layer kc_setRoundedCoverWithBackgroundColor:color.CGColor cornerRadius:radius];
 }
 
 

@@ -28,10 +28,26 @@
 /*
  * 图片剪切缩放
  */
-// 圆角图片
+/**
+ *  绘制圆角图片
+ */
 - (UIImage *)kc_roundedImageWithCornerRadius:(CGFloat)cornerRadius;
-// 圆形图片
+
+/**
+ * 子线程绘制圆角图片
+ */
+- (void)kc_roundedImageWithCornerRadius:(CGFloat)cornerRadius completion:(void(^)(UIImage *image))completion;
+
+/**
+ *  主线程绘制圆形图片
+ */
 - (UIImage *)kc_circleImage;
+
+/**
+ * 子线程绘制圆形图片
+ */
+- (void)kc_circleImageWithCompletion:(void(^)(UIImage *image))completion;
+
 // 根据比例缩放图片
 - (UIImage *)kc_imageWithScale:(CGFloat)scale;
 // 指定宽度根据宽高比计算
