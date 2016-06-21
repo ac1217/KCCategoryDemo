@@ -45,9 +45,9 @@ static NSString *const KCTextViewPlaceholderLabelKey = @"kc_textViewPlaceholderL
 
 }
 
-__attribute__((constructor)) static void kc_UITextViewPatchEntry(void) {
-    
-    Class cls = [UITextView class];
++ (void)load
+{
+    Class cls = [self class];
     
     Method dealloc1 = class_getInstanceMethod(cls, NSSelectorFromString(@"dealloc"));
     Method dealloc2 = class_getInstanceMethod(cls, @selector(kc_dealloc));
@@ -70,7 +70,6 @@ __attribute__((constructor)) static void kc_UITextViewPatchEntry(void) {
     
     method_exchangeImplementations(attrText1 , attrText2);
 }
-
 
 - (void)kc_dealloc
 {

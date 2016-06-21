@@ -42,6 +42,11 @@
 // 指定区域截取
 - (UIImage *)kc_screenshotWithRect:(CGRect)rect;
 
+/**
+ *  是否显示在屏幕上
+ */
+- (BOOL)kc_isDisplayOnScreen;
+
 /*
  * 快速创建分割线view
  */

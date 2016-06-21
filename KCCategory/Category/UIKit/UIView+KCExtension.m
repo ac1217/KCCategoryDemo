@@ -226,6 +226,17 @@ static NSString *const KCBorderLayerKey = @"kc_borderLayer";
     return image;
 }
 
+
+- (BOOL)kc_isDisplayOnScreen
+{
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    
+    CGRect newF = [window convertRect:self.frame fromView:self.superview];
+    
+    return !self.isHidden && self.alpha > 0.01 && self.window == window && CGRectIntersectsRect(newF, window.bounds);
+    
+}
+
 /**********************/
 
 #pragma mark -分割线相关

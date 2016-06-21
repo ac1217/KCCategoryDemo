@@ -10,6 +10,7 @@
 
 @implementation NSArray (KCExtension)
 
+
 #pragma mark -log
 - (NSString *)descriptionWithLocale:(id)locale
 {
@@ -40,6 +41,8 @@
     }
     return temp;
 }
+
+
 
 
 @end

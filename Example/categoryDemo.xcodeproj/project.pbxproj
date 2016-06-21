@@ -7,8 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		071C739C1D069C06002971B8 /* UIViewController+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 071C739B1D069C06002971B8 /* UIViewController+KCExtension.m */; };
-		071C739F1D06A574002971B8 /* UINavigationBar+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 071C739E1D06A574002971B8 /* UINavigationBar+KCExtension.m */; };
+		070090BC1D18DC7D00142A76 /* CALayer+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 070090A21D18DC7D00142A76 /* CALayer+KCExtension.m */; };
+		070090BD1D18DC7D00142A76 /* UIColor+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 070090A51D18DC7D00142A76 /* UIColor+KCExtension.m */; };
+		070090BE1D18DC7D00142A76 /* UIDevice+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 070090A71D18DC7D00142A76 /* UIDevice+KCExtension.m */; };
+		070090BF1D18DC7D00142A76 /* UIImage+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 070090A91D18DC7D00142A76 /* UIImage+KCExtension.m */; };
+		070090C01D18DC7D00142A76 /* UIImageView+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 070090AB1D18DC7D00142A76 /* UIImageView+KCExtension.m */; };
+		070090C11D18DC7D00142A76 /* UINavigationBar+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 070090AD1D18DC7D00142A76 /* UINavigationBar+KCExtension.m */; };
+		070090C21D18DC7D00142A76 /* UITextField+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 070090AF1D18DC7D00142A76 /* UITextField+KCExtension.m */; };
+		070090C31D18DC7D00142A76 /* UITextView+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 070090B11D18DC7D00142A76 /* UITextView+KCExtension.m */; };
+		070090C41D18DC7D00142A76 /* UIView+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 070090B31D18DC7D00142A76 /* UIView+KCExtension.m */; };
+		070090C51D18DC7D00142A76 /* UIViewController+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 070090B51D18DC7D00142A76 /* UIViewController+KCExtension.m */; };
+		070090CA1D18DC9E00142A76 /* KCConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 070090C81D18DC9E00142A76 /* KCConst.m */; };
+		070090D81D18DD6F00142A76 /* NSArray+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 070090CD1D18DD6F00142A76 /* NSArray+KCExtension.m */; };
+		070090D91D18DD6F00142A76 /* NSDate+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 070090CF1D18DD6F00142A76 /* NSDate+KCExtension.m */; };
+		070090DA1D18DD6F00142A76 /* NSDictionary+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 070090D11D18DD6F00142A76 /* NSDictionary+KCExtension.m */; };
+		070090DB1D18DD6F00142A76 /* NSMutableArray+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 070090D31D18DD6F00142A76 /* NSMutableArray+KCExtension.m */; };
+		070090DC1D18DD6F00142A76 /* NSMutableDictionary+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 070090D51D18DD6F00142A76 /* NSMutableDictionary+KCExtension.m */; };
+		070090DD1D18DD6F00142A76 /* NSString+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 070090D71D18DD6F00142A76 /* NSString+KCExtension.m */; };
 		072BFB791CDC295C00551444 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 072BFB781CDC295C00551444 /* main.m */; };
 		072BFB7C1CDC295C00551444 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 072BFB7B1CDC295C00551444 /* AppDelegate.m */; };
 		072BFB7F1CDC295C00551444 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072BFB7E1CDC295C00551444 /* ViewController.m */; };
@@ -17,19 +32,6 @@
 		072BFB871CDC295C00551444 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 072BFB851CDC295C00551444 /* LaunchScreen.storyboard */; };
 		072BFB921CDC295C00551444 /* categoryDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 072BFB911CDC295C00551444 /* categoryDemoTests.m */; };
 		072BFB9D1CDC295C00551444 /* categoryDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 072BFB9C1CDC295C00551444 /* categoryDemoUITests.m */; };
-		075719901CFEDBCF00B37950 /* CALayer+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 075719751CFEDBCF00B37950 /* CALayer+KCExtension.m */; };
-		075719911CFEDBCF00B37950 /* NSArray+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 075719771CFEDBCF00B37950 /* NSArray+KCExtension.m */; };
-		075719921CFEDBCF00B37950 /* NSDate+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 075719791CFEDBCF00B37950 /* NSDate+KCExtension.m */; };
-		075719931CFEDBCF00B37950 /* NSDictionary+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0757197B1CFEDBCF00B37950 /* NSDictionary+KCExtension.m */; };
-		075719941CFEDBCF00B37950 /* NSString+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0757197D1CFEDBCF00B37950 /* NSString+KCExtension.m */; };
-		075719951CFEDBCF00B37950 /* UIColor+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0757197F1CFEDBCF00B37950 /* UIColor+KCExtension.m */; };
-		075719961CFEDBCF00B37950 /* UIDevice+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 075719811CFEDBCF00B37950 /* UIDevice+KCExtension.m */; };
-		075719971CFEDBCF00B37950 /* UIImage+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 075719831CFEDBCF00B37950 /* UIImage+KCExtension.m */; };
-		075719981CFEDBCF00B37950 /* UIImageView+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 075719851CFEDBCF00B37950 /* UIImageView+KCExtension.m */; };
-		075719991CFEDBCF00B37950 /* UITextField+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 075719871CFEDBCF00B37950 /* UITextField+KCExtension.m */; };
-		0757199A1CFEDBCF00B37950 /* UITextView+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 075719891CFEDBCF00B37950 /* UITextView+KCExtension.m */; };
-		0757199B1CFEDBCF00B37950 /* UIView+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0757198B1CFEDBCF00B37950 /* UIView+KCExtension.m */; };
-		0757199C1CFEDBCF00B37950 /* KCConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 0757198E1CFEDBCF00B37950 /* KCConst.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,10 +52,41 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		071C739A1D069C06002971B8 /* UIViewController+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+KCExtension.h"; sourceTree = "<group>"; };
-		071C739B1D069C06002971B8 /* UIViewController+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+KCExtension.m"; sourceTree = "<group>"; };
-		071C739D1D06A574002971B8 /* UINavigationBar+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+KCExtension.h"; sourceTree = "<group>"; };
-		071C739E1D06A574002971B8 /* UINavigationBar+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+KCExtension.m"; sourceTree = "<group>"; };
+		070090A11D18DC7D00142A76 /* CALayer+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+KCExtension.h"; sourceTree = "<group>"; };
+		070090A21D18DC7D00142A76 /* CALayer+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+KCExtension.m"; sourceTree = "<group>"; };
+		070090A41D18DC7D00142A76 /* UIColor+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+KCExtension.h"; sourceTree = "<group>"; };
+		070090A51D18DC7D00142A76 /* UIColor+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+KCExtension.m"; sourceTree = "<group>"; };
+		070090A61D18DC7D00142A76 /* UIDevice+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+KCExtension.h"; sourceTree = "<group>"; };
+		070090A71D18DC7D00142A76 /* UIDevice+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+KCExtension.m"; sourceTree = "<group>"; };
+		070090A81D18DC7D00142A76 /* UIImage+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+KCExtension.h"; sourceTree = "<group>"; };
+		070090A91D18DC7D00142A76 /* UIImage+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+KCExtension.m"; sourceTree = "<group>"; };
+		070090AA1D18DC7D00142A76 /* UIImageView+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+KCExtension.h"; sourceTree = "<group>"; };
+		070090AB1D18DC7D00142A76 /* UIImageView+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+KCExtension.m"; sourceTree = "<group>"; };
+		070090AC1D18DC7D00142A76 /* UINavigationBar+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+KCExtension.h"; sourceTree = "<group>"; };
+		070090AD1D18DC7D00142A76 /* UINavigationBar+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+KCExtension.m"; sourceTree = "<group>"; };
+		070090AE1D18DC7D00142A76 /* UITextField+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+KCExtension.h"; sourceTree = "<group>"; };
+		070090AF1D18DC7D00142A76 /* UITextField+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+KCExtension.m"; sourceTree = "<group>"; };
+		070090B01D18DC7D00142A76 /* UITextView+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+KCExtension.h"; sourceTree = "<group>"; };
+		070090B11D18DC7D00142A76 /* UITextView+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+KCExtension.m"; sourceTree = "<group>"; };
+		070090B21D18DC7D00142A76 /* UIView+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+KCExtension.h"; sourceTree = "<group>"; };
+		070090B31D18DC7D00142A76 /* UIView+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+KCExtension.m"; sourceTree = "<group>"; };
+		070090B41D18DC7D00142A76 /* UIViewController+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+KCExtension.h"; sourceTree = "<group>"; };
+		070090B51D18DC7D00142A76 /* UIViewController+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+KCExtension.m"; sourceTree = "<group>"; };
+		070090C71D18DC9E00142A76 /* KCConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCConst.h; sourceTree = "<group>"; };
+		070090C81D18DC9E00142A76 /* KCConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCConst.m; sourceTree = "<group>"; };
+		070090C91D18DC9E00142A76 /* KCMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCMacro.h; sourceTree = "<group>"; };
+		070090CC1D18DD6F00142A76 /* NSArray+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+KCExtension.h"; sourceTree = "<group>"; };
+		070090CD1D18DD6F00142A76 /* NSArray+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+KCExtension.m"; sourceTree = "<group>"; };
+		070090CE1D18DD6F00142A76 /* NSDate+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+KCExtension.h"; sourceTree = "<group>"; };
+		070090CF1D18DD6F00142A76 /* NSDate+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+KCExtension.m"; sourceTree = "<group>"; };
+		070090D01D18DD6F00142A76 /* NSDictionary+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+KCExtension.h"; sourceTree = "<group>"; };
+		070090D11D18DD6F00142A76 /* NSDictionary+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+KCExtension.m"; sourceTree = "<group>"; };
+		070090D21D18DD6F00142A76 /* NSMutableArray+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+KCExtension.h"; sourceTree = "<group>"; };
+		070090D31D18DD6F00142A76 /* NSMutableArray+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+KCExtension.m"; sourceTree = "<group>"; };
+		070090D41D18DD6F00142A76 /* NSMutableDictionary+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+KCExtension.h"; sourceTree = "<group>"; };
+		070090D51D18DD6F00142A76 /* NSMutableDictionary+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+KCExtension.m"; sourceTree = "<group>"; };
+		070090D61D18DD6F00142A76 /* NSString+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+KCExtension.h"; sourceTree = "<group>"; };
+		070090D71D18DD6F00142A76 /* NSString+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+KCExtension.m"; sourceTree = "<group>"; };
 		072BFB741CDC295C00551444 /* categoryDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = categoryDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		072BFB781CDC295C00551444 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		072BFB7A1CDC295C00551444 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -70,34 +103,7 @@
 		072BFB981CDC295C00551444 /* categoryDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = categoryDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		072BFB9C1CDC295C00551444 /* categoryDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = categoryDemoUITests.m; sourceTree = "<group>"; };
 		072BFB9E1CDC295C00551444 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		075719741CFEDBCF00B37950 /* CALayer+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+KCExtension.h"; sourceTree = "<group>"; };
-		075719751CFEDBCF00B37950 /* CALayer+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+KCExtension.m"; sourceTree = "<group>"; };
-		075719761CFEDBCF00B37950 /* NSArray+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+KCExtension.h"; sourceTree = "<group>"; };
-		075719771CFEDBCF00B37950 /* NSArray+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+KCExtension.m"; sourceTree = "<group>"; };
-		075719781CFEDBCF00B37950 /* NSDate+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+KCExtension.h"; sourceTree = "<group>"; };
-		075719791CFEDBCF00B37950 /* NSDate+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+KCExtension.m"; sourceTree = "<group>"; };
-		0757197A1CFEDBCF00B37950 /* NSDictionary+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+KCExtension.h"; sourceTree = "<group>"; };
-		0757197B1CFEDBCF00B37950 /* NSDictionary+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+KCExtension.m"; sourceTree = "<group>"; };
-		0757197C1CFEDBCF00B37950 /* NSString+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+KCExtension.h"; sourceTree = "<group>"; };
-		0757197D1CFEDBCF00B37950 /* NSString+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+KCExtension.m"; sourceTree = "<group>"; };
-		0757197E1CFEDBCF00B37950 /* UIColor+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+KCExtension.h"; sourceTree = "<group>"; };
-		0757197F1CFEDBCF00B37950 /* UIColor+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+KCExtension.m"; sourceTree = "<group>"; };
-		075719801CFEDBCF00B37950 /* UIDevice+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+KCExtension.h"; sourceTree = "<group>"; };
-		075719811CFEDBCF00B37950 /* UIDevice+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+KCExtension.m"; sourceTree = "<group>"; };
-		075719821CFEDBCF00B37950 /* UIImage+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+KCExtension.h"; sourceTree = "<group>"; };
-		075719831CFEDBCF00B37950 /* UIImage+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+KCExtension.m"; sourceTree = "<group>"; };
-		075719841CFEDBCF00B37950 /* UIImageView+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+KCExtension.h"; sourceTree = "<group>"; };
-		075719851CFEDBCF00B37950 /* UIImageView+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+KCExtension.m"; sourceTree = "<group>"; };
-		075719861CFEDBCF00B37950 /* UITextField+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+KCExtension.h"; sourceTree = "<group>"; };
-		075719871CFEDBCF00B37950 /* UITextField+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+KCExtension.m"; sourceTree = "<group>"; };
-		075719881CFEDBCF00B37950 /* UITextView+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+KCExtension.h"; sourceTree = "<group>"; };
-		075719891CFEDBCF00B37950 /* UITextView+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+KCExtension.m"; sourceTree = "<group>"; };
-		0757198A1CFEDBCF00B37950 /* UIView+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+KCExtension.h"; sourceTree = "<group>"; };
-		0757198B1CFEDBCF00B37950 /* UIView+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+KCExtension.m"; sourceTree = "<group>"; };
 		0757198C1CFEDBCF00B37950 /* KCCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCCategory.h; sourceTree = "<group>"; };
-		0757198D1CFEDBCF00B37950 /* KCConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCConst.h; sourceTree = "<group>"; };
-		0757198E1CFEDBCF00B37950 /* KCConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCConst.m; sourceTree = "<group>"; };
-		0757198F1CFEDBCF00B37950 /* KCMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCMacro.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +131,79 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		070090921D18DC7D00142A76 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				070090CB1D18DD6F00142A76 /* Foundation */,
+				070090A01D18DC7D00142A76 /* QuartzCore */,
+				070090A31D18DC7D00142A76 /* UIKit */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		070090A01D18DC7D00142A76 /* QuartzCore */ = {
+			isa = PBXGroup;
+			children = (
+				070090A11D18DC7D00142A76 /* CALayer+KCExtension.h */,
+				070090A21D18DC7D00142A76 /* CALayer+KCExtension.m */,
+			);
+			path = QuartzCore;
+			sourceTree = "<group>";
+		};
+		070090A31D18DC7D00142A76 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				070090A41D18DC7D00142A76 /* UIColor+KCExtension.h */,
+				070090A51D18DC7D00142A76 /* UIColor+KCExtension.m */,
+				070090A61D18DC7D00142A76 /* UIDevice+KCExtension.h */,
+				070090A71D18DC7D00142A76 /* UIDevice+KCExtension.m */,
+				070090A81D18DC7D00142A76 /* UIImage+KCExtension.h */,
+				070090A91D18DC7D00142A76 /* UIImage+KCExtension.m */,
+				070090AA1D18DC7D00142A76 /* UIImageView+KCExtension.h */,
+				070090AB1D18DC7D00142A76 /* UIImageView+KCExtension.m */,
+				070090AC1D18DC7D00142A76 /* UINavigationBar+KCExtension.h */,
+				070090AD1D18DC7D00142A76 /* UINavigationBar+KCExtension.m */,
+				070090AE1D18DC7D00142A76 /* UITextField+KCExtension.h */,
+				070090AF1D18DC7D00142A76 /* UITextField+KCExtension.m */,
+				070090B01D18DC7D00142A76 /* UITextView+KCExtension.h */,
+				070090B11D18DC7D00142A76 /* UITextView+KCExtension.m */,
+				070090B21D18DC7D00142A76 /* UIView+KCExtension.h */,
+				070090B31D18DC7D00142A76 /* UIView+KCExtension.m */,
+				070090B41D18DC7D00142A76 /* UIViewController+KCExtension.h */,
+				070090B51D18DC7D00142A76 /* UIViewController+KCExtension.m */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		070090C61D18DC9E00142A76 /* Macro */ = {
+			isa = PBXGroup;
+			children = (
+				070090C71D18DC9E00142A76 /* KCConst.h */,
+				070090C81D18DC9E00142A76 /* KCConst.m */,
+				070090C91D18DC9E00142A76 /* KCMacro.h */,
+			);
+			path = Macro;
+			sourceTree = "<group>";
+		};
+		070090CB1D18DD6F00142A76 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				070090CC1D18DD6F00142A76 /* NSArray+KCExtension.h */,
+				070090CD1D18DD6F00142A76 /* NSArray+KCExtension.m */,
+				070090CE1D18DD6F00142A76 /* NSDate+KCExtension.h */,
+				070090CF1D18DD6F00142A76 /* NSDate+KCExtension.m */,
+				070090D01D18DD6F00142A76 /* NSDictionary+KCExtension.h */,
+				070090D11D18DD6F00142A76 /* NSDictionary+KCExtension.m */,
+				070090D21D18DD6F00142A76 /* NSMutableArray+KCExtension.h */,
+				070090D31D18DD6F00142A76 /* NSMutableArray+KCExtension.m */,
+				070090D41D18DD6F00142A76 /* NSMutableDictionary+KCExtension.h */,
+				070090D51D18DD6F00142A76 /* NSMutableDictionary+KCExtension.m */,
+				070090D61D18DD6F00142A76 /* NSString+KCExtension.h */,
+				070090D71D18DD6F00142A76 /* NSString+KCExtension.m */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
 		072BFB6B1CDC295C00551444 = {
 			isa = PBXGroup;
 			children = (
@@ -191,49 +270,12 @@
 		075719721CFEDBCF00B37950 /* KCCategory */ = {
 			isa = PBXGroup;
 			children = (
-				075719731CFEDBCF00B37950 /* Category */,
+				070090C61D18DC9E00142A76 /* Macro */,
+				070090921D18DC7D00142A76 /* Category */,
 				0757198C1CFEDBCF00B37950 /* KCCategory.h */,
-				0757198D1CFEDBCF00B37950 /* KCConst.h */,
-				0757198E1CFEDBCF00B37950 /* KCConst.m */,
-				0757198F1CFEDBCF00B37950 /* KCMacro.h */,
 			);
 			name = KCCategory;
 			path = ../../KCCategory;
-			sourceTree = "<group>";
-		};
-		075719731CFEDBCF00B37950 /* Category */ = {
-			isa = PBXGroup;
-			children = (
-				075719741CFEDBCF00B37950 /* CALayer+KCExtension.h */,
-				075719751CFEDBCF00B37950 /* CALayer+KCExtension.m */,
-				075719761CFEDBCF00B37950 /* NSArray+KCExtension.h */,
-				075719771CFEDBCF00B37950 /* NSArray+KCExtension.m */,
-				075719781CFEDBCF00B37950 /* NSDate+KCExtension.h */,
-				075719791CFEDBCF00B37950 /* NSDate+KCExtension.m */,
-				0757197A1CFEDBCF00B37950 /* NSDictionary+KCExtension.h */,
-				0757197B1CFEDBCF00B37950 /* NSDictionary+KCExtension.m */,
-				0757197C1CFEDBCF00B37950 /* NSString+KCExtension.h */,
-				0757197D1CFEDBCF00B37950 /* NSString+KCExtension.m */,
-				0757197E1CFEDBCF00B37950 /* UIColor+KCExtension.h */,
-				0757197F1CFEDBCF00B37950 /* UIColor+KCExtension.m */,
-				075719801CFEDBCF00B37950 /* UIDevice+KCExtension.h */,
-				075719811CFEDBCF00B37950 /* UIDevice+KCExtension.m */,
-				075719821CFEDBCF00B37950 /* UIImage+KCExtension.h */,
-				075719831CFEDBCF00B37950 /* UIImage+KCExtension.m */,
-				075719841CFEDBCF00B37950 /* UIImageView+KCExtension.h */,
-				075719851CFEDBCF00B37950 /* UIImageView+KCExtension.m */,
-				075719861CFEDBCF00B37950 /* UITextField+KCExtension.h */,
-				075719871CFEDBCF00B37950 /* UITextField+KCExtension.m */,
-				075719881CFEDBCF00B37950 /* UITextView+KCExtension.h */,
-				075719891CFEDBCF00B37950 /* UITextView+KCExtension.m */,
-				0757198A1CFEDBCF00B37950 /* UIView+KCExtension.h */,
-				0757198B1CFEDBCF00B37950 /* UIView+KCExtension.m */,
-				071C739A1D069C06002971B8 /* UIViewController+KCExtension.h */,
-				071C739B1D069C06002971B8 /* UIViewController+KCExtension.m */,
-				071C739D1D06A574002971B8 /* UINavigationBar+KCExtension.h */,
-				071C739E1D06A574002971B8 /* UINavigationBar+KCExtension.m */,
-			);
-			path = Category;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -366,24 +408,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				075719921CFEDBCF00B37950 /* NSDate+KCExtension.m in Sources */,
-				075719961CFEDBCF00B37950 /* UIDevice+KCExtension.m in Sources */,
+				070090CA1D18DC9E00142A76 /* KCConst.m in Sources */,
+				070090DC1D18DD6F00142A76 /* NSMutableDictionary+KCExtension.m in Sources */,
+				070090D81D18DD6F00142A76 /* NSArray+KCExtension.m in Sources */,
+				070090C11D18DC7D00142A76 /* UINavigationBar+KCExtension.m in Sources */,
 				072BFB7F1CDC295C00551444 /* ViewController.m in Sources */,
-				0757199A1CFEDBCF00B37950 /* UITextView+KCExtension.m in Sources */,
-				075719911CFEDBCF00B37950 /* NSArray+KCExtension.m in Sources */,
-				071C739F1D06A574002971B8 /* UINavigationBar+KCExtension.m in Sources */,
-				0757199B1CFEDBCF00B37950 /* UIView+KCExtension.m in Sources */,
-				075719951CFEDBCF00B37950 /* UIColor+KCExtension.m in Sources */,
+				070090D91D18DD6F00142A76 /* NSDate+KCExtension.m in Sources */,
+				070090BD1D18DC7D00142A76 /* UIColor+KCExtension.m in Sources */,
+				070090BC1D18DC7D00142A76 /* CALayer+KCExtension.m in Sources */,
 				072BFB7C1CDC295C00551444 /* AppDelegate.m in Sources */,
-				075719981CFEDBCF00B37950 /* UIImageView+KCExtension.m in Sources */,
-				0757199C1CFEDBCF00B37950 /* KCConst.m in Sources */,
-				075719931CFEDBCF00B37950 /* NSDictionary+KCExtension.m in Sources */,
+				070090C21D18DC7D00142A76 /* UITextField+KCExtension.m in Sources */,
+				070090BE1D18DC7D00142A76 /* UIDevice+KCExtension.m in Sources */,
+				070090BF1D18DC7D00142A76 /* UIImage+KCExtension.m in Sources */,
+				070090C41D18DC7D00142A76 /* UIView+KCExtension.m in Sources */,
+				070090C31D18DC7D00142A76 /* UITextView+KCExtension.m in Sources */,
+				070090C51D18DC7D00142A76 /* UIViewController+KCExtension.m in Sources */,
+				070090DD1D18DD6F00142A76 /* NSString+KCExtension.m in Sources */,
+				070090C01D18DC7D00142A76 /* UIImageView+KCExtension.m in Sources */,
+				070090DB1D18DD6F00142A76 /* NSMutableArray+KCExtension.m in Sources */,
+				070090DA1D18DD6F00142A76 /* NSDictionary+KCExtension.m in Sources */,
 				072BFB791CDC295C00551444 /* main.m in Sources */,
-				075719991CFEDBCF00B37950 /* UITextField+KCExtension.m in Sources */,
-				075719971CFEDBCF00B37950 /* UIImage+KCExtension.m in Sources */,
-				075719901CFEDBCF00B37950 /* CALayer+KCExtension.m in Sources */,
-				071C739C1D069C06002971B8 /* UIViewController+KCExtension.m in Sources */,
-				075719941CFEDBCF00B37950 /* NSString+KCExtension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
