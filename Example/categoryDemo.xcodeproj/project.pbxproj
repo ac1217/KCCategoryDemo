@@ -32,6 +32,7 @@
 		072BFB871CDC295C00551444 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 072BFB851CDC295C00551444 /* LaunchScreen.storyboard */; };
 		072BFB921CDC295C00551444 /* categoryDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 072BFB911CDC295C00551444 /* categoryDemoTests.m */; };
 		072BFB9D1CDC295C00551444 /* categoryDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 072BFB9C1CDC295C00551444 /* categoryDemoUITests.m */; };
+		075F11651D23F26200C2AFEE /* KCFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 075F11641D23F26200C2AFEE /* KCFunction.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +105,8 @@
 		072BFB9C1CDC295C00551444 /* categoryDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = categoryDemoUITests.m; sourceTree = "<group>"; };
 		072BFB9E1CDC295C00551444 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0757198C1CFEDBCF00B37950 /* KCCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCCategory.h; sourceTree = "<group>"; };
+		075F11631D23F26200C2AFEE /* KCFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCFunction.h; sourceTree = "<group>"; };
+		075F11641D23F26200C2AFEE /* KCFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCFunction.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +184,8 @@
 				070090C71D18DC9E00142A76 /* KCConst.h */,
 				070090C81D18DC9E00142A76 /* KCConst.m */,
 				070090C91D18DC9E00142A76 /* KCMacro.h */,
+				075F11631D23F26200C2AFEE /* KCFunction.h */,
+				075F11641D23F26200C2AFEE /* KCFunction.m */,
 			);
 			path = Macro;
 			sourceTree = "<group>";
@@ -410,6 +415,7 @@
 			files = (
 				070090CA1D18DC9E00142A76 /* KCConst.m in Sources */,
 				070090DC1D18DD6F00142A76 /* NSMutableDictionary+KCExtension.m in Sources */,
+				075F11651D23F26200C2AFEE /* KCFunction.m in Sources */,
 				070090D81D18DD6F00142A76 /* NSArray+KCExtension.m in Sources */,
 				070090C11D18DC7D00142A76 /* UINavigationBar+KCExtension.m in Sources */,
 				072BFB7F1CDC295C00551444 /* ViewController.m in Sources */,

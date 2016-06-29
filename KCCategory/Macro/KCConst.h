@@ -8,5 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+// 动画时长，默认0.25
 extern CGFloat const KCDefaultAnimationDuration;
+// 间距，默认15
 extern CGFloat const KCDefaultMargin;

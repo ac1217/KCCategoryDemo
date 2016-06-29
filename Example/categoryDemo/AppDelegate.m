@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "KCCategory.h"
 
+#import <PushKit/PushKit.h>
+
 @interface AppDelegate ()
 
 @end

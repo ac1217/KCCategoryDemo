@@ -9,14 +9,29 @@
 #ifndef KCMacro_h
 #define KCMacro_h
 
-// 颜色相关宏
+/**
+ *  颜色相关
+ */
+// RGBA
 #define KC_RGBA_COLOR(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
+// RGB
 #define KC_RGB_COLOR(r,g,b) KC_RGBA_COLOR(r,g,b,1)
+// 随机色
 #define KC_RANDOM_COLOR KC_RGB_COLOR(arc4random_uniform(256),arc4random_uniform(256),arc4random_uniform(256))
+// hexColor
 #define KC_HEX_COLOR(hexValue) [UIColor kc_colorWithHexValue:hexValue]
 
 // 字体相关
 #define KC_SYSTEM_FONT_SIZE(size) [UIFont systemFontOfSize:size]
+#define KC_FONT_SIZE_18 KC_SYSTEM_FONT_SIZE(18)
+#define KC_FONT_SIZE_17 KC_SYSTEM_FONT_SIZE(17)
+#define KC_FONT_SIZE_16 KC_SYSTEM_FONT_SIZE(16)
+#define KC_FONT_SIZE_15 KC_SYSTEM_FONT_SIZE(15)
+#define KC_FONT_SIZE_14 KC_SYSTEM_FONT_SIZE(14)
+#define KC_FONT_SIZE_13 KC_SYSTEM_FONT_SIZE(13)
+#define KC_FONT_SIZE_12 KC_SYSTEM_FONT_SIZE(12)
+#define KC_FONT_SIZE_11 KC_SYSTEM_FONT_SIZE(11)
+#define KC_FONT_SIZE_10 KC_SYSTEM_FONT_SIZE(10)
 
 // 单例宏
 #define KC_NOTIFICATION_CENTER [NSNotificationCenter defaultCenter]
@@ -26,7 +41,6 @@
 // 通知相关宏
 #define KC_REMOVE_NOTIFICATION [KC_NOTIFICATION_CENTER removeObserver:self];
 #define KC_POST_NOTIFICATION(name,obj,info) [KC_NOTIFICATION_CENTER  postNotificationName:name object:obj userInfo:info];
-
 
 // 系统版本，设备相关
 #define KC_SYSTEM_VERSION [[UIDevice currentDevice] systemVersion]
@@ -49,7 +63,6 @@
 #define KC_WEAK_SELF __weak __typeof(&*self)weakSelf = self;
 
 //KCLog日志输出方法
-
 #ifdef DEBUG
 #define KCLog(...) NSLog(__VA_ARGS__)
 #else

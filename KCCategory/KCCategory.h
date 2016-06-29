@@ -1,6 +1,7 @@
 
 #import "KCMacro.h"
 #import "KCConst.h"
+#import "KCFunction.h"
 #import "UIView+KCExtension.h"
 #import "UIImageView+KCExtension.h"
 #import "UIImage+KCExtension.h"
