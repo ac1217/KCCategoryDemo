@@ -67,6 +67,7 @@
  * 显示红点, 默认在右上角
  */
 @property (nonatomic, copy) NSString *kc_badgeValue;
+@property (nonatomic, strong) UIColor *kc_badgeBackgroundColor;
 - (void)kc_setBadgeValue:(NSString *)badgeValue offset:(CGPoint)offset;
 
 /*

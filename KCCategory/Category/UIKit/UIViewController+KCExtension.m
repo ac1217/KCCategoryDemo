@@ -37,4 +37,16 @@
     [self.navigationController.navigationBar kc_setBackgroundHidden:hidden animate:animate];
 }
 
++ (instancetype)kc_viewControllerFromStoryboard:(NSString *)sbName
+{
+  return [self kc_viewControllerFromStoryboard:sbName identifier:NSStringFromClass(self)];
+}
+
+
++ (instancetype)kc_viewControllerFromStoryboard:(NSString *)sbName identifier:(NSString *)ID
+{
+    
+    return [[UIStoryboard storyboardWithName:sbName bundle:nil] instantiateViewControllerWithIdentifier:ID];
+}
+
 @end

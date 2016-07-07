@@ -300,6 +300,16 @@ static NSString *const KCBorderLayerKey = @"kc_borderLayer";
     return self.kc_badgeValueLabel.text;
 }
 
+- (void)setKc_badgeBackgroundColor:(UIColor *)kc_badgeBackgroundColor
+{
+    self.kc_badgeValueLabel.layer.backgroundColor = kc_badgeBackgroundColor.CGColor;
+}
+
+- (UIColor *)kc_badgeBackgroundColor
+{
+    return [UIColor colorWithCGColor:self.kc_badgeValueLabel.layer.backgroundColor];
+}
+
 - (void)kc_setBadgeValue:(NSString *)badgeValue offset:(CGPoint)offset
 {
     self.kc_badgeValue = badgeValue;
