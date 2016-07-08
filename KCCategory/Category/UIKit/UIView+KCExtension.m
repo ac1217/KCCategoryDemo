@@ -368,6 +368,9 @@ static NSString *const KCBorderLayerKey = @"kc_borderLayer";
 {
     self.kc_layerCornerRadius = cornerRadius;
     self.clipsToBounds = YES;
+    
+    self.layer.rasterizationScale = [UIScreen mainScreen].scale;
+    self.layer.shouldRasterize = YES;
 }
 
 
