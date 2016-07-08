@@ -33,6 +33,8 @@
 		072BFB921CDC295C00551444 /* categoryDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 072BFB911CDC295C00551444 /* categoryDemoTests.m */; };
 		072BFB9D1CDC295C00551444 /* categoryDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 072BFB9C1CDC295C00551444 /* categoryDemoUITests.m */; };
 		075F11651D23F26200C2AFEE /* KCFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 075F11641D23F26200C2AFEE /* KCFunction.m */; };
+		0770D15C1D2F811D008C89D6 /* CADisplayLink+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0770D15B1D2F811D008C89D6 /* CADisplayLink+KCExtension.m */; };
+		0770D15F1D2F8209008C89D6 /* NSTimer+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0770D15E1D2F8209008C89D6 /* NSTimer+KCExtension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +109,10 @@
 		0757198C1CFEDBCF00B37950 /* KCCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCCategory.h; sourceTree = "<group>"; };
 		075F11631D23F26200C2AFEE /* KCFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCFunction.h; sourceTree = "<group>"; };
 		075F11641D23F26200C2AFEE /* KCFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCFunction.m; sourceTree = "<group>"; };
+		0770D15A1D2F811D008C89D6 /* CADisplayLink+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CADisplayLink+KCExtension.h"; sourceTree = "<group>"; };
+		0770D15B1D2F811D008C89D6 /* CADisplayLink+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CADisplayLink+KCExtension.m"; sourceTree = "<group>"; };
+		0770D15D1D2F8209008C89D6 /* NSTimer+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+KCExtension.h"; sourceTree = "<group>"; };
+		0770D15E1D2F8209008C89D6 /* NSTimer+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+KCExtension.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +155,8 @@
 			children = (
 				070090A11D18DC7D00142A76 /* CALayer+KCExtension.h */,
 				070090A21D18DC7D00142A76 /* CALayer+KCExtension.m */,
+				0770D15A1D2F811D008C89D6 /* CADisplayLink+KCExtension.h */,
+				0770D15B1D2F811D008C89D6 /* CADisplayLink+KCExtension.m */,
 			);
 			path = QuartzCore;
 			sourceTree = "<group>";
@@ -205,6 +213,8 @@
 				070090D51D18DD6F00142A76 /* NSMutableDictionary+KCExtension.m */,
 				070090D61D18DD6F00142A76 /* NSString+KCExtension.h */,
 				070090D71D18DD6F00142A76 /* NSString+KCExtension.m */,
+				0770D15D1D2F8209008C89D6 /* NSTimer+KCExtension.h */,
+				0770D15E1D2F8209008C89D6 /* NSTimer+KCExtension.m */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -425,8 +435,10 @@
 				072BFB7C1CDC295C00551444 /* AppDelegate.m in Sources */,
 				070090C21D18DC7D00142A76 /* UITextField+KCExtension.m in Sources */,
 				070090BE1D18DC7D00142A76 /* UIDevice+KCExtension.m in Sources */,
+				0770D15F1D2F8209008C89D6 /* NSTimer+KCExtension.m in Sources */,
 				070090BF1D18DC7D00142A76 /* UIImage+KCExtension.m in Sources */,
 				070090C41D18DC7D00142A76 /* UIView+KCExtension.m in Sources */,
+				0770D15C1D2F811D008C89D6 /* CADisplayLink+KCExtension.m in Sources */,
 				070090C31D18DC7D00142A76 /* UITextView+KCExtension.m in Sources */,
 				070090C51D18DC7D00142A76 /* UIViewController+KCExtension.m in Sources */,
 				070090DD1D18DD6F00142A76 /* NSString+KCExtension.m in Sources */,
