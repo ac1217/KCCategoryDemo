@@ -364,13 +364,18 @@ static NSString *const KCBorderLayerKey = @"kc_borderLayer";
     return self.layer.borderWidth;
 }
 
-- (void)kc_setLayerCornerRadiusWithClips:(CGFloat)cornerRadius
+- (void)setKc_layerCornerRadiusWithClips:(CGFloat)kc_layerCornerRadiusWithClips
 {
-    self.kc_layerCornerRadius = cornerRadius;
+    self.kc_layerCornerRadius = kc_layerCornerRadiusWithClips;
     self.clipsToBounds = YES;
     
     self.layer.rasterizationScale = [UIScreen mainScreen].scale;
     self.layer.shouldRasterize = YES;
+}
+
+- (CGFloat)kc_layerCornerRadiusWithClips
+{
+    return self.layer.cornerRadius;
 }
 
 

@@ -74,11 +74,11 @@
  * 图层相关
  */
 @property (nonatomic, strong) UIColor *kc_layerBackgroundColor;
-@property (nonatomic, strong) IBInspectable UIColor *kc_layerBorderColor;
-@property (nonatomic, assign) IBInspectable CGFloat kc_layerBorderWidth;
-@property (nonatomic, assign) IBInspectable CGFloat kc_layerCornerRadius;
+@property (nonatomic, strong) UIColor *kc_layerBorderColor;
+@property (nonatomic, assign) CGFloat kc_layerBorderWidth;
+@property (nonatomic, assign) CGFloat kc_layerCornerRadius;
+@property (nonatomic, assign) IBInspectable CGFloat kc_layerCornerRadiusWithClips;
 
-- (void)kc_setLayerCornerRadiusWithClips:(CGFloat)cornerRadius;
 
 - (void)kc_setBorderWithWidth:(CGFloat)width cornerRadius:(CGFloat)radius color:(UIColor *)color;
 
