@@ -29,7 +29,7 @@
     //    self.kc_navgationBarBackgroundHidden = YES;
     
 //    [self.imageView kc_setRoundedCoverWithBackgroundColor:self.view.backgroundColor cornerRadius:self.imageView.kc_width*0.3];
-    [self.imageView kc_setLayerCornerRadiusWithClips:self.imageView.kc_width * 0.2];
+//    [self.imageView kc_setLayerCornerRadiusWithClips:self.imageView.kc_width * 0.2];
     //
     self.imageView.image = [UIImage imageNamed:@"shareIcon"];
 

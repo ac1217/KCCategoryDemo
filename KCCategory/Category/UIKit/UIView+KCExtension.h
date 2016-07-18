@@ -88,4 +88,9 @@
 // 增加圆角遮盖
 - (void)kc_setRoundedCoverWithBackgroundColor:(UIColor *)color cornerRadius:(CGFloat)radius;
 
+/**
+ *  手势点击
+ */
+- (void)kc_setTapBlock:(void(^)())block;
+
 @end

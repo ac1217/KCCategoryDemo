@@ -12,3 +12,6 @@
 extern CGFloat const KCDefaultAnimationDuration;
 // 间距，默认15
 extern CGFloat const KCDefaultMargin;
+
+extern CGFloat const KCNavigationBarHeight;
+extern CGFloat const KCQTabBarHeight;

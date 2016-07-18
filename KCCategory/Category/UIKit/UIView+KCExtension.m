@@ -12,6 +12,7 @@
 
 static NSString *const KCBadgeValueLabelKey = @"kc_badgeValueLabel";
 static NSString *const KCBorderLayerKey = @"kc_borderLayer";
+static NSString *KCViewTapBlockKey = @"KCViewTapBlockKey";
 
 @interface UIView ()
 
@@ -400,6 +401,29 @@ static NSString *const KCBorderLayerKey = @"kc_borderLayer";
 - (void)kc_setRoundedCoverWithBackgroundColor:(UIColor *)color cornerRadius:(CGFloat)radius
 {
     [self.layer kc_setRoundedCoverWithBackgroundColor:color.CGColor cornerRadius:radius];
+}
+
+
+/**
+ *  手势点击
+ */
+- (void)kc_viewTap:(UITapGestureRecognizer *)tap
+{
+    void(^block)() = objc_getAssociatedObject(self, (__bridge const void *)(KCViewTapBlockKey));
+    
+    if (block) {
+        block();
+    }
+}
+
+- (void)kc_setTapBlock:(void(^)())block
+{
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(kc_viewTap:)];
+    
+    [self addGestureRecognizer:tap];
+    
+    objc_setAssociatedObject(self, (__bridge const void *)(KCViewTapBlockKey), block, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
 

@@ -9,3 +9,5 @@
 
 CGFloat const KCDefaultAnimationDuration = 0.25;
 CGFloat const KCDefaultMargin = 15;
+CGFloat const KCQNavigationBarHeight = 64;
+CGFloat const KCQTabBarHeight = 49;

@@ -11,11 +11,11 @@
 
 @implementation CADisplayLink (KCExtension)
 
-static NSString *CADisplayLinkBlockKey = @"CADisplayLinkBlockKey";
+static NSString *KCDisplayLinkBlockKey = @"KCDisplayLinkBlockKey";
 
 + (void)kc_block:(CADisplayLink *)link {
     
-    void(^block)(CADisplayLink *link) = objc_getAssociatedObject(self, (__bridge const void *)(CADisplayLinkBlockKey));
+    void(^block)(CADisplayLink *link) = objc_getAssociatedObject(self, (__bridge const void *)(KCDisplayLinkBlockKey));
     
     if (block) {
         block(link);
@@ -24,7 +24,7 @@ static NSString *CADisplayLinkBlockKey = @"CADisplayLinkBlockKey";
 
 + (CADisplayLink *)kc_displayLinkWithBlock:(void(^)(CADisplayLink *link))block
 {
-    objc_setAssociatedObject(self, (__bridge const void *)(CADisplayLinkBlockKey), block, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    objc_setAssociatedObject(self, (__bridge const void *)(KCDisplayLinkBlockKey), block, OBJC_ASSOCIATION_COPY_NONATOMIC);
     
     return [CADisplayLink displayLinkWithTarget:self selector:@selector(kc_block:)];
 }
