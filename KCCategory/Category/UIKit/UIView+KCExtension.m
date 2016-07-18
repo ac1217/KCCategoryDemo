@@ -418,6 +418,7 @@ static NSString *KCViewTapBlockKey = @"KCViewTapBlockKey";
 
 - (void)kc_setTapBlock:(void(^)())block
 {
+    self.userInteractionEnabled = YES;
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(kc_viewTap:)];
     

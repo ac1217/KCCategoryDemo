@@ -33,7 +33,11 @@
     //
     self.imageView.image = [UIImage imageNamed:@"shareIcon"];
 
-
+    
+    [self.imageView kc_setTapBlock:^{
+       
+        KCLog(@"dsfdsfdsfs");
+    }];
     
 }
 
