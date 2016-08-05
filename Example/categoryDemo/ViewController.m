@@ -31,13 +31,14 @@
 //    [self.imageView kc_setRoundedCoverWithBackgroundColor:self.view.backgroundColor cornerRadius:self.imageView.kc_width*0.3];
 //    [self.imageView kc_setLayerCornerRadiusWithClips:self.imageView.kc_width * 0.2];
     //
-    self.imageView.image = [UIImage imageNamed:@"shareIcon"];
-
+//    self.imageView.kc_layerCornerRadiusWithClips = self.imageView.kc_width;
     
     [self.imageView kc_setTapBlock:^{
        
         KCLog(@"dsfdsfdsfs");
     }];
+    
+//    self.imageView.kc_badgeValue = @"1";
     
 }
 
