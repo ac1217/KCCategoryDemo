@@ -32,6 +32,7 @@
 		072BFB871CDC295C00551444 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 072BFB851CDC295C00551444 /* LaunchScreen.storyboard */; };
 		072BFB921CDC295C00551444 /* categoryDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 072BFB911CDC295C00551444 /* categoryDemoTests.m */; };
 		072BFB9D1CDC295C00551444 /* categoryDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 072BFB9C1CDC295C00551444 /* categoryDemoUITests.m */; };
+		0748815E1D572ED900322817 /* UIButton+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0748815D1D572ED900322817 /* UIButton+KCExtension.m */; };
 		075F11651D23F26200C2AFEE /* KCFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 075F11641D23F26200C2AFEE /* KCFunction.m */; };
 		0770D15C1D2F811D008C89D6 /* CADisplayLink+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0770D15B1D2F811D008C89D6 /* CADisplayLink+KCExtension.m */; };
 		0770D15F1D2F8209008C89D6 /* NSTimer+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0770D15E1D2F8209008C89D6 /* NSTimer+KCExtension.m */; };
@@ -106,6 +107,8 @@
 		072BFB981CDC295C00551444 /* categoryDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = categoryDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		072BFB9C1CDC295C00551444 /* categoryDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = categoryDemoUITests.m; sourceTree = "<group>"; };
 		072BFB9E1CDC295C00551444 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0748815C1D572ED900322817 /* UIButton+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+KCExtension.h"; sourceTree = "<group>"; };
+		0748815D1D572ED900322817 /* UIButton+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+KCExtension.m"; sourceTree = "<group>"; };
 		0757198C1CFEDBCF00B37950 /* KCCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCCategory.h; sourceTree = "<group>"; };
 		075F11631D23F26200C2AFEE /* KCFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCFunction.h; sourceTree = "<group>"; };
 		075F11641D23F26200C2AFEE /* KCFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCFunction.m; sourceTree = "<group>"; };
@@ -182,6 +185,8 @@
 				070090B31D18DC7D00142A76 /* UIView+KCExtension.m */,
 				070090B41D18DC7D00142A76 /* UIViewController+KCExtension.h */,
 				070090B51D18DC7D00142A76 /* UIViewController+KCExtension.m */,
+				0748815C1D572ED900322817 /* UIButton+KCExtension.h */,
+				0748815D1D572ED900322817 /* UIButton+KCExtension.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -424,6 +429,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				070090CA1D18DC9E00142A76 /* KCConst.m in Sources */,
+				0748815E1D572ED900322817 /* UIButton+KCExtension.m in Sources */,
 				070090DC1D18DD6F00142A76 /* NSMutableDictionary+KCExtension.m in Sources */,
 				075F11651D23F26200C2AFEE /* KCFunction.m in Sources */,
 				070090D81D18DD6F00142A76 /* NSArray+KCExtension.m in Sources */,
