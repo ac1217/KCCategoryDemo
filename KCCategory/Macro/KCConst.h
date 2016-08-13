@@ -15,3 +15,5 @@ extern CGFloat const KCDefaultMargin;
 
 extern CGFloat const KCNavigationBarHeight;
 extern CGFloat const KCQTabBarHeight;
+
+extern NSString *const KCCFBundleShortVersionStringKey;

@@ -17,4 +17,6 @@
 #import "UINavigationBar+KCExtension.h"
 #import "NSTimer+KCExtension.h"
 #import "UIButton+KCExtension.h"
+#import "CADisplayLink+KCExtension.h"
+#import "CALayer+KCExtension.h"
 
