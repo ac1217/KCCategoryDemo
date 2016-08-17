@@ -49,6 +49,8 @@ static NSString *const KCCoverLayerKey = @"kc_coverLayer";
     self.kc_coverLayer.path = path.CGPath;
     
     self.kc_coverLayer.fillColor = color;
+    
+    self.masksToBounds = YES;
 }
 
 @end

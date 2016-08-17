@@ -18,10 +18,16 @@
 
 + (UIColor *)kc_colorWithHexString:(NSString *)hexString
 {
+    if ([hexString hasPrefix:@"0x"]) {
+        hexString = [hexString stringByReplacingOccurrencesOfString:@"0x" withString:@""];
+    }else if ([hexString hasPrefix:@"#"]) {
+        
+        hexString = [hexString stringByReplacingOccurrencesOfString:@"#" withString:@""];
+    }
     
     unsigned rgbValue = 0;
     NSScanner *scanner = [NSScanner scannerWithString:hexString];
-    [scanner setScanLocation:1]; // bypass '#' character
+    [scanner setScanLocation:0];
     [scanner scanHexInt:&rgbValue];
     return [self kc_colorWithHexValue:rgbValue];
 }
