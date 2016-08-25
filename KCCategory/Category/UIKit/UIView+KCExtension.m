@@ -265,6 +265,27 @@ static NSString *KCViewTapBlockKey = @"KCViewTapBlockKey";
 
 /**********************/
 #pragma mark -显示红点
+- (void)setKc_badgeFont:(UIFont *)kc_badgeFont
+{
+    self.kc_badgeValueLabel.font = kc_badgeFont;
+}
+
+- (UIFont *)kc_badgeFont
+{
+    return self.kc_badgeValueLabel.font;
+}
+
+- (void)setKc_badgeColor:(UIColor *)kc_badgeColor
+{
+    self.kc_badgeValueLabel.textColor = kc_badgeColor;
+    
+}
+
+- (UIColor *)kc_badgeColor
+{
+    return self.kc_badgeValueLabel.textColor;
+}
+
 - (void)setKc_badgeValue:(NSString *)kc_badgeValue
 {
     
@@ -274,9 +295,11 @@ static NSString *KCViewTapBlockKey = @"KCViewTapBlockKey";
         self.kc_badgeValueLabel.text = kc_badgeValue;
         if (kc_badgeValue.length) {
             
-            CGFloat h = 15;
+            
+            CGSize textSize = [kc_badgeValue sizeWithAttributes:@{NSFontAttributeName : self.kc_badgeValueLabel.font}];
+            CGFloat h = textSize.height + self.kc_badgeValueLabel.font.lineHeight * 0.4;
             CGFloat minW = h;
-            CGFloat w = [kc_badgeValue sizeWithAttributes:@{NSFontAttributeName : self.kc_badgeValueLabel.font}].width + 8;
+            CGFloat w = textSize.width + self.kc_badgeValueLabel.font.lineHeight * 0.8;
             
             w = w < minW ? minW : w;
             
@@ -425,6 +448,22 @@ static NSString *KCViewTapBlockKey = @"KCViewTapBlockKey";
     [self addGestureRecognizer:tap];
     
     objc_setAssociatedObject(self, (__bridge const void *)(KCViewTapBlockKey), block, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+
+/**
+ *  获取view的控制器
+ */
+- (UIViewController *)kc_viewController
+{
+    UIResponder *next = [self nextResponder];
+    do {
+        if ([next isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)next;
+        }
+        next = [next nextResponder];
+    } while (next != nil);
+    return nil;
 }
 
 

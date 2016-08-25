@@ -66,6 +66,8 @@
 /*
  * 显示红点, 默认在右上角
  */
+@property (nonatomic, strong) UIFont *kc_badgeFont;
+@property (nonatomic, strong) UIColor *kc_badgeColor;
 @property (nonatomic, copy) NSString *kc_badgeValue;
 @property (nonatomic, strong) UIColor *kc_badgeBackgroundColor;
 - (void)kc_setBadgeValue:(NSString *)badgeValue offset:(CGPoint)offset;
@@ -92,5 +94,10 @@
  *  手势点击
  */
 - (void)kc_setTapBlock:(void(^)())block;
+
+/**
+ *  获取view的控制器
+ */
+- (UIViewController *)kc_viewController;
 
 @end
