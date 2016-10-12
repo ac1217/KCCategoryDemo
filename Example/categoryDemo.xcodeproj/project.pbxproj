@@ -36,6 +36,8 @@
 		075F11651D23F26200C2AFEE /* KCFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 075F11641D23F26200C2AFEE /* KCFunction.m */; };
 		0770D15C1D2F811D008C89D6 /* CADisplayLink+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0770D15B1D2F811D008C89D6 /* CADisplayLink+KCExtension.m */; };
 		0770D15F1D2F8209008C89D6 /* NSTimer+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0770D15E1D2F8209008C89D6 /* NSTimer+KCExtension.m */; };
+		07D9A5191DAE1D000000DF07 /* NSAttributedString+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D9A5181DAE1D000000DF07 /* NSAttributedString+KCExtension.m */; };
+		07F353BC1D8791760077383F /* UIVisualEffectView+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F353BB1D8791760077383F /* UIVisualEffectView+KCExtension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +118,10 @@
 		0770D15B1D2F811D008C89D6 /* CADisplayLink+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CADisplayLink+KCExtension.m"; sourceTree = "<group>"; };
 		0770D15D1D2F8209008C89D6 /* NSTimer+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+KCExtension.h"; sourceTree = "<group>"; };
 		0770D15E1D2F8209008C89D6 /* NSTimer+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+KCExtension.m"; sourceTree = "<group>"; };
+		07D9A5171DAE1D000000DF07 /* NSAttributedString+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+KCExtension.h"; sourceTree = "<group>"; };
+		07D9A5181DAE1D000000DF07 /* NSAttributedString+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+KCExtension.m"; sourceTree = "<group>"; };
+		07F353BA1D8791760077383F /* UIVisualEffectView+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIVisualEffectView+KCExtension.h"; sourceTree = "<group>"; };
+		07F353BB1D8791760077383F /* UIVisualEffectView+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIVisualEffectView+KCExtension.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +193,8 @@
 				070090B51D18DC7D00142A76 /* UIViewController+KCExtension.m */,
 				0748815C1D572ED900322817 /* UIButton+KCExtension.h */,
 				0748815D1D572ED900322817 /* UIButton+KCExtension.m */,
+				07F353BA1D8791760077383F /* UIVisualEffectView+KCExtension.h */,
+				07F353BB1D8791760077383F /* UIVisualEffectView+KCExtension.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -220,6 +228,8 @@
 				070090D71D18DD6F00142A76 /* NSString+KCExtension.m */,
 				0770D15D1D2F8209008C89D6 /* NSTimer+KCExtension.h */,
 				0770D15E1D2F8209008C89D6 /* NSTimer+KCExtension.m */,
+				07D9A5171DAE1D000000DF07 /* NSAttributedString+KCExtension.h */,
+				07D9A5181DAE1D000000DF07 /* NSAttributedString+KCExtension.m */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -435,6 +445,7 @@
 				070090D81D18DD6F00142A76 /* NSArray+KCExtension.m in Sources */,
 				070090C11D18DC7D00142A76 /* UINavigationBar+KCExtension.m in Sources */,
 				072BFB7F1CDC295C00551444 /* ViewController.m in Sources */,
+				07F353BC1D8791760077383F /* UIVisualEffectView+KCExtension.m in Sources */,
 				070090D91D18DD6F00142A76 /* NSDate+KCExtension.m in Sources */,
 				070090BD1D18DC7D00142A76 /* UIColor+KCExtension.m in Sources */,
 				070090BC1D18DC7D00142A76 /* CALayer+KCExtension.m in Sources */,
@@ -445,6 +456,7 @@
 				070090BF1D18DC7D00142A76 /* UIImage+KCExtension.m in Sources */,
 				070090C41D18DC7D00142A76 /* UIView+KCExtension.m in Sources */,
 				0770D15C1D2F811D008C89D6 /* CADisplayLink+KCExtension.m in Sources */,
+				07D9A5191DAE1D000000DF07 /* NSAttributedString+KCExtension.m in Sources */,
 				070090C31D18DC7D00142A76 /* UITextView+KCExtension.m in Sources */,
 				070090C51D18DC7D00142A76 /* UIViewController+KCExtension.m in Sources */,
 				070090DD1D18DD6F00142A76 /* NSString+KCExtension.m in Sources */,

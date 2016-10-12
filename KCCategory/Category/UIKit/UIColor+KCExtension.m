@@ -18,6 +18,8 @@
 
 + (UIColor *)kc_colorWithHexString:(NSString *)hexString
 {
+    
+    
     if ([hexString hasPrefix:@"0x"]) {
         hexString = [hexString stringByReplacingOccurrencesOfString:@"0x" withString:@""];
     }else if ([hexString hasPrefix:@"#"]) {

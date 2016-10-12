@@ -40,6 +40,12 @@
     
 //    self.imageView.kc_badgeValue = @"1";
     
+    UIVisualEffectView *blurEffectView = [UIVisualEffectView kc_blurEffectViewWithBlurEffectStyle:UIBlurEffectStyleExtraLight];
+    [self.view addSubview:blurEffectView];
+    
+    blurEffectView.frame = CGRectMake(20, 200, 300, 88);
+    
+    
 }
 
 - (void)jump
