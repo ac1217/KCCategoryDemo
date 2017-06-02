@@ -33,9 +33,8 @@
     //
 //    self.imageView.kc_layerCornerRadiusWithClips = self.imageView.kc_width;
     
-    [self.imageView kc_setTapBlock:^{
-       
-        KCLog(@"dsfdsfdsfs");
+    [self.imageView kc_setTapBlock:^(UIView *view, UITapGestureRecognizer *tap) {
+        
     }];
     
 //    self.imageView.kc_badgeValue = @"1";
@@ -45,6 +44,15 @@
     
     blurEffectView.frame = CGRectMake(20, 200, 300, 88);
     
+    UIButton *btn = [UIButton new];
+    [btn setTitle:@"12313" forState:UIControlStateNormal];
+    [btn setImage:[UIImage imageNamed:@"shareIcon"] forState:UIControlStateNormal];
+    btn.imageTitleSpacing = 10;
+    btn.imagePosition = KCButtonImagePositionTop;
+    btn.titleEdgeInsets = UIEdgeInsetsMake(10, 0, 0, 0);
+    btn.frame = CGRectMake(100, 100, 200, 200);
+    
+    [self.view addSubview:btn];
     
 }
 

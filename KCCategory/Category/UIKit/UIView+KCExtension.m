@@ -432,14 +432,14 @@ static NSString *KCViewTapBlockKey = @"KCViewTapBlockKey";
  */
 - (void)kc_viewTap:(UITapGestureRecognizer *)tap
 {
-    void(^block)() = objc_getAssociatedObject(self, (__bridge const void *)(KCViewTapBlockKey));
+    void(^block)(UIView *, UITapGestureRecognizer *) = objc_getAssociatedObject(self, (__bridge const void *)(KCViewTapBlockKey));
     
     if (block) {
-        block();
+        block(self, tap);
     }
 }
 
-- (void)kc_setTapBlock:(void(^)())block
+- (void)kc_setTapBlock:(void(^)(UIView *view, UITapGestureRecognizer *tap))block;
 {
     self.userInteractionEnabled = YES;
     

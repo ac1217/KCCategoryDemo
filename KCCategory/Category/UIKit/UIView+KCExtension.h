@@ -93,7 +93,7 @@
 /**
  *  手势点击
  */
-- (void)kc_setTapBlock:(void(^)())block;
+- (void)kc_setTapBlock:(void(^)(UIView *view, UITapGestureRecognizer *tap))block;
 
 /**
  *  获取view的控制器

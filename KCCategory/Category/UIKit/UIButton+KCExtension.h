@@ -25,4 +25,8 @@ typedef NS_ENUM(NSInteger, KCButtonImagePosition) {
  */
 - (void)kc_setImagePosition:(KCButtonImagePosition)postion margin:(CGFloat)margin;
 
+
+@property (nonatomic,assign) KCButtonImagePosition imagePosition;
+@property (nonatomic,assign) CGFloat imageTitleSpacing;
+
 @end

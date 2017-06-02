@@ -7,13 +7,54 @@
 //
 
 #import "UIButton+KCExtension.h"
+#import <objc/runtime.h>
+
+static NSString *const KCButtonImagePositionKey = @"imagePosition";
+static NSString *const KCButtonImageTitleSpacingKey = @"imageTitleSpacing";
 
 @implementation UIButton (KCExtension)
+
++ (void)load
+{
+    
+    Method layoutSubviews1 = class_getInstanceMethod(self, NSSelectorFromString(@"layoutSubviews"));
+    Method layoutSubviews2 = class_getInstanceMethod(self, @selector(kc_layoutSubviews));
+    
+    method_exchangeImplementations(layoutSubviews1 , layoutSubviews2);
+}
+
+- (void)kc_layoutSubviews
+{
+    [self kc_layoutSubviews];
+    
+    [self kc_setImagePosition:self.imagePosition margin:self.imageTitleSpacing];
+    
+}
+
+- (void)setImageTitleSpacing:(CGFloat)imageTitleSpacing
+{
+    objc_setAssociatedObject(self, (__bridge const void *)(KCButtonImageTitleSpacingKey), @(imageTitleSpacing), OBJC_ASSOCIATION_ASSIGN);
+    
+}
+
+- (CGFloat)imageTitleSpacing
+{
+    return [objc_getAssociatedObject(self, (__bridge const void *)(KCButtonImageTitleSpacingKey)) doubleValue];
+}
+
+- (void)setImagePosition:(KCButtonImagePosition)imagePosition
+{
+    objc_setAssociatedObject(self, (__bridge const void *)(KCButtonImagePositionKey), @(imagePosition), OBJC_ASSOCIATION_ASSIGN);
+}
+
+- (KCButtonImagePosition)imagePosition
+{
+    return [objc_getAssociatedObject(self, (__bridge const void *)(KCButtonImagePositionKey)) integerValue];
+}
 
 
 - (void)kc_setImagePosition:(KCButtonImagePosition)postion margin:(CGFloat)margin
 {
-    
     
     CGFloat imageWidth = self.imageView.image.size.width;
     CGFloat imageHeight = self.imageView.image.size.height;
