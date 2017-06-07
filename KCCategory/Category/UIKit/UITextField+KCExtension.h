@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong) UIColor *kc_placeholderColor;
 
+@property (nonatomic,assign) NSInteger kc_maxLength;
+
 @end

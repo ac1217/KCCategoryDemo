@@ -11,6 +11,8 @@
 
 static NSString *const KCTextViewPlaceholderLabelKey = @"kc_textViewPlaceholderLabel";
 
+static NSString *const KCTextViewMaxLengthKey = @"kc_textViewMaxLength";
+
 @interface UITextView ()
 @property (nonatomic, strong) UILabel *kc_placeholderLabel;
 @end
@@ -38,7 +40,7 @@ static NSString *const KCTextViewPlaceholderLabelKey = @"kc_textViewPlaceholderL
         
         [self addConstraint:[NSLayoutConstraint constraintWithItem:placeholderLabel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeWidth multiplier:1 constant:H * -2]];
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kc_textChange) name:UITextViewTextDidChangeNotification object:self];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kc_textViewTextChange) name:UITextViewTextDidChangeNotification object:self];
     }
     
     return placeholderLabel;
@@ -82,14 +84,14 @@ static NSString *const KCTextViewPlaceholderLabelKey = @"kc_textViewPlaceholderL
 {
     [self kc_setAttributedText:attrText];
     
-    [self kc_textChange];
+    [self kc_textViewTextChange];
 }
 
 - (void)kc_setText:(NSString *)text
 {
     [self kc_setText:text];
     
-    [self kc_textChange];
+    [self kc_textViewTextChange];
 }
 
 - (void)kc_setFont:(UIFont *)font
@@ -107,9 +109,14 @@ static NSString *const KCTextViewPlaceholderLabelKey = @"kc_textViewPlaceholderL
 
 }
 
-- (void)kc_textChange
+- (void)setKc_placeholderAttributedString:(NSAttributedString *)kc_placeholderAttributedString
 {
-    self.kc_placeholderLabel.hidden = self.hasText;
+    self.kc_placeholderLabel.attributedText = kc_placeholderAttributedString;
+}
+
+- (NSAttributedString *)kc_placeholderAttributedString
+{
+    return self.kc_placeholderLabel.attributedText;
 }
 
 - (NSString *)kc_placeholder
@@ -126,6 +133,32 @@ static NSString *const KCTextViewPlaceholderLabelKey = @"kc_textViewPlaceholderL
 {
     return [self.kc_placeholderLabel textColor];
 }
+
+- (void)setKc_maxLength:(NSInteger)kc_maxLength
+{
+//    [self addTarget:self action:@selector(kc_textFieldTextChange) forControlEvents:UIControlEventEditingChanged];
+    
+    objc_setAssociatedObject(self, (__bridge const void *)(KCTextViewMaxLengthKey), @(kc_maxLength), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (void)kc_textViewTextChange
+{
+    self.kc_placeholderLabel.hidden = self.hasText;
+    
+    if (!self.kc_maxLength) {
+        return;
+    }
+    
+    if (self.text.length > self.kc_maxLength || self.attributedText.length > self.kc_maxLength) {
+        [self deleteBackward];
+    }
+}
+
+- (NSInteger)kc_maxLength
+{
+    return [objc_getAssociatedObject(self, (__bridge const void *)(KCTextViewMaxLengthKey)) integerValue];
+}
+
 
 
 

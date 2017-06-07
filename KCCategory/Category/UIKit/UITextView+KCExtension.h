@@ -13,6 +13,8 @@
 // 占位文字
 @property (nonatomic, copy) NSString *kc_placeholder;
 @property (nonatomic, strong) UIColor *kc_placeholderColor;
+@property (nonatomic,strong) NSAttributedString *kc_placeholderAttributedString;
 
+@property (nonatomic,assign) NSInteger kc_maxLength;
 
 @end
