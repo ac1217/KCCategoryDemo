@@ -11,6 +11,38 @@
 @implementation NSArray (KCExtension)
 
 
+- (instancetype)kc_filter:(BOOL(^)(id obj))block
+{
+    
+    NSMutableArray *arrayM = @[].mutableCopy;
+    
+    for (id obj in self) {
+        
+        if (block(obj)) {
+            [arrayM addObject:obj];
+        }
+        
+        
+    }
+    
+    return arrayM;
+    
+}
+
+- (instancetype)kc_map:(id(^)(id obj))block
+{
+    
+    NSMutableArray *arrayM = @[].mutableCopy;
+    
+    for (id obj in self) {
+        
+        [arrayM addObject:block(obj)];
+        
+    }
+    return arrayM;
+    
+}
+
 #pragma mark -log
 - (NSString *)descriptionWithLocale:(id)locale
 {
@@ -32,7 +64,7 @@
 
 #pragma mark -元素顺序
 // 数组元素倒序
-- (instancetype)kc_descendingObjects
+- (instancetype)kc_reverseObjects
 {
     NSMutableArray *temp = [NSMutableArray array];
     for (NSInteger i = self.count - 1; i >= 0; i--) {

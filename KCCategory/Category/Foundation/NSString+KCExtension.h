@@ -34,6 +34,7 @@
 //字符长度范围
 - (BOOL)kc_validateStringMinLength:(NSInteger)minLength maxLength:(NSInteger)maxLength;
 
+- (NSString *)kc_firstLetter;
 
 // 通过时间字符串生成时间
 - (NSDate *)kc_dateWithFormatter:(NSString *)fmt;

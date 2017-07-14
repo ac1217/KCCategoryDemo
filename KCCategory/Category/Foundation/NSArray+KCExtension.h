@@ -10,7 +10,11 @@
 
 @interface NSArray (KCExtension)
 // 数组元素倒序
-- (instancetype)kc_descendingObjects;
+- (instancetype)kc_reverseObjects;
 
+
+- (instancetype)kc_map:(id(^)(id obj))block;
+
+- (instancetype)kc_filter:(BOOL(^)(id obj))block;
 
 @end

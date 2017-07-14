@@ -27,27 +27,30 @@ static NSString *const KCButtonImageTitleSpacingKey = @"imageTitleSpacing";
 {
     [self kc_layoutSubviews];
     
-    [self kc_setImagePosition:self.imagePosition margin:self.imageTitleSpacing];
+    if (self.kc_imagePosition != KCButtonImagePositionDefault) {
+        
+        [self kc_setImagePosition:self.kc_imagePosition margin:self.kc_imageTitleSpacing];
+    }
     
 }
 
-- (void)setImageTitleSpacing:(CGFloat)imageTitleSpacing
+- (void)setKc_imageTitleSpacing:(CGFloat)kc_imageTitleSpacing
 {
-    objc_setAssociatedObject(self, (__bridge const void *)(KCButtonImageTitleSpacingKey), @(imageTitleSpacing), OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(self, (__bridge const void *)(KCButtonImageTitleSpacingKey), @(kc_imageTitleSpacing), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
 }
 
-- (CGFloat)imageTitleSpacing
+- (CGFloat)kc_imageTitleSpacing
 {
     return [objc_getAssociatedObject(self, (__bridge const void *)(KCButtonImageTitleSpacingKey)) doubleValue];
 }
 
-- (void)setImagePosition:(KCButtonImagePosition)imagePosition
+- (void)setKc_imagePosition:(KCButtonImagePosition)kc_imagePosition
 {
-    objc_setAssociatedObject(self, (__bridge const void *)(KCButtonImagePositionKey), @(imagePosition), OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(self, (__bridge const void *)(KCButtonImagePositionKey), @(kc_imagePosition), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (KCButtonImagePosition)imagePosition
+- (KCButtonImagePosition)kc_imagePosition
 {
     return [objc_getAssociatedObject(self, (__bridge const void *)(KCButtonImagePositionKey)) integerValue];
 }
@@ -75,7 +78,7 @@ static NSString *const KCButtonImageTitleSpacingKey = @"imageTitleSpacing";
     CGFloat changedHeight = labelHeight + imageHeight + margin - tempHeight;
     
     switch (postion) {
-        case KCButtonImagePositionLeft:
+        case KCButtonImagePositionDefault:
             self.imageEdgeInsets = UIEdgeInsetsMake(0, -margin/2, 0, margin/2);
             self.titleEdgeInsets = UIEdgeInsetsMake(0, margin/2, 0, -margin/2);
             self.contentEdgeInsets = UIEdgeInsetsMake(0, margin/2, 0, margin/2);
@@ -102,9 +105,7 @@ static NSString *const KCButtonImageTitleSpacingKey = @"imageTitleSpacing";
         default:
             break;
     }
-        
     
-
 }
 
 @end

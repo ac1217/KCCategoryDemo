@@ -35,7 +35,8 @@
 /*
  * 处理某个时间到当前时间的间隔，并返回格式化好的时间字符串（新浪微博时间处理效果）
  */
-- (NSString *)kc_dateStringFromNowWithPrettyFormatter;
+- (NSString *)kc_weiboFormat;
+- (NSString *)kc_wechatFormat;
 
 /*
  * 今天0点

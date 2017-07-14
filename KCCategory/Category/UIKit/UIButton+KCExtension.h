@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSInteger, KCButtonImagePosition) {
-    KCButtonImagePositionLeft = 0,              //图片在左，文字在右，默认
+    KCButtonImagePositionDefault = 0,              //图片在左，文字在右，默认
     KCButtonImagePositionRight = 1,             //图片在右，文字在左
     KCButtonImagePositionTop = 2,               //图片在上，文字在下
     KCButtonImagePositionBottom = 3,            //图片在下，文字在上
@@ -26,7 +26,7 @@ typedef NS_ENUM(NSInteger, KCButtonImagePosition) {
 - (void)kc_setImagePosition:(KCButtonImagePosition)postion margin:(CGFloat)margin;
 
 
-@property (nonatomic,assign) KCButtonImagePosition imagePosition;
-@property (nonatomic,assign) CGFloat imageTitleSpacing;
+@property (nonatomic,assign) KCButtonImagePosition kc_imagePosition;
+@property (nonatomic,assign) CGFloat kc_imageTitleSpacing;
 
 @end

@@ -154,5 +154,22 @@
 }
 
 
+- (NSString *)kc_firstLetter
+{
+    if (!self.length) {
+        return self;
+    }
+    
+    NSMutableString *str = [NSMutableString stringWithString:self];
+    CFStringTransform((CFMutableStringRef) str, NULL, kCFStringTransformMandarinLatin, NO);
+    CFStringTransform((CFMutableStringRef)str, NULL, kCFStringTransformStripDiacritics, NO);
+    NSString *pinYin = [str capitalizedString];
+    if (pinYin.length) {
+        
+        return [pinYin substringToIndex:1];
+    }
+    return self;
+}
+
 
 @end
