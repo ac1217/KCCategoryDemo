@@ -70,4 +70,13 @@
 // 改变图片透明度
 - (UIImage *)kc_imageWithAlpha:(CGFloat)alpha;
 
+// 获取视频第一帧图片
++ (UIImage *)kc_firstFrameImageWithVideoURL:(NSURL *)url;
+// 获取视频某帧图片
++ (UIImage *)kc_imageWithVideoURL:(NSURL *)url atTime:(NSTimeInterval)time;
+
+// 获取视频某时间段图片 time:开始时间 duration:时长 fps:帧率 fps必须大于0
++ (void)kc_imagesWithVideoURL:(NSURL *)url atTime:(NSTimeInterval)time duration:(NSTimeInterval)duration fps:(int)fps completion:(void(^)(NSArray <UIImage *>*images))completion;
+
+
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "UIImage+KCExtension.h"
+#import <AVFoundation/AVFoundation.h>
 @import Accelerate;
 
 @implementation UIImage (KCExtension)
@@ -249,8 +250,6 @@
     });
     
 }
-
-
 - (UIImage *)kc_imageWithAlpha:(CGFloat)alpha
 {
     UIGraphicsBeginImageContextWithOptions(self.size, NO, 1);
@@ -272,6 +271,91 @@
     UIGraphicsEndImageContext();
     
     return newImage;
+}
+
+
+
+
+#pragma mark -视频相关
++ (UIImage *)kc_firstFrameImageWithVideoURL:(NSURL *)url
+{
+    return [self kc_imageWithVideoURL:url atTime:0];
+}
+
++ (UIImage *)kc_imageWithVideoURL:(NSURL *)url atTime:(NSTimeInterval)time
+{
+    
+    AVURLAsset *asset = [AVURLAsset assetWithURL:url];
+    
+    AVAssetImageGenerator *generator = [[AVAssetImageGenerator alloc] initWithAsset:asset];
+    generator.apertureMode = AVAssetImageGeneratorApertureModeEncodedPixels;
+    generator.appliesPreferredTrackTransform = YES;
+    
+    generator.requestedTimeToleranceBefore = kCMTimeZero;
+    generator.requestedTimeToleranceAfter = kCMTimeZero;
+    
+    
+    CMTime actualTime;
+    
+    CGImageRef cgImage = [generator copyCGImageAtTime:CMTimeMake(time * asset.duration.timescale, asset.duration.timescale) actualTime:&actualTime error:nil];
+    
+    return [UIImage imageWithCGImage:cgImage];
+}
+
+
++ (void)kc_imagesWithVideoURL:(NSURL *)url atTime:(NSTimeInterval)time duration:(NSTimeInterval)duration fps:(int)fps completion:(void(^)(NSArray <UIImage *>*images))completion
+{
+    
+    if (duration < 0 || time < 0 || fps <= 0) {
+        return;
+    }
+    
+    AVURLAsset *asset = [AVURLAsset assetWithURL:url];
+    
+    AVAssetImageGenerator *generator = [[AVAssetImageGenerator alloc] initWithAsset:asset];
+    generator.apertureMode = AVAssetImageGeneratorApertureModeEncodedPixels;
+    generator.appliesPreferredTrackTransform = YES;
+    generator.requestedTimeToleranceBefore = kCMTimeZero;
+    generator.requestedTimeToleranceAfter = kCMTimeZero;
+    
+    fps = MIN(fps, 30);
+    
+    NSInteger frameCount = duration * fps;
+    
+    NSInteger startTime = time * fps;
+    
+    NSMutableArray *times = @[].mutableCopy;
+    for (NSInteger i = startTime; i < (startTime + frameCount); i++) {
+        
+        [times addObject:[NSValue valueWithCMTime:CMTimeMake(i, fps)]];
+        
+    }
+    
+    NSMutableArray *images = @[].mutableCopy;
+    
+    [generator generateCGImagesAsynchronouslyForTimes:times completionHandler:^(CMTime requestedTime, CGImageRef  _Nullable image, CMTime actualTime, AVAssetImageGeneratorResult result, NSError * _Nullable error) {
+        
+        UIImage *uiImage = [UIImage imageWithCGImage:image];
+        
+        
+        if (uiImage) {
+            
+            [images addObject:uiImage];
+        }
+        
+        if (requestedTime.value >= startTime + frameCount - 1) {
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                !completion ? : completion(images);
+            });
+            
+        }
+        
+    }];
+    
+    
+    
 }
 
 @end
