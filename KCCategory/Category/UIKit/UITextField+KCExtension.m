@@ -9,7 +9,7 @@
 #import "UITextField+KCExtension.h"
 #import <objc/runtime.h>
 
-static NSString *const KCTextFieldPlaceholderLabelKey = @"kc_textFieldPlaceholderLabel";
+static NSString *const KCTextFieldPlaceholderLabelKey = @"_placeholderLabel";
 
 static NSString *const KCTextFieldMaxLengthKey = @"kc_textFieldMaxLength";
 

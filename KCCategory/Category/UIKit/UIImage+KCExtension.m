@@ -8,6 +8,8 @@
 
 #import "UIImage+KCExtension.h"
 #import <AVFoundation/AVFoundation.h>
+#import <ImageIO/ImageIO.h>
+#import <MobileCoreServices/MobileCoreServices.h>
 @import Accelerate;
 
 @implementation UIImage (KCExtension)
@@ -192,6 +194,14 @@
     return [self kc_imageWithSize:CGSizeMake(w, h)];
 }
 
+
+- (UIImage *)kc_imageWithHeight:(CGFloat)height
+{
+    
+    CGFloat w = height * self.size.width / self.size.height;
+    return [self kc_imageWithSize:CGSizeMake(w, height)];
+}
+
 - (UIImage *)kc_imageWithWidth:(CGFloat)width
 {
     CGFloat h = width * self.size.height / self.size.width;
@@ -353,6 +363,45 @@
         }
         
     }];
+    
+    
+    
+}
+
+
++ (void)kc_createGIFWithImages:(NSArray *)images toPath:(NSString *)path completion:(void(^)(NSString *path, BOOL success))completion
+{
+    
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        
+        //配置gif属性
+        CGImageDestinationRef destion;
+        CFURLRef url = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef)path, kCFURLPOSIXPathStyle, false);
+        destion = CGImageDestinationCreateWithURL(url, kUTTypeGIF, images.count, NULL);
+        NSDictionary *frameDic = [NSDictionary dictionaryWithObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithFloat:0.3],(NSString*)kCGImagePropertyGIFDelayTime, nil] forKey:(NSString*)kCGImagePropertyGIFDelayTime];
+        
+        NSMutableDictionary *gifParmdict = [NSMutableDictionary dictionaryWithCapacity:2];
+        [gifParmdict setObject:[NSNumber numberWithBool:YES] forKey:(NSString*)kCGImagePropertyGIFHasGlobalColorMap];
+        [gifParmdict setObject:(NSString*)kCGImagePropertyColorModelRGB forKey:(NSString*)kCGImagePropertyColorModel];
+        [gifParmdict setObject:[NSNumber numberWithInt:8] forKey:(NSString*)kCGImagePropertyDepth];
+        [gifParmdict setObject:[NSNumber numberWithInt:0] forKey:(NSString*)kCGImagePropertyGIFLoopCount];
+        NSDictionary *gifProperty = [NSDictionary dictionaryWithObject:gifParmdict forKey:(NSString*)kCGImagePropertyGIFDictionary];
+        
+        for (UIImage *dimage in images) {
+            CGImageDestinationAddImage(destion, dimage.CGImage, (__bridge CFDictionaryRef)frameDic);
+        }
+        
+        CGImageDestinationSetProperties(destion,(__bridge CFDictionaryRef)gifProperty);
+        BOOL rs = CGImageDestinationFinalize(destion);
+        CFRelease(destion);
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+           
+            !completion ? : completion(path, rs);
+            
+        });
+        
+    });
     
     
     

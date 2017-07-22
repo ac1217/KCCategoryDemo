@@ -52,6 +52,8 @@
 - (UIImage *)kc_imageWithScale:(CGFloat)scale;
 // 指定宽度根据宽高比计算
 - (UIImage *)kc_imageWithWidth:(CGFloat)width;
+// 指定宽度根据宽高比计算
+- (UIImage *)kc_imageWithHeight:(CGFloat)height;
 // 指定size
 - (UIImage *)kc_imageWithSize:(CGSize)size;
 // 拉伸中间1像素点
@@ -78,5 +80,7 @@
 // 获取视频某时间段图片 time:开始时间 duration:时长 fps:帧率 fps必须大于0
 + (void)kc_imagesWithVideoURL:(NSURL *)url atTime:(NSTimeInterval)time duration:(NSTimeInterval)duration fps:(int)fps completion:(void(^)(NSArray <UIImage *>*images))completion;
 
+
++ (void)kc_createGIFWithImages:(NSArray *)images toPath:(NSString *)path completion:(void(^)(NSString *path, BOOL success))completion;
 
 @end
