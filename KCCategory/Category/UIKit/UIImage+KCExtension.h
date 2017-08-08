@@ -78,9 +78,21 @@
 + (UIImage *)kc_imageWithVideoURL:(NSURL *)url atTime:(NSTimeInterval)time;
 
 // 获取视频某时间段图片 time:开始时间 duration:时长 fps:帧率 fps必须大于0
-+ (void)kc_imagesWithVideoURL:(NSURL *)url atTime:(NSTimeInterval)time duration:(NSTimeInterval)duration fps:(int)fps completion:(void(^)(NSArray <UIImage *>*images))completion;
++ (void)kc_imagesWithVideoURL:(NSURL *)url
+                       atTime:(NSTimeInterval)time
+                     duration:(NSTimeInterval)duration
+                          fps:(int)fps
+                   completion:(void(^)(NSArray <UIImage *>*images))completion;
 
++ (void)kc_createGIFWithVideoURL:(NSURL *)url
+                          toPath:(NSString *)path
+                          atTime:(NSTimeInterval)time
+                        duration:(NSTimeInterval)duration
+                             fps:(int)fps
+                      completion:(void(^)(NSString *path, BOOL success))completion;
 
-+ (void)kc_createGIFWithImages:(NSArray *)images toPath:(NSString *)path completion:(void(^)(NSString *path, BOOL success))completion;
++ (void)kc_createGIFWithImages:(NSArray *)images
+                        toPath:(NSString *)path
+                    completion:(void(^)(NSString *path, BOOL success))completion;
 
 @end

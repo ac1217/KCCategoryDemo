@@ -90,7 +90,7 @@
             } else if (cmps.minute >= 1) {
                 return [NSString stringWithFormat:@"%d分钟前", (int)cmps.minute];
             } else {
-                return @"刚刚";
+                return @"1分钟内";
             }
         } else { // 今年的其他日子
             fmt.dateFormat = @"MM-dd HH:mm";

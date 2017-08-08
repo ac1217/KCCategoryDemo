@@ -364,8 +364,21 @@
         
     }];
     
-    
-    
+}
+
+
++ (void)kc_createGIFWithVideoURL:(NSURL *)url
+                          toPath:(NSString *)path
+                          atTime:(NSTimeInterval)time
+                        duration:(NSTimeInterval)duration
+                             fps:(int)fps
+                      completion:(void(^)(NSString *path, BOOL success))completion
+{
+    [self kc_imagesWithVideoURL:url atTime:time duration:duration fps:fps completion:^(NSArray<UIImage *> *images) {
+        
+        [self kc_createGIFWithImages:images toPath:path completion:completion];
+        
+    }];
 }
 
 
@@ -402,8 +415,6 @@
         });
         
     });
-    
-    
     
 }
 

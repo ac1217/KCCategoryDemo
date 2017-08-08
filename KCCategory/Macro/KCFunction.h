@@ -9,3 +9,6 @@
 #import <UIKit/UIKit.h>
 
 CGFloat kc_CGPointTwoPointDistance(CGPoint point, CGPoint other);
+
+
+NSTimeInterval kc_codeExecuteTimeInBlock(void(^block)());
