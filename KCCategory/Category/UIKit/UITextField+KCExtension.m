@@ -12,8 +12,20 @@
 static NSString *const KCTextFieldPlaceholderLabelKey = @"_placeholderLabel";
 
 static NSString *const KCTextFieldMaxLengthKey = @"kc_textFieldMaxLength";
+static NSString *const KCTextFieldDidEditToMaxLengthBlockKey = @"kc_textFieldDidEditToMaxLengthBlock";
 
 @implementation UITextField (KCExtension)
+
+- (void)setKc_textFieldDidEditToMaxLengthBlock:(void (^)(UITextField *))kc_textFieldDidEditToMaxLengthBlock
+{
+    
+    objc_setAssociatedObject(self, (__bridge const void *)(KCTextFieldDidEditToMaxLengthBlockKey), kc_textFieldDidEditToMaxLengthBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+- (void (^)(UITextField *))kc_textFieldDidEditToMaxLengthBlock
+{
+    return objc_getAssociatedObject(self, (__bridge const void *)(KCTextFieldDidEditToMaxLengthBlockKey));
+}
 
 - (void)setKc_maxLength:(NSInteger)kc_maxLength
 {
@@ -30,6 +42,9 @@ static NSString *const KCTextFieldMaxLengthKey = @"kc_textFieldMaxLength";
     
     if (self.text.length > self.kc_maxLength || self.attributedText.length > self.kc_maxLength) {
         [self deleteBackward];
+        
+        !self.kc_textFieldDidEditToMaxLengthBlock ? : self.kc_textFieldDidEditToMaxLengthBlock(self);
+        
     }
 }
 

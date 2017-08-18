@@ -14,4 +14,6 @@
 
 @property (nonatomic,assign) NSInteger kc_maxLength;
 
+@property (nonatomic,copy) void(^kc_textFieldDidEditToMaxLengthBlock)(UITextField *tf);
+
 @end

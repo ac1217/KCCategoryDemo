@@ -32,12 +32,16 @@
 - (void)kc_addObject:(id)anObject
 {
     
+#if DEBUG
+    
+#else
     if (!anObject) {
         
         NSLog(@"警告：(Array:%@)添加的对象为nil",self);
         
         return;
     }
+#endif
     
     [self kc_addObject:anObject];
     
@@ -45,7 +49,10 @@
 
 - (void)kc_insertObject:(id)anObject atIndex:(NSUInteger)index
 {
+  
+#if DEBUG
     
+#else
     if (!anObject) {
         
         NSLog(@"警告：(Array:%@)添加的对象为nil", self);
@@ -53,12 +60,15 @@
         return;
     }
     
-    if (index > self.count) {
+    if (index >= self.count || index < 0) {
         
-        NSLog(@"警告：(Array:%@)index > 数组个数", self);
+        NSLog(@"警告：(Array:%@)数组越界index=%zd,count=%zd", self, index, self.count);
         
         return;
     }
+#endif
+    
+    
     
     [self kc_insertObject:anObject atIndex:index];
 }

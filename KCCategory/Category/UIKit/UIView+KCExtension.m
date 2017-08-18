@@ -14,15 +14,39 @@ static NSString *const KCBadgeValueLabelKey = @"kc_badgeValueLabel";
 static NSString *const KCBorderLayerKey = @"kc_borderLayer";
 static NSString *KCViewTapBlockKey = @"KCViewTapBlockKey";
 
+static NSString *const KCActivityIndicatorViewKey = @"kc_activityIndicatorView";
+
 @interface UIView ()
 
 @property (nonatomic, strong) UILabel *kc_badgeValueLabel;
 @property (nonatomic, strong) CAShapeLayer *kc_borderLayer;
+
+@property (nonatomic,strong) UIActivityIndicatorView *kc_activityIndicatorView;
 @end
 
 @implementation UIView (KCExtension)
 
 #pragma mark -懒加载
+
+- (UIActivityIndicatorView *)kc_activityIndicatorView
+{
+    UIActivityIndicatorView *indicatorView = objc_getAssociatedObject(self, (__bridge const void *)(KCActivityIndicatorViewKey));
+    
+    if (!indicatorView) {
+        indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        indicatorView.hidesWhenStopped = YES;
+        [self addSubview:indicatorView];
+        objc_setAssociatedObject(self, (__bridge const void *)(KCActivityIndicatorViewKey), indicatorView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        
+        
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:indicatorView attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
+        
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:indicatorView attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+        
+    }
+    
+    return indicatorView;
+}
 
 - (CAShapeLayer *)kc_borderLayer
 {
@@ -466,5 +490,20 @@ static NSString *KCViewTapBlockKey = @"KCViewTapBlockKey";
     return nil;
 }
 
+
+- (void)kc_showActivityIndicator
+{
+    [self.kc_activityIndicatorView startAnimating];
+}
+
+- (void)kc_hideActivityIndicator
+{
+    [self.kc_activityIndicatorView stopAnimating];
+}
+
+- (void)kc_setActivityIndicatorStyle:(UIActivityIndicatorViewStyle)style
+{
+    self.kc_activityIndicatorView.activityIndicatorViewStyle = style;
+}
 
 @end

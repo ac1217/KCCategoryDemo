@@ -12,6 +12,7 @@
 static NSString *const KCTextViewPlaceholderLabelKey = @"kc_textViewPlaceholderLabel";
 
 static NSString *const KCTextViewMaxLengthKey = @"kc_textViewMaxLength";
+static NSString *const KCTextViewDidEditToMaxLengthBlockKey = @"kc_textViewDidEditToMaxLengthBlock";
 
 @interface UITextView ()
 @property (nonatomic, strong) UILabel *kc_placeholderLabel;
@@ -28,6 +29,7 @@ static NSString *const KCTextViewMaxLengthKey = @"kc_textViewMaxLength";
         placeholderLabel.translatesAutoresizingMaskIntoConstraints = NO;
         placeholderLabel.textColor = [UIColor lightGrayColor];
         placeholderLabel.numberOfLines = 0;
+        placeholderLabel.textAlignment = self.textAlignment;
         [self addSubview:placeholderLabel];
         objc_setAssociatedObject(self, (__bridge const void *)(KCTextViewPlaceholderLabelKey), placeholderLabel, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         
@@ -71,6 +73,11 @@ static NSString *const KCTextViewMaxLengthKey = @"kc_textViewMaxLength";
     Method attrText2 = class_getInstanceMethod(cls, @selector(kc_setAttributedText:));
     
     method_exchangeImplementations(attrText1 , attrText2);
+    
+    Method textAliment1 = class_getInstanceMethod(cls, @selector(setTextAlignment:));
+    Method textAliment2 = class_getInstanceMethod(cls, @selector(kc_setTextAlignment:));
+    
+    method_exchangeImplementations(textAliment1 , textAliment2);
 }
 
 - (void)kc_dealloc
@@ -86,6 +93,14 @@ static NSString *const KCTextViewMaxLengthKey = @"kc_textViewMaxLength";
     
     [self kc_textViewTextChange];
 }
+
+- (void)kc_setTextAlignment:(NSTextAlignment)textAlignment
+{
+    [self kc_setTextAlignment:textAlignment];
+    
+    self.kc_placeholderLabel.textAlignment = textAlignment;
+}
+
 
 - (void)kc_setText:(NSString *)text
 {
@@ -141,6 +156,18 @@ static NSString *const KCTextViewMaxLengthKey = @"kc_textViewMaxLength";
     objc_setAssociatedObject(self, (__bridge const void *)(KCTextViewMaxLengthKey), @(kc_maxLength), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
+
+- (void)setKc_textViewDidEditToMaxLengthBlock:(void (^)(UITextView *))kc_textViewDidEditToMaxLengthBlock
+{
+    
+    objc_setAssociatedObject(self, (__bridge const void *)(KCTextViewDidEditToMaxLengthBlockKey), kc_textViewDidEditToMaxLengthBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+- (void (^)(UITextView *))kc_textViewDidEditToMaxLengthBlock
+{
+    return objc_getAssociatedObject(self, (__bridge const void *)(KCTextViewDidEditToMaxLengthBlockKey));
+}
+
 - (void)kc_textViewTextChange
 {
     self.kc_placeholderLabel.hidden = self.hasText;
@@ -151,6 +178,7 @@ static NSString *const KCTextViewMaxLengthKey = @"kc_textViewMaxLength";
     
     if (self.text.length > self.kc_maxLength || self.attributedText.length > self.kc_maxLength) {
         [self deleteBackward];
+        !self.kc_textViewDidEditToMaxLengthBlock ? : self.kc_textViewDidEditToMaxLengthBlock(self);
     }
 }
 

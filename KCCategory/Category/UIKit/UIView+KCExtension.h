@@ -100,4 +100,12 @@
  */
 - (UIViewController *)kc_viewController;
 
+
+/**
+ *  indicator
+ */
+- (void)kc_showActivityIndicator;
+- (void)kc_hideActivityIndicator;
+- (void)kc_setActivityIndicatorStyle:(UIActivityIndicatorViewStyle)style;
+
 @end

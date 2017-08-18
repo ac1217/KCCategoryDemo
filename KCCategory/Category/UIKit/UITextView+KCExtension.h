@@ -17,4 +17,6 @@
 
 @property (nonatomic,assign) NSInteger kc_maxLength;
 
+@property (nonatomic,copy) void(^kc_textViewDidEditToMaxLengthBlock)(UITextView *tv);
+
 @end
