@@ -187,7 +187,4 @@ static NSString *const KCTextViewDidEditToMaxLengthBlockKey = @"kc_textViewDidEd
     return [objc_getAssociatedObject(self, (__bridge const void *)(KCTextViewMaxLengthKey)) integerValue];
 }
 
-
-
-
 @end
