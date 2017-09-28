@@ -21,5 +21,5 @@
 #import "CALayer+KCExtension.h"
 #import "UIVisualEffectView+KCExtension.h"
 #import "NSAttributedString+KCExtension.h"
-#import "UIScrollView+KSExtension.h"
+#import "NSData+KCExtension.h"
 

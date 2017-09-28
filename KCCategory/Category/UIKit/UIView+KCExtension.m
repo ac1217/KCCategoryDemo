@@ -480,6 +480,16 @@ static NSString *const KCActivityIndicatorViewKey = @"kc_activityIndicatorView";
     return nil;
 }
 
+- (UIViewController *)kc_topViewController
+{
+    
+    UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    while (topController.presentedViewController) {
+        topController = topController.presentedViewController;
+    }
+    return topController;
+    
+}
 
 - (void)kc_showActivityIndicator
 {

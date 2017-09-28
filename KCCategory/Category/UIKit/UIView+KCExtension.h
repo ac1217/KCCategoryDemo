@@ -99,6 +99,10 @@
  */
 - (UIViewController *)kc_viewController;
 
+/**
+ *  获取当前显示的顶层控制器
+ */
+- (UIViewController *)kc_topViewController;
 
 /**
  *  indicator

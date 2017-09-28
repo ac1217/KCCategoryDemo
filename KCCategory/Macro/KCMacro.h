@@ -44,8 +44,11 @@
 
 // 系统版本，设备相关
 #define KC_SYSTEM_VERSION [[UIDevice currentDevice] systemVersion]
+#define KC_IS_IOS(v) [KC_SYSTEM_VERSION floatValue] >= v
 #define KC_IS_IOS8 [KC_SYSTEM_VERSION floatValue] >= 8.0
 #define KC_IS_IOS9 [KC_SYSTEM_VERSION floatValue] >= 9.0
+#define KC_IS_IOS10 [KC_SYSTEM_VERSION floatValue] >= 10.0
+#define KC_IS_IOS11 KC_IS_IOS(11.0)
 
 // 屏幕相关
 #define KC_SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
