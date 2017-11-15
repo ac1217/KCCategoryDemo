@@ -36,6 +36,7 @@ static NSString *const KCActivityIndicatorViewKey = @"kc_activityIndicatorView";
         indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         indicatorView.hidesWhenStopped = YES;
         [self addSubview:indicatorView];
+        indicatorView.translatesAutoresizingMaskIntoConstraints = NO;
         objc_setAssociatedObject(self, (__bridge const void *)(KCActivityIndicatorViewKey), indicatorView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         
         

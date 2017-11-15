@@ -48,5 +48,7 @@
 - (NSString *)kc_documentPath;
 - (NSString *)kc_cachePath;
 - (NSString *)kc_tempPath;
-
+//是否全部空格
+- (BOOL)kc_isBlank;
 @end
+

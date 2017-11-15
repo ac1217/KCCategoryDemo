@@ -35,7 +35,7 @@
 {
     NSString *carRegex = @"^[\u4e00-\u9fa5]{1}[a-zA-Z]{1}[a-zA-Z_0-9]{4}[a-zA-Z_0-9_\u4e00-\u9fa5]$";
     NSPredicate *carTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",carRegex];
-//    NSLog(@"carTest is %@",carTest);
+    //    NSLog(@"carTest is %@",carTest);
     return [carTest evaluateWithObject:self];
 }
 
@@ -107,7 +107,7 @@
 
 - (CGSize)kc_textSizeWithMaxSize:(CGSize)maxSize font:(UIFont *)font
 {
-  return [self boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : font} context:nil].size;
+    return [self boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : font} context:nil].size;
 }
 
 - (CGSize)kc_singleLineTextWithFont:(UIFont *)font
@@ -171,5 +171,17 @@
     return self;
 }
 
+- (BOOL)kc_isBlank
+{
+    NSCharacterSet *set = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+    NSString *trimedString = [self stringByTrimmingCharactersInSet:set];
+    if ([trimedString length] == 0) {
+        return true;
+    } else {
+        return false;
+    }
+    
+}
 
 @end
+

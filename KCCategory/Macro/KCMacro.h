@@ -53,8 +53,10 @@
 // 屏幕相关
 #define KC_SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define KC_SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
-#define KC_NAVIGATIONBAR_HEIGHT CGRectGetMaxY(self.navigationController.navigationBar.frame)
-#define KC_TABBAR_HEIGHT CGRectGetMaxY(self.tabBarController.tabBar.frame)
+#define KC_TOP_LAYOUT_GUIDE_HEIGHT CGRectGetMaxY(self.navigationController.navigationBar.frame)
+#define KC_BOTTOM_LAYOUT_GUIDE_HEIGHT (self.tabBarController.view.frame.size.height - CGRectGetMaxY(self.tabBarController.tabBar.frame))
+
+#define KC_KEY_WINDOW_SAFE_AREA_INSET [UIApplication sharedApplication].keyWindow.safeAreaInsets
 
 // 不同屏幕比例，以375 * 667为基准
 #define KC_HORIZONTAL_RATIO KC_SCREEN_WIDTH / 375
@@ -76,3 +78,4 @@
 #endif
 
 #endif /* KCMacro_h */
+

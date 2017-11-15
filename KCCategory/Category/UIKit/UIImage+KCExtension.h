@@ -54,8 +54,12 @@
 - (UIImage *)kc_imageWithWidth:(CGFloat)width;
 // 指定宽度根据宽高比计算
 - (UIImage *)kc_imageWithHeight:(CGFloat)height;
-// 指定size
+// 指定size,缩放
 - (UIImage *)kc_imageWithSize:(CGSize)size;
+
+// 指定size,不缩放
+- (UIImage *)kc_imageWithRect:(CGRect)rect;
+
 // 拉伸中间1像素点
 - (UIImage *)kc_resizedImage;
 
@@ -72,27 +76,36 @@
 // 改变图片透明度
 - (UIImage *)kc_imageWithAlpha:(CGFloat)alpha;
 
+- (UIImage *)kc_drawImage:(UIImage *)image inRect:(CGRect)rect;
+- (UIImage *)kc_drawText:(NSString *)text inRect:(CGRect)rect attributes:(NSDictionary *)attributes;
+- (UIImage *)kc_drawText:(NSString *)text atPoint:(CGPoint)point attributes:(NSDictionary *)attributes;
 // 获取视频第一帧图片
 + (UIImage *)kc_firstFrameImageWithVideoURL:(NSURL *)url;
 // 获取视频某帧图片
 + (UIImage *)kc_imageWithVideoURL:(NSURL *)url atTime:(NSTimeInterval)time;
+
+
 
 // 获取视频某时间段图片 time:开始时间 duration:时长 fps:帧率 fps必须大于0
 + (void)kc_imagesWithVideoURL:(NSURL *)url
                        atTime:(NSTimeInterval)time
                      duration:(NSTimeInterval)duration
                           fps:(int)fps
+                      process:(UIImage *(^)(UIImage *image))process
                    completion:(void(^)(NSArray <UIImage *>*images))completion;
 
 + (void)kc_createGIFWithVideoURL:(NSURL *)url
                           toPath:(NSString *)path
                           atTime:(NSTimeInterval)time
                         duration:(NSTimeInterval)duration
-                             fps:(int)fps
+                        videoFps:(int)videoFps
+                    gifDelayTime:(NSTimeInterval)gifDelayTime
                       completion:(void(^)(NSString *path, BOOL success))completion;
 
 + (void)kc_createGIFWithImages:(NSArray *)images
                         toPath:(NSString *)path
+                     delayTime:(NSTimeInterval)delayTime
                     completion:(void(^)(NSString *path, BOOL success))completion;
 
 @end
+

@@ -17,7 +17,7 @@
 - (UIImage *)kc_fixOrientation
 {
     if (self.imageOrientation == UIImageOrientationUp) return self;
-
+    
     CGAffineTransform transform = CGAffineTransformIdentity;
     
     switch (self.imageOrientation) {
@@ -82,7 +82,7 @@
     CGContextRelease(ctx);
     CGImageRelease(cgimg);
     return img;
-
+    
 }
 
 #pragma mark -颜色相关
@@ -102,14 +102,14 @@
     
     CGImageRef imageRef = CGBitmapContextCreateImage(ctx);
     UIImage *image = [UIImage imageWithCGImage:imageRef
-                                             scale:self.scale
-                                       orientation:self.imageOrientation];
+                                         scale:self.scale
+                                   orientation:self.imageOrientation];
     CGImageRelease(imageRef);
     
     UIGraphicsEndImageContext();
     
     return image;
-
+    
 }
 
 
@@ -134,7 +134,7 @@
 - (UIImage *)kc_roundedImageWithCornerRadius:(CGFloat)cornerRadius
 {
     CGRect rect = CGRectMake(0, 0, self.size.width, self.size.height);
-    UIGraphicsBeginImageContextWithOptions(self.size, NO, [UIScreen mainScreen].scale);
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, self.scale);
     [[UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:cornerRadius] addClip];
     [self drawInRect:rect];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
@@ -160,7 +160,7 @@
 
 - (UIImage *)kc_circleImage
 {
-    UIGraphicsBeginImageContextWithOptions(self.size, NO, [UIScreen mainScreen].scale);
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, self.scale);
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGRect rect = CGRectMake(0, 0, self.size.width, self.size.height);
     CGContextAddEllipseInRect(ctx, rect);
@@ -175,11 +175,11 @@
 - (void)kc_circleImageWithCompletion:(void(^)(UIImage *image))completion
 {
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-       
+        
         UIImage *circleImage = [self kc_circleImage];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-           
+            
             !completion ? : completion(circleImage);
             
         });
@@ -210,11 +210,70 @@
 
 - (UIImage *)kc_imageWithSize:(CGSize)size
 {
-    UIGraphicsBeginImageContext(size);
+    //    UIGraphicsBeginImageContext(size);
+    UIGraphicsBeginImageContextWithOptions(size, NO, self.scale);
     [self drawInRect:CGRectMake(0, 0, size.width, size.height)];
     UIImage* image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
+}
+
+
+- (UIImage *)kc_imageWithRect:(CGRect)rect
+{
+    //将UIImage转换成CGImageRef
+    CGImageRef sourceImageRef = [self CGImage];
+    
+    //按照给定的矩形区域进行剪裁
+    CGImageRef newImageRef = CGImageCreateWithImageInRect(sourceImageRef, rect);
+    
+    //将CGImageRef转换成UIImage
+    UIImage *newImage = [UIImage imageWithCGImage:newImageRef];
+    
+    //返回剪裁后的图片
+    return newImage;
+    
+}
+
+- (UIImage *)kc_drawText:(NSString *)text atPoint:(CGPoint)point attributes:(NSDictionary *)attributes
+{
+    
+    CGSize size = [text sizeWithAttributes:attributes];
+    
+    CGFloat w = size.width;
+    CGFloat h = size.height;
+    CGFloat x = point.x - w * 0.5;
+    CGFloat y = point.y - h * 0.5;
+    
+    return [self kc_drawText:text inRect:CGRectMake(x, y, w, h) attributes:attributes];
+}
+
+- (UIImage *)kc_drawText:(NSString *)text inRect:(CGRect)rect attributes:(NSDictionary *)attributes
+{
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, self.scale);
+    
+    [self drawInRect:CGRectMake(0, 0, self.size.width, self.size.height)];
+    
+    [text drawInRect:rect withAttributes:attributes];
+    
+    UIImage *outputImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return outputImage;
+}
+
+- (UIImage *)kc_drawImage:(UIImage *)image inRect:(CGRect)rect
+{
+    
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, self.scale);
+    
+    [self drawInRect:CGRectMake(0, 0, self.size.width, self.size.height)];
+    [image drawInRect:rect];
+    
+    UIImage *outputImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return outputImage;
 }
 
 - (UIImage *)kc_resizedImage
@@ -313,7 +372,12 @@
 }
 
 
-+ (void)kc_imagesWithVideoURL:(NSURL *)url atTime:(NSTimeInterval)time duration:(NSTimeInterval)duration fps:(int)fps completion:(void(^)(NSArray <UIImage *>*images))completion
++ (void)kc_imagesWithVideoURL:(NSURL *)url
+                       atTime:(NSTimeInterval)time
+                     duration:(NSTimeInterval)duration
+                          fps:(int)fps
+                      process:(UIImage *(^)(UIImage *image))process
+                   completion:(void(^)(NSArray <UIImage *>*images))completion
 {
     
     if (duration < 0 || time < 0 || fps <= 0) {
@@ -347,6 +411,9 @@
         
         UIImage *uiImage = [UIImage imageWithCGImage:image];
         
+        if (process) {
+            uiImage = process(uiImage);
+        }
         
         if (uiImage) {
             
@@ -371,18 +438,22 @@
                           toPath:(NSString *)path
                           atTime:(NSTimeInterval)time
                         duration:(NSTimeInterval)duration
-                             fps:(int)fps
+                        videoFps:(int)videoFps
+                    gifDelayTime:(NSTimeInterval)gifDelayTime
                       completion:(void(^)(NSString *path, BOOL success))completion
 {
-    [self kc_imagesWithVideoURL:url atTime:time duration:duration fps:fps completion:^(NSArray<UIImage *> *images) {
+    [self kc_imagesWithVideoURL:url atTime:time duration:duration fps:videoFps process:nil completion:^(NSArray<UIImage *> *images) {
         
-        [self kc_createGIFWithImages:images toPath:path completion:completion];
+        [self kc_createGIFWithImages:images toPath:path delayTime:gifDelayTime completion:completion];
         
     }];
 }
 
 
-+ (void)kc_createGIFWithImages:(NSArray *)images toPath:(NSString *)path completion:(void(^)(NSString *path, BOOL success))completion
++ (void)kc_createGIFWithImages:(NSArray *)images
+                        toPath:(NSString *)path
+                     delayTime:(NSTimeInterval)delayTime
+                    completion:(void(^)(NSString *path, BOOL success))completion
 {
     
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
@@ -391,7 +462,7 @@
         CGImageDestinationRef destion;
         CFURLRef url = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef)path, kCFURLPOSIXPathStyle, false);
         destion = CGImageDestinationCreateWithURL(url, kUTTypeGIF, images.count, NULL);
-        NSDictionary *frameDic = [NSDictionary dictionaryWithObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithFloat:0.3],(NSString*)kCGImagePropertyGIFDelayTime, nil] forKey:(NSString*)kCGImagePropertyGIFDelayTime];
+        NSDictionary *frameDic = [NSDictionary dictionaryWithObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithFloat:delayTime],(NSString*)kCGImagePropertyGIFDelayTime, nil] forKey:(NSString*)kCGImagePropertyGIFDictionary];
         
         NSMutableDictionary *gifParmdict = [NSMutableDictionary dictionaryWithCapacity:2];
         [gifParmdict setObject:[NSNumber numberWithBool:YES] forKey:(NSString*)kCGImagePropertyGIFHasGlobalColorMap];
@@ -409,7 +480,7 @@
         CFRelease(destion);
         
         dispatch_async(dispatch_get_main_queue(), ^{
-           
+            
             !completion ? : completion(path, rs);
             
         });
@@ -419,3 +490,4 @@
 }
 
 @end
+
