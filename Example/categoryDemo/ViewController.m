@@ -47,8 +47,8 @@
     UIButton *btn = [UIButton new];
     [btn setTitle:@"12313" forState:UIControlStateNormal];
     [btn setImage:[UIImage imageNamed:@"shareIcon"] forState:UIControlStateNormal];
-    btn.imageTitleSpacing = 10;
-    btn.imagePosition = KCButtonImagePositionTop;
+    btn.kc_imageTitleSpacing = 10;
+    btn.kc_imagePosition = KCButtonImagePositionTop;
     btn.titleEdgeInsets = UIEdgeInsetsMake(10, 0, 0, 0);
     btn.frame = CGRectMake(100, 100, 200, 200);
     

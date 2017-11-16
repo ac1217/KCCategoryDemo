@@ -13,4 +13,10 @@
 + (UIColor *)kc_colorWithHexValue:(unsigned)hexValue;
 
 + (UIColor *)kc_colorWithHexString:(NSString *)hexString;
+
+
+- (UIImage *)kc_imageColor;
+- (UIImage *)kc_imageColorWithSize:(CGSize)size;
+
 @end
+

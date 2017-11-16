@@ -21,9 +21,9 @@
 - (UIImage *)kc_renderImageWithColor:(UIColor *)color level:(CGFloat)level;
 // 获取某种颜色的纯色图片
 // 返回1x1大小
-+ (UIImage *)kc_pureColorImageWithColor:(UIColor *)color;
++ (UIImage *)kc_colorImageWithColor:(UIColor *)color;
 // 指定大小
-+ (UIImage *)kc_pureColorImageWithColor:(UIColor *)color size:(CGSize)size;
++ (UIImage *)kc_colorImageWithColor:(UIColor *)color size:(CGSize)size;
 
 /*
  * 图片剪切缩放

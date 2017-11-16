@@ -38,6 +38,7 @@
 		0770D15F1D2F8209008C89D6 /* NSTimer+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0770D15E1D2F8209008C89D6 /* NSTimer+KCExtension.m */; };
 		07D9A5191DAE1D000000DF07 /* NSAttributedString+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D9A5181DAE1D000000DF07 /* NSAttributedString+KCExtension.m */; };
 		07F353BC1D8791760077383F /* UIVisualEffectView+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F353BB1D8791760077383F /* UIVisualEffectView+KCExtension.m */; };
+		887F8D591FBD3621005A869E /* NSData+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 887F8D571FBD3621005A869E /* NSData+KCExtension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +123,8 @@
 		07D9A5181DAE1D000000DF07 /* NSAttributedString+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+KCExtension.m"; sourceTree = "<group>"; };
 		07F353BA1D8791760077383F /* UIVisualEffectView+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIVisualEffectView+KCExtension.h"; sourceTree = "<group>"; };
 		07F353BB1D8791760077383F /* UIVisualEffectView+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIVisualEffectView+KCExtension.m"; sourceTree = "<group>"; };
+		887F8D571FBD3621005A869E /* NSData+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+KCExtension.m"; path = "../../../../../Project/Sugar/Pods/KCCategory/KCCategory/Category/Foundation/NSData+KCExtension.m"; sourceTree = "<group>"; };
+		887F8D581FBD3621005A869E /* NSData+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+KCExtension.h"; path = "../../../../../Project/Sugar/Pods/KCCategory/KCCategory/Category/Foundation/NSData+KCExtension.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +217,8 @@
 		070090CB1D18DD6F00142A76 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				887F8D581FBD3621005A869E /* NSData+KCExtension.h */,
+				887F8D571FBD3621005A869E /* NSData+KCExtension.m */,
 				070090CC1D18DD6F00142A76 /* NSArray+KCExtension.h */,
 				070090CD1D18DD6F00142A76 /* NSArray+KCExtension.m */,
 				070090CE1D18DD6F00142A76 /* NSDate+KCExtension.h */,
@@ -375,6 +380,7 @@
 				TargetAttributes = {
 					072BFB731CDC295C00551444 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 9W8KXJ7KY8;
 					};
 					072BFB8C1CDC295C00551444 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -457,6 +463,7 @@
 				070090C41D18DC7D00142A76 /* UIView+KCExtension.m in Sources */,
 				0770D15C1D2F811D008C89D6 /* CADisplayLink+KCExtension.m in Sources */,
 				07D9A5191DAE1D000000DF07 /* NSAttributedString+KCExtension.m in Sources */,
+				887F8D591FBD3621005A869E /* NSData+KCExtension.m in Sources */,
 				070090C31D18DC7D00142A76 /* UITextView+KCExtension.m in Sources */,
 				070090C51D18DC7D00142A76 /* UIViewController+KCExtension.m in Sources */,
 				070090DD1D18DD6F00142A76 /* NSString+KCExtension.m in Sources */,
@@ -606,6 +613,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9W8KXJ7KY8;
 				INFOPLIST_FILE = categoryDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.erica.categoryDemo;
@@ -617,6 +625,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9W8KXJ7KY8;
 				INFOPLIST_FILE = categoryDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.erica.categoryDemo;

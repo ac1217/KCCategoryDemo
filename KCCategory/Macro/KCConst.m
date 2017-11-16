@@ -1,21 +1,15 @@
 //
-//  KCConst.h
+//  KCConst.m
 //  categoryDemo
 //
 //  Created by zhangweiwei on 16/5/6.
 //  Copyright © 2016年 Erica. All rights reserved.
 //
+#import "KCConst.h"
 
-#import <UIKit/UIKit.h>
+CGFloat const KCDefaultAnimationDuration = 0.25;
+CGFloat const KCDefaultMargin = 15;
+CGFloat const KCNavigationBarHeight = 64;
+CGFloat const KCTabBarHeight = 49;
+NSString *const KCCFBundleShortVersionStringKey = @"CFBundleShortVersionString";
 
-// 动画时长，默认0.25
-extern CGFloat const KCDefaultAnimationDuration;
-// 间距，默认15
-extern CGFloat const KCDefaultMargin;
-
-
-extern NSString *const KCCFBundleShortVersionStringKey;
-
-// 弃用
-extern CGFloat const KCNavigationBarHeight;
-extern CGFloat const KCTabBarHeight;

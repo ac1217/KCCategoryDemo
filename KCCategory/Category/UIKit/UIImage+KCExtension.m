@@ -113,7 +113,7 @@
 }
 
 
-+ (UIImage *)kc_pureColorImageWithColor:(UIColor *)color size:(CGSize)size
++ (UIImage *)kc_colorImageWithColor:(UIColor *)color size:(CGSize)size
 {
     CGRect rect = CGRectMake(0, 0, size.width, size.height);
     UIGraphicsBeginImageContext(rect.size);
@@ -125,9 +125,9 @@
     return img;
 }
 
-+ (UIImage *)kc_pureColorImageWithColor:(UIColor *)color
++ (UIImage *)kc_colorImageWithColor:(UIColor *)color
 {
-    return [self kc_pureColorImageWithColor:color size:CGSizeMake(1, 1)];
+    return [self kc_colorImageWithColor:color size:CGSizeMake(1, 1)];
 }
 
 #pragma mark -图片裁剪缩放相关
