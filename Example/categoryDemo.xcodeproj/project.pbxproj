@@ -36,6 +36,8 @@
 		075F11651D23F26200C2AFEE /* KCFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 075F11641D23F26200C2AFEE /* KCFunction.m */; };
 		0770D15C1D2F811D008C89D6 /* CADisplayLink+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0770D15B1D2F811D008C89D6 /* CADisplayLink+KCExtension.m */; };
 		0770D15F1D2F8209008C89D6 /* NSTimer+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0770D15E1D2F8209008C89D6 /* NSTimer+KCExtension.m */; };
+		07C7A7881FCEAE5A007B91C8 /* UIAlertAction+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 07C7A7871FCEAE5A007B91C8 /* UIAlertAction+KCExtension.m */; };
+		07C7A78B1FCEAFAC007B91C8 /* UIAlertController+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 07C7A78A1FCEAFAC007B91C8 /* UIAlertController+KCExtension.m */; };
 		07D9A5191DAE1D000000DF07 /* NSAttributedString+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D9A5181DAE1D000000DF07 /* NSAttributedString+KCExtension.m */; };
 		07F353BC1D8791760077383F /* UIVisualEffectView+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F353BB1D8791760077383F /* UIVisualEffectView+KCExtension.m */; };
 		887F8D591FBD3621005A869E /* NSData+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 887F8D571FBD3621005A869E /* NSData+KCExtension.m */; };
@@ -119,6 +121,10 @@
 		0770D15B1D2F811D008C89D6 /* CADisplayLink+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CADisplayLink+KCExtension.m"; sourceTree = "<group>"; };
 		0770D15D1D2F8209008C89D6 /* NSTimer+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+KCExtension.h"; sourceTree = "<group>"; };
 		0770D15E1D2F8209008C89D6 /* NSTimer+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+KCExtension.m"; sourceTree = "<group>"; };
+		07C7A7861FCEAE5A007B91C8 /* UIAlertAction+KCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIAlertAction+KCExtension.h"; sourceTree = "<group>"; };
+		07C7A7871FCEAE5A007B91C8 /* UIAlertAction+KCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIAlertAction+KCExtension.m"; sourceTree = "<group>"; };
+		07C7A7891FCEAFAC007B91C8 /* UIAlertController+KCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+KCExtension.h"; sourceTree = "<group>"; };
+		07C7A78A1FCEAFAC007B91C8 /* UIAlertController+KCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+KCExtension.m"; sourceTree = "<group>"; };
 		07D9A5171DAE1D000000DF07 /* NSAttributedString+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+KCExtension.h"; sourceTree = "<group>"; };
 		07D9A5181DAE1D000000DF07 /* NSAttributedString+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+KCExtension.m"; sourceTree = "<group>"; };
 		07F353BA1D8791760077383F /* UIVisualEffectView+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIVisualEffectView+KCExtension.h"; sourceTree = "<group>"; };
@@ -198,6 +204,10 @@
 				0748815D1D572ED900322817 /* UIButton+KCExtension.m */,
 				07F353BA1D8791760077383F /* UIVisualEffectView+KCExtension.h */,
 				07F353BB1D8791760077383F /* UIVisualEffectView+KCExtension.m */,
+				07C7A7861FCEAE5A007B91C8 /* UIAlertAction+KCExtension.h */,
+				07C7A7871FCEAE5A007B91C8 /* UIAlertAction+KCExtension.m */,
+				07C7A7891FCEAFAC007B91C8 /* UIAlertController+KCExtension.h */,
+				07C7A78A1FCEAFAC007B91C8 /* UIAlertController+KCExtension.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -467,7 +477,9 @@
 				070090C31D18DC7D00142A76 /* UITextView+KCExtension.m in Sources */,
 				070090C51D18DC7D00142A76 /* UIViewController+KCExtension.m in Sources */,
 				070090DD1D18DD6F00142A76 /* NSString+KCExtension.m in Sources */,
+				07C7A78B1FCEAFAC007B91C8 /* UIAlertController+KCExtension.m in Sources */,
 				070090C01D18DC7D00142A76 /* UIImageView+KCExtension.m in Sources */,
+				07C7A7881FCEAE5A007B91C8 /* UIAlertAction+KCExtension.m in Sources */,
 				070090DB1D18DD6F00142A76 /* NSMutableArray+KCExtension.m in Sources */,
 				070090DA1D18DD6F00142A76 /* NSDictionary+KCExtension.m in Sources */,
 				072BFB791CDC295C00551444 /* main.m in Sources */,
