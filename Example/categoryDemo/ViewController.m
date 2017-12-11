@@ -21,6 +21,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSString *str = nil;
+    NSMutableArray *arrM = @[].mutableCopy;
+    [arrM addObject:str];
+
+    [arrM insertObject:str atIndex:0];
+    
+    NSArray *arr = @[];
+
+    [arr arrayByAddingObject:nil];
+    
+    
+    NSMutableDictionary *dictM = @{}.mutableCopy;
+    
+    [dictM setObject:nil forKey:@"123"];
+    
+    [dictM removeObjectForKey:nil];
     
 //    [self.navigationController.navigationBar setBackgroundImage:[UIImage kc_pureColorImageWithColor:[UIColor redColor]] forBarMetrics:UIBarMetricsDefault];
     

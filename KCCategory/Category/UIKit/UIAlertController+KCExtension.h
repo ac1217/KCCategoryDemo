@@ -10,8 +10,8 @@
 
 @interface UIAlertController (KCExtension)
 
-@property (strong,nonatomic) UIColor *kc_attributedTitle;
-@property (strong,nonatomic) UIColor *kc_attributedMessage;
+@property (strong,nonatomic) NSAttributedString *kc_attributedTitle;
+@property (strong,nonatomic) NSAttributedString *kc_attributedMessage;
 
 - (void)kc_setTitleTextColor:(UIColor *)titleTextColor;
 - (void)kc_setMessageTextColor:(UIColor *)messageTextColor;

@@ -13,7 +13,7 @@
 - (void)kc_setTitleTextColor:(UIColor *)titleTextColor
 {
     NSAttributedString *titleArrt = [[NSAttributedString alloc] initWithString:self.title attributes:@{NSForegroundColorAttributeName : titleTextColor, NSFontAttributeName : [UIFont boldSystemFontOfSize:14]}];
-    self.kc_attributedTitle = attr;
+    self.kc_attributedTitle = titleArrt;
 }
 
 
@@ -23,24 +23,24 @@
     self.kc_attributedMessage = attr;
 }
 
-- (void)setKc_attributedTitle:(UIColor *)kc_attributedTitle
+- (void)setKc_attributedTitle:(NSAttributedString *)kc_attributedTitle
 {
     
     [self setValue:kc_attributedTitle forKey:@"attributedTitle"];
 }
 
-- (UIColor *)kc_attributedTitle
+- (NSAttributedString *)kc_attributedTitle
 {
     return [self valueForKey:@"attributedTitle"];
 }
 
-- (void)setKc_attributedMessage:(UIColor *)kc_attributedMessage
+- (void)setKc_attributedMessage:(NSAttributedString *)kc_attributedMessage
 {
     
     [self setValue:kc_attributedMessage forKey:@"attributedMessage"];
 }
 
-- (UIColor *)kc_attributedMessage
+- (NSAttributedString *)kc_attributedMessage
 {
     return [self valueForKey:@"attributedMessage"];
 }

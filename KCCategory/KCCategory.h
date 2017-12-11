@@ -22,4 +22,7 @@
 #import "UIVisualEffectView+KCExtension.h"
 #import "NSAttributedString+KCExtension.h"
 #import "NSData+KCExtension.h"
+#import "NSObject+KCExtension.h"
+#import "UIAlertController+KCExtension.h"
+#import "UIAlertAction+KCExtension.h"
 

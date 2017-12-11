@@ -7,11 +7,48 @@
 //
 
 #import "NSArray+KCExtension.h"
-#import <objc/runtime.h>
+#import "NSObject+KCExtension.h"
 
 @implementation NSArray (KCExtension)
 
++ (void)load
+{
+    [self kc_swizzlingInstanceMethod:@selector(kc_objectAtIndex:) otherClass:NSClassFromString(@"__NSArrayI") otherClassSel:@selector(objectAtIndex:)];
+    
+    [self kc_swizzlingInstanceMethod:@selector(kc_arrayByAddingObject:) otherClass:NSClassFromString(@"__NSArrayI") otherClassSel:@selector(arrayByAddingObject:)];
+}
 
+- (NSArray *)kc_arrayByAddingObject:(id)anObject
+{
+    
+#if DEBUG
+
+#else
+    if (!anObject) {
+        
+        NSLog(@"警告：(Array:%@)添加的对象为nil", self);
+        
+        return self;
+    }
+    
+#endif
+    return [self kc_arrayByAddingObject:anObject];
+}
+
+- (id)kc_objectAtIndex:(NSUInteger)objectIndex
+{
+    
+#if DEBUG
+
+#else
+    if (objectIndex >= [self count]) {
+        
+        return nil;
+    }
+#endif
+    
+    return [self kc_objectAtIndex:objectIndex];
+}
 
 - (instancetype)kc_filter:(BOOL(^)(id obj))block
 {

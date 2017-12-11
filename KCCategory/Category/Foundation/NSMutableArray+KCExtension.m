@@ -7,26 +7,58 @@
 //
 
 #import "NSMutableArray+KCExtension.h"
-#import <objc/message.h>
+#import "NSObject+KCExtension.h"
 
 @implementation NSMutableArray (KCExtension)
 
 
 + (void)load
 {
-    Class cls = [self class];
+    [self kc_swizzlingInstanceMethod:@selector(kc_addObject:) otherClass:NSClassFromString(@"__NSArrayM") otherClassSel:@selector(addObject:)];
     
-    Method addObj1 = class_getInstanceMethod(cls, @selector(addObject:));
+    [self kc_swizzlingInstanceMethod:@selector(kc_insertObject:atIndex:) otherClass:NSClassFromString(@"__NSArrayM") otherClassSel:@selector(insertObject:atIndex:)];
     
-    Method addObj2 = class_getInstanceMethod(cls, @selector(kc_addObject:));
-    method_exchangeImplementations(addObj1 , addObj2);
+    [self kc_swizzlingInstanceMethod:@selector(kc_replaceObjectAtIndex:withObject:) otherClass:NSClassFromString(@"__NSArrayM") otherClassSel:@selector(replaceObjectAtIndex:withObject:)];
     
     
-    Method insertObj1 = class_getInstanceMethod(cls, @selector(insertObject:atIndex:));
+    [self kc_swizzlingInstanceMethod:@selector(kc_removeObject:) otherClass:NSClassFromString(@"__NSArrayM") otherClassSel:@selector(removeObject:)];
     
-    Method insertObj2 = class_getInstanceMethod(cls, @selector(kc_insertObject:atIndex:));
+    [self kc_swizzlingInstanceMethod:@selector(kc_removeObjectAtIndex:) otherClass:NSClassFromString(@"__NSArrayM") otherClassSel:@selector(removeObjectAtIndex:)];
+}
+
+- (void)kc_removeObjectAtIndex:(NSUInteger)atIndex
+{
     
-    method_exchangeImplementations(insertObj1 , insertObj2);
+#if DEBUG
+    
+#else
+    
+    if (atIndex >= self.count) {
+        
+        NSLog(@"警告：(Array:%@)数组越界index=%zd,count=%zd", self, atIndex, self.count);
+        
+        return;
+    }
+#endif
+    
+    [self kc_removeObjectAtIndex:atIndex];
+    
+}
+
+- (void)kc_removeObject:(id)anObject
+{
+    
+#if DEBUG
+    
+#else
+    if (!anObject) {
+        
+        NSLog(@"警告：(Array:%@)移除的对象为nil",self);
+        
+        return;
+    }
+#endif
+    [self kc_removeObject:anObject];
 }
 
 - (void)kc_addObject:(id)anObject
@@ -47,7 +79,31 @@
     
 }
 
-- (void)kc_insertObject:(id)anObject atIndex:(NSUInteger)index
+- (void)kc_replaceObjectAtIndex:(NSUInteger)atIndex withObject:(id)anObject
+{
+    
+#if DEBUG
+    
+#else
+    if (!anObject) {
+        
+        NSLog(@"警告：(Array:%@)添加的对象为nil", self);
+        
+        return;
+    }
+    
+    if (atIndex >= self.count) {
+        
+        NSLog(@"警告：(Array:%@)数组越界index=%zd,count=%zd", self, atIndex, self.count);
+        
+        return;
+    }
+#endif
+    
+    [self kc_replaceObjectAtIndex:atIndex withObject:anObject];
+}
+
+- (void)kc_insertObject:(id)anObject atIndex:(NSUInteger)atIndex
 {
   
 #if DEBUG
@@ -60,17 +116,15 @@
         return;
     }
     
-    if (index >= self.count || index < 0) {
+    if (atIndex > self.count) {
         
-        NSLog(@"警告：(Array:%@)数组越界index=%zd,count=%zd", self, index, self.count);
+        NSLog(@"警告：(Array:%@)数组越界index=%zd,count=%zd", self, atIndex, self.count);
         
         return;
     }
 #endif
     
-    
-    
-    [self kc_insertObject:anObject atIndex:index];
+    [self kc_insertObject:anObject atIndex:atIndex];
 }
 
 @end

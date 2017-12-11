@@ -8,22 +8,49 @@
 
 #import "NSMutableDictionary+KCExtension.h"
 #import <objc/message.h>
+#import "NSObject+KCExtension.h"
 
 @implementation NSMutableDictionary (KCExtension)
 
 + (void)load
 {
-    Class cls = [self class];
     
-    Method setObjForKey1 = class_getInstanceMethod(cls, @selector(setObject:forKey:));
+    [self kc_swizzlingInstanceMethod:@selector(kc_setObject:forKey:) otherClass:NSClassFromString(@"__NSDictionaryM") otherClassSel:@selector(setObject:forKey:)];
     
-    Method setObjForKey2 = class_getInstanceMethod(cls, @selector(kc_setObject:forKey:));
+    [self kc_swizzlingInstanceMethod:@selector(kc_removeObjectForKey:) otherClass:NSClassFromString(@"__NSDictionaryM") otherClassSel:@selector(removeObjectForKey:)];
+}
+
+
+- (void)kc_removeObjectForKey:(id)aKey {
     
-    method_exchangeImplementations(setObjForKey1 , setObjForKey2);
+#if DEBUG
+
+#else
+
+    if (!aKey) {
+
+        NSLog(@"警告：(Dictionary:%@)key = nil",self);
+
+        return;
+    }
+#endif
+    
+    [self kc_removeObjectForKey:aKey];
 }
 
 - (void)kc_setObject:(id)anObject forKey:(id<NSCopying>)aKey
 {
+  
+#if DEBUG
+    
+#else
+    
+    if (!aKey) {
+        
+        NSLog(@"警告：(Dictionary:%@)key = nil",self);
+        
+        return;
+    }
     
     if (!anObject) {
         
@@ -31,6 +58,8 @@
         
         return;
     }
+#endif
+    
     
     [self kc_setObject:anObject forKey:aKey];
 }
