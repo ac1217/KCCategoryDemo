@@ -7,7 +7,6 @@
 //
 
 #import "NSMutableDictionary+KCExtension.h"
-#import <objc/message.h>
 #import "NSObject+KCExtension.h"
 
 @implementation NSMutableDictionary (KCExtension)

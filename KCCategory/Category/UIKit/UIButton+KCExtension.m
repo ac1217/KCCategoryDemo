@@ -8,6 +8,7 @@
 
 #import "UIButton+KCExtension.h"
 #import <objc/runtime.h>
+#import "NSObject+KCExtension.h"
 
 static NSString *const KCButtonImagePositionKey = @"imagePosition";
 static NSString *const KCButtonImageTitleSpacingKey = @"imageTitleSpacing";
@@ -17,10 +18,12 @@ static NSString *const KCButtonImageTitleSpacingKey = @"imageTitleSpacing";
 + (void)load
 {
     
-    Method layoutSubviews1 = class_getInstanceMethod(self, NSSelectorFromString(@"layoutSubviews"));
-    Method layoutSubviews2 = class_getInstanceMethod(self, @selector(kc_layoutSubviews));
+//    Method layoutSubviews1 = class_getInstanceMethod(self, NSSelectorFromString(@"layoutSubviews"));
+//    Method layoutSubviews2 = class_getInstanceMethod(self, @selector(kc_layoutSubviews));
+//
+//    method_exchangeImplementations(layoutSubviews1 , layoutSubviews2);
     
-    method_exchangeImplementations(layoutSubviews1 , layoutSubviews2);
+    [self kc_swizzlingInstanceMethod:@selector(layoutSubviews) otherSel:@selector(kc_layoutSubviews)];
 }
 
 - (void)kc_layoutSubviews

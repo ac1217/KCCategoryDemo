@@ -8,6 +8,7 @@
 
 #import "UITextView+KCExtension.h"
 #import <objc/message.h>
+#import "NSObject+KCExtension.h"
 
 static NSString *const KCTextViewPlaceholderLabelKey = @"kc_textViewPlaceholderLabel";
 
@@ -53,31 +54,40 @@ static NSString *const KCTextViewDidEditToMaxLengthBlockKey = @"kc_textViewDidEd
 {
     Class cls = [self class];
     
-    Method dealloc1 = class_getInstanceMethod(cls, NSSelectorFromString(@"dealloc"));
-    Method dealloc2 = class_getInstanceMethod(cls, @selector(kc_dealloc));
+//    Method dealloc1 = class_getInstanceMethod(cls, NSSelectorFromString(@"dealloc"));
+//    Method dealloc2 = class_getInstanceMethod(cls, @selector(kc_dealloc));
+//    method_exchangeImplementations(dealloc1 , dealloc2);
     
-    method_exchangeImplementations(dealloc1 , dealloc2);
-    
-    Method font1 = class_getInstanceMethod(cls, @selector(setFont:));
-    Method font2 = class_getInstanceMethod(cls, @selector(kc_setFont:));
-    
-    method_exchangeImplementations(font1 , font2);
-    
-    Method text1 = class_getInstanceMethod(cls, @selector(setText:));
-    Method text2 = class_getInstanceMethod(cls, @selector(kc_setText:));
-    
-    method_exchangeImplementations(text1 , text2);
+    [self kc_swizzlingInstanceMethod:NSSelectorFromString(@"dealloc") otherSel:@selector(kc_dealloc)];
     
     
-    Method attrText1 = class_getInstanceMethod(cls, @selector(setAttributedText:));
-    Method attrText2 = class_getInstanceMethod(cls, @selector(kc_setAttributedText:));
+//    Method font1 = class_getInstanceMethod(cls, @selector(setFont:));
+//    Method font2 = class_getInstanceMethod(cls, @selector(kc_setFont:));
+//
+//    method_exchangeImplementations(font1 , font2);
     
-    method_exchangeImplementations(attrText1 , attrText2);
+    [self kc_swizzlingInstanceMethod:@selector(kc_setFont:) otherSel:@selector(setFont:)];
     
-    Method textAliment1 = class_getInstanceMethod(cls, @selector(setTextAlignment:));
-    Method textAliment2 = class_getInstanceMethod(cls, @selector(kc_setTextAlignment:));
+//    Method text1 = class_getInstanceMethod(cls, @selector(setText:));
+//    Method text2 = class_getInstanceMethod(cls, @selector(kc_setText:));
+//
+//    method_exchangeImplementations(text1 , text2);
     
-    method_exchangeImplementations(textAliment1 , textAliment2);
+    [self kc_swizzlingInstanceMethod:@selector(setText:) otherSel:@selector(kc_setText:)];
+    
+//    Method attrText1 = class_getInstanceMethod(cls, @selector(setAttributedText:));
+//    Method attrText2 = class_getInstanceMethod(cls, @selector(kc_setAttributedText:));
+//
+//    method_exchangeImplementations(attrText1 , attrText2);
+    
+    [self kc_swizzlingInstanceMethod:@selector(setAttributedText:) otherSel:@selector(kc_setAttributedText:)];
+    
+//    Method textAliment1 = class_getInstanceMethod(cls, @selector(setTextAlignment:));
+//    Method textAliment2 = class_getInstanceMethod(cls, @selector(kc_setTextAlignment:));
+//
+//    method_exchangeImplementations(textAliment1 , textAliment2);
+    
+    [self kc_swizzlingInstanceMethod:@selector(setTextAlignment:) otherSel:@selector(kc_setTextAlignment:)];
 }
 
 - (void)kc_dealloc
