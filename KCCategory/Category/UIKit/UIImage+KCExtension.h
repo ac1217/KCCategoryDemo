@@ -73,6 +73,8 @@
 // 同步渲染，会阻塞线程
 - (UIImage *)kc_blurImageWithRatio:(CGFloat)ratio;
 
+// 分割gif
++ (NSArray *)kc_imagesWithData:(NSData *)data;
 // 改变图片透明度
 - (UIImage *)kc_imageWithAlpha:(CGFloat)alpha;
 

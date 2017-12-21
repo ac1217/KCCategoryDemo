@@ -172,6 +172,28 @@
     return image;
 }
 
+
++ (NSArray *)kc_imagesWithData:(NSData *)data
+{
+    CGImageSourceRef source = CGImageSourceCreateWithData((__bridge CFDataRef)data, NULL);
+    
+    //2. 将gif分解为一帧帧
+    size_t count = CGImageSourceGetCount(source);
+    
+    NSMutableArray * images = [NSMutableArray arrayWithCapacity:0];
+    for (int i = 0; i < count; i ++) {
+        CGImageRef imageRef = CGImageSourceCreateImageAtIndex(source, i, NULL);
+        
+        //3. 将单帧数据转为UIImage
+        UIImage * image = [UIImage imageWithCGImage:imageRef scale:[UIScreen mainScreen].scale orientation:UIImageOrientationUp];
+        [images addObject:image];
+        CGImageRelease(imageRef);
+    }
+    CFRelease(source);
+    
+    return images;
+}
+
 - (void)kc_circleImageWithCompletion:(void(^)(UIImage *image))completion
 {
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
