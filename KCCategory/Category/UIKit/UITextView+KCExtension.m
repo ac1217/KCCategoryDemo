@@ -11,12 +11,15 @@
 #import "NSObject+KCExtension.h"
 
 static NSString *const KCTextViewPlaceholderLabelKey = @"kc_textViewPlaceholderLabel";
+//static NSString *const KCTextViewPlaceholderLabelTopConstraintKey = @"kc_placeholderLabelTopConstraint";
+static NSString *const KCTextViewTextVerticalAlignmentKey = @"kc_textVerticalAlignment";
 
 static NSString *const KCTextViewMaxLengthKey = @"kc_textViewMaxLength";
 static NSString *const KCTextViewDidEditToMaxLengthBlockKey = @"kc_textViewDidEditToMaxLengthBlock";
 
 @interface UITextView ()
 @property (nonatomic, strong) UILabel *kc_placeholderLabel;
+//@property (nonatomic, strong) NSLayoutConstraint *kc_placeholderLabelTopConstraint;
 @end
 
 @implementation UITextView (KCExtension)
@@ -39,69 +42,60 @@ static NSString *const KCTextViewDidEditToMaxLengthBlockKey = @"kc_textViewDidEd
         
         [self addConstraint:[NSLayoutConstraint constraintWithItem:placeholderLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1 constant:H]];
         
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:placeholderLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1 constant:V]];
+        NSLayoutConstraint *topCons = [NSLayoutConstraint constraintWithItem:placeholderLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1 constant:V];
         
+        [self addConstraint:topCons];
+        //
         [self addConstraint:[NSLayoutConstraint constraintWithItem:placeholderLabel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeWidth multiplier:1 constant:H * -2]];
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kc_textViewTextChange) name:UITextViewTextDidChangeNotification object:self];
     }
     
     return placeholderLabel;
-
+    
 }
 
 + (void)load
 {
-    Class cls = [self class];
-    
-//    Method dealloc1 = class_getInstanceMethod(cls, NSSelectorFromString(@"dealloc"));
-//    Method dealloc2 = class_getInstanceMethod(cls, @selector(kc_dealloc));
-//    method_exchangeImplementations(dealloc1 , dealloc2);
+    //    Class cls = [self class];
     
     [self kc_swizzlingInstanceMethod:NSSelectorFromString(@"dealloc") otherSel:@selector(kc_dealloc)];
     
-    
-//    Method font1 = class_getInstanceMethod(cls, @selector(setFont:));
-//    Method font2 = class_getInstanceMethod(cls, @selector(kc_setFont:));
-//
-//    method_exchangeImplementations(font1 , font2);
-    
     [self kc_swizzlingInstanceMethod:@selector(kc_setFont:) otherSel:@selector(setFont:)];
-    
-//    Method text1 = class_getInstanceMethod(cls, @selector(setText:));
-//    Method text2 = class_getInstanceMethod(cls, @selector(kc_setText:));
-//
-//    method_exchangeImplementations(text1 , text2);
     
     [self kc_swizzlingInstanceMethod:@selector(setText:) otherSel:@selector(kc_setText:)];
     
-//    Method attrText1 = class_getInstanceMethod(cls, @selector(setAttributedText:));
-//    Method attrText2 = class_getInstanceMethod(cls, @selector(kc_setAttributedText:));
-//
-//    method_exchangeImplementations(attrText1 , attrText2);
-    
     [self kc_swizzlingInstanceMethod:@selector(setAttributedText:) otherSel:@selector(kc_setAttributedText:)];
     
-//    Method textAliment1 = class_getInstanceMethod(cls, @selector(setTextAlignment:));
-//    Method textAliment2 = class_getInstanceMethod(cls, @selector(kc_setTextAlignment:));
-//
-//    method_exchangeImplementations(textAliment1 , textAliment2);
-    
     [self kc_swizzlingInstanceMethod:@selector(setTextAlignment:) otherSel:@selector(kc_setTextAlignment:)];
+}
+
+- (void)kc_addObserver
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kc_textViewTextChange) name:UITextViewTextDidChangeNotification object:self];
+}
+
+- (void)kc_removeObserver
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextViewTextDidChangeNotification object:self];
 }
 
 - (void)kc_dealloc
 {
     [self kc_dealloc];
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self kc_removeObserver];
 }
 
 - (void)kc_setAttributedText:(NSAttributedString *)attrText
 {
     [self kc_setAttributedText:attrText];
     
+    [self kc_removeObserver];
+    
+    [self kc_addObserver];
+    
     [self kc_textViewTextChange];
+    [self setNeedsLayout];
 }
 
 - (void)kc_setTextAlignment:(NSTextAlignment)textAlignment
@@ -116,7 +110,11 @@ static NSString *const KCTextViewDidEditToMaxLengthBlockKey = @"kc_textViewDidEd
 {
     [self kc_setText:text];
     
+    [self kc_removeObserver];
+    
+    [self kc_addObserver];
     [self kc_textViewTextChange];
+    [self setNeedsLayout];
 }
 
 - (void)kc_setFont:(UIFont *)font
@@ -125,13 +123,20 @@ static NSString *const KCTextViewDidEditToMaxLengthBlockKey = @"kc_textViewDidEd
     
     self.kc_placeholderLabel.font = font;
     
+    [self kc_removeObserver];
+    
+    [self kc_addObserver];
+    
+    [self kc_textViewTextChange];
+    [self setNeedsLayout];
+    
 }
 
 - (void)setKc_placeholder:(NSString *)kc_placeholder
 {
     
     self.kc_placeholderLabel.text = kc_placeholder;
-
+    
 }
 
 - (void)setKc_placeholderAttributedString:(NSAttributedString *)kc_placeholderAttributedString
@@ -159,9 +164,30 @@ static NSString *const KCTextViewDidEditToMaxLengthBlockKey = @"kc_textViewDidEd
     return [self.kc_placeholderLabel textColor];
 }
 
+- (void)setKc_textVerticalAlignment:(KCTextVerticalAlignment)kc_textVerticalAlignment
+{
+    
+    objc_setAssociatedObject(self, (__bridge const void *)(KCTextViewTextVerticalAlignmentKey), @(kc_textVerticalAlignment), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    
+    [self kc_removeObserver];
+    
+    [self kc_addObserver];
+    
+    [self kc_textViewTextChange];
+    
+    [self setNeedsLayout];
+}
+
+- (KCTextVerticalAlignment)kc_textVerticalAlignment
+{
+    return [objc_getAssociatedObject(self, (__bridge const void *)(KCTextViewTextVerticalAlignmentKey)) integerValue];
+    
+}
+
+
 - (void)setKc_maxLength:(NSInteger)kc_maxLength
 {
-//    [self addTarget:self action:@selector(kc_textFieldTextChange) forControlEvents:UIControlEventEditingChanged];
+    //    [self addTarget:self action:@selector(kc_textFieldTextChange) forControlEvents:UIControlEventEditingChanged];
     
     objc_setAssociatedObject(self, (__bridge const void *)(KCTextViewMaxLengthKey), @(kc_maxLength), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
@@ -180,6 +206,59 @@ static NSString *const KCTextViewDidEditToMaxLengthBlockKey = @"kc_textViewDidEd
 
 - (void)kc_textViewTextChange
 {
+    switch (self.kc_textVerticalAlignment) {
+        case KCTextVerticalAlignmentCenter:
+        {
+            
+            CGSize contentSize = self.contentSize;
+            UIEdgeInsets contentInset = self.contentInset;
+            
+            if (contentSize.height <= self.frame.size.height) {
+                
+                CGFloat offsetY = (self.frame.size.height - contentSize.height) * 0.5;
+                
+                contentInset.top = offsetY;
+                
+            }else {
+                
+                contentInset.top = 0;
+            }
+            
+            self.contentInset = contentInset;
+            
+        }
+            break;
+        case KCTextVerticalAlignmentBottom :
+        {
+            
+            CGSize contentSize = self.contentSize;
+            UIEdgeInsets contentInset = self.contentInset;
+            
+            if (contentSize.height <= self.frame.size.height) {
+                
+                CGFloat offsetY = self.frame.size.height - contentSize.height;
+                
+                contentInset.top = offsetY;
+                
+                
+            }else {
+                
+                contentInset.top = 0;
+            }
+            
+            self.contentInset = contentInset;
+            
+        }
+            break;
+            
+        default:{
+            UIEdgeInsets contentInset = self.contentInset;
+            contentInset.top = 0;
+        }
+            break;
+    }
+    
+    
     self.kc_placeholderLabel.hidden = self.hasText;
     
     if (!self.kc_maxLength) {
@@ -190,6 +269,9 @@ static NSString *const KCTextViewDidEditToMaxLengthBlockKey = @"kc_textViewDidEd
         [self deleteBackward];
         !self.kc_textViewDidEditToMaxLengthBlock ? : self.kc_textViewDidEditToMaxLengthBlock(self);
     }
+    
+    
+    
 }
 
 - (NSInteger)kc_maxLength
@@ -198,3 +280,4 @@ static NSString *const KCTextViewDidEditToMaxLengthBlockKey = @"kc_textViewDidEd
 }
 
 @end
+

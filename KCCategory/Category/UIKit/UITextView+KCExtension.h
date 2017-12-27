@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum : NSUInteger {
+    KCTextVerticalAlignmentTop,
+    KCTextVerticalAlignmentCenter,
+    KCTextVerticalAlignmentBottom,
+} KCTextVerticalAlignment;
+
 @interface UITextView (KCExtension)
 
 // 占位文字
@@ -17,6 +23,9 @@
 
 @property (nonatomic,assign) NSInteger kc_maxLength;
 
+@property (nonatomic,assign) KCTextVerticalAlignment kc_textVerticalAlignment;
+
 @property (nonatomic,copy) void(^kc_textViewDidEditToMaxLengthBlock)(UITextView *tv);
 
 @end
+
