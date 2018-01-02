@@ -490,6 +490,32 @@ static NSString *const KCActivityIndicatorViewKey = @"kc_activityIndicatorView";
     }
     return topController;
     
+    
+}
+
+/**
+ *  获取当前显示的顶层导航控制器
+ */
+- (UINavigationController *)kc_topNavigationController
+{
+    
+    UIViewController *topVC = self.kc_topViewController;
+    UINavigationController *nav = nil;
+    if ([topVC isKindOfClass:[UITabBarController class]]) {
+        
+        UITabBarController *tbc = (UITabBarController *)topVC;
+        
+        if ([tbc.selectedViewController isKindOfClass:[UINavigationController class]]) {
+            
+            nav = tbc.selectedViewController;
+        }
+    }else if ([topVC isKindOfClass:[UINavigationController class]]) {
+        nav = (UINavigationController *)topVC;
+    }else {
+        nav = topVC.navigationController;
+    }
+    
+    return nav;
 }
 
 - (void)kc_showActivityIndicator
@@ -508,3 +534,4 @@ static NSString *const KCActivityIndicatorViewKey = @"kc_activityIndicatorView";
 }
 
 @end
+

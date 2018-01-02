@@ -103,6 +103,10 @@
  *  获取当前显示的顶层控制器
  */
 - (UIViewController *)kc_topViewController;
+/**
+ *  获取当前显示的顶层导航控制器
+ */
+- (UINavigationController *)kc_topNavigationController;
 
 /**
  *  indicator
@@ -112,3 +116,4 @@
 - (void)kc_setActivityIndicatorStyle:(UIActivityIndicatorViewStyle)style;
 
 @end
+
