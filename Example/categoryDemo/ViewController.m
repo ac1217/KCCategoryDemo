@@ -21,22 +21,32 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSString *str = nil;
+    
+    self.kc_navigationBarBackgroundColor = [UIColor redColor];
+//    NSString *str = nil;
     NSMutableArray *arrM = @[].mutableCopy;
-    [arrM addObject:str];
-
-    [arrM insertObject:str atIndex:0];
+//    [arrM addObject:str];
+    [arrM removeObject:nil];
+//
+//    [arrM insertObject:str atIndex:0];
+//    
+//    NSArray *arr = @[];
+//
+//    [arr arrayByAddingObject:nil];
+//    
+//    
+//    NSMutableDictionary *dictM = @{}.mutableCopy;
+//    
+//    [dictM setObject:nil forKey:@"123"];
+//    
+//    [dictM removeObjectForKey:nil];
     
-    NSArray *arr = @[];
-
-    [arr arrayByAddingObject:nil];
+    NSMutableSet *set = [NSMutableSet set];
+    NSLog(@"%@", [set class]);
     
+//    [set removeObject:nil];
     
-    NSMutableDictionary *dictM = @{}.mutableCopy;
-    
-    [dictM setObject:nil forKey:@"123"];
-    
-    [dictM removeObjectForKey:nil];
+    [set addObject:nil];
     
 //    [self.navigationController.navigationBar setBackgroundImage:[UIImage kc_pureColorImageWithColor:[UIColor redColor]] forBarMetrics:UIBarMetricsDefault];
     
@@ -49,26 +59,26 @@
     //
 //    self.imageView.kc_layerCornerRadiusWithClips = self.imageView.kc_width;
     
-    [self.imageView kc_setTapBlock:^(UIView *view, UITapGestureRecognizer *tap) {
-        
-    }];
+//    [self.imageView kc_setTapBlock:^(UIView *view, UITapGestureRecognizer *tap) {
+//
+//    }];
     
 //    self.imageView.kc_badgeValue = @"1";
     
-    UIVisualEffectView *blurEffectView = [UIVisualEffectView kc_blurEffectViewWithBlurEffectStyle:UIBlurEffectStyleExtraLight];
-    [self.view addSubview:blurEffectView];
-    
-    blurEffectView.frame = CGRectMake(20, 200, 300, 88);
-    
-    UIButton *btn = [UIButton new];
-    [btn setTitle:@"12313" forState:UIControlStateNormal];
-    [btn setImage:[UIImage imageNamed:@"shareIcon"] forState:UIControlStateNormal];
-    btn.kc_imageTitleSpacing = 10;
-    btn.kc_imagePosition = KCButtonImagePositionTop;
-    btn.titleEdgeInsets = UIEdgeInsetsMake(10, 0, 0, 0);
-    btn.frame = CGRectMake(100, 100, 200, 200);
-    
-    [self.view addSubview:btn];
+//    UIVisualEffectView *blurEffectView = [UIVisualEffectView kc_blurEffectViewWithBlurEffectStyle:UIBlurEffectStyleExtraLight];
+//    [self.view addSubview:blurEffectView];
+//
+//    blurEffectView.frame = CGRectMake(20, 200, 300, 88);
+//
+//    UIButton *btn = [UIButton new];
+//    [btn setTitle:@"12313" forState:UIControlStateNormal];
+//    [btn setImage:[UIImage imageNamed:@"shareIcon"] forState:UIControlStateNormal];
+//    btn.kc_imageTitleSpacing = 10;
+//    btn.kc_imagePosition = KCButtonImagePositionTop;
+//    btn.titleEdgeInsets = UIEdgeInsetsMake(10, 0, 0, 0);
+//    btn.frame = CGRectMake(100, 100, 200, 200);
+//
+//    [self.view addSubview:btn];
     
 }
 
@@ -90,7 +100,7 @@
 //        [self kc_setNavigationBarBackgroundHidden:YES animate:YES];
 //    }
     
-    self.kc_navgationBarBackgroundAlpha = (offsetY + 64)/64;
+    self.kc_navigationBarBackgroundAlpha = (offsetY + 64)/64;
     
 }
 

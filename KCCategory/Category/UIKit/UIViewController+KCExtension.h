@@ -10,11 +10,12 @@
 
 @interface UIViewController (KCExtension)
 
-@property (nonatomic, assign) CGFloat kc_navgationBarBackgroundAlpha;
-@property (nonatomic, assign) BOOL kc_navgationBarBackgroundHidden;
+@property (nonatomic, assign) CGFloat kc_navigationBarBackgroundAlpha;
 
+@property (nonatomic,strong) UIColor *kc_navigationBarBackgroundColor;
 
-- (void)kc_setNavigationBarBackgroundHidden:(BOOL)hidden animate:(BOOL)animate;
+@property (nonatomic,strong) UIColor *kc_navigationBarTintColor;
+
 
 /**
  *  快速从SB加载对应控制器

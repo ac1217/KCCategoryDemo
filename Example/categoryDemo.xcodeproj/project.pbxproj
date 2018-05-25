@@ -12,7 +12,6 @@
 		070090BE1D18DC7D00142A76 /* UIDevice+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 070090A71D18DC7D00142A76 /* UIDevice+KCExtension.m */; };
 		070090BF1D18DC7D00142A76 /* UIImage+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 070090A91D18DC7D00142A76 /* UIImage+KCExtension.m */; };
 		070090C01D18DC7D00142A76 /* UIImageView+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 070090AB1D18DC7D00142A76 /* UIImageView+KCExtension.m */; };
-		070090C11D18DC7D00142A76 /* UINavigationBar+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 070090AD1D18DC7D00142A76 /* UINavigationBar+KCExtension.m */; };
 		070090C21D18DC7D00142A76 /* UITextField+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 070090AF1D18DC7D00142A76 /* UITextField+KCExtension.m */; };
 		070090C31D18DC7D00142A76 /* UITextView+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 070090B11D18DC7D00142A76 /* UITextView+KCExtension.m */; };
 		070090C41D18DC7D00142A76 /* UIView+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 070090B31D18DC7D00142A76 /* UIView+KCExtension.m */; };
@@ -33,6 +32,10 @@
 		072BFB871CDC295C00551444 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 072BFB851CDC295C00551444 /* LaunchScreen.storyboard */; };
 		072BFB921CDC295C00551444 /* categoryDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 072BFB911CDC295C00551444 /* categoryDemoTests.m */; };
 		072BFB9D1CDC295C00551444 /* categoryDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 072BFB9C1CDC295C00551444 /* categoryDemoUITests.m */; };
+		07308A7C20B79B9C00DE8294 /* NSData+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 07308A7A20B79B9B00DE8294 /* NSData+KCExtension.m */; };
+		07308A7F20B79BAE00DE8294 /* NSMutableSet+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 07308A7E20B79BAE00DE8294 /* NSMutableSet+KCExtension.m */; };
+		07308A8420B79DCD00DE8294 /* UINavigationController+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 07308A8220B79DCD00DE8294 /* UINavigationController+KCExtension.m */; };
+		07308A8520B79DCD00DE8294 /* UINavigationBar+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 07308A8320B79DCD00DE8294 /* UINavigationBar+KCExtension.m */; };
 		0748815E1D572ED900322817 /* UIButton+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0748815D1D572ED900322817 /* UIButton+KCExtension.m */; };
 		075F11651D23F26200C2AFEE /* KCFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 075F11641D23F26200C2AFEE /* KCFunction.m */; };
 		0770D15C1D2F811D008C89D6 /* CADisplayLink+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0770D15B1D2F811D008C89D6 /* CADisplayLink+KCExtension.m */; };
@@ -41,7 +44,6 @@
 		07C7A78B1FCEAFAC007B91C8 /* UIAlertController+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 07C7A78A1FCEAFAC007B91C8 /* UIAlertController+KCExtension.m */; };
 		07D9A5191DAE1D000000DF07 /* NSAttributedString+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D9A5181DAE1D000000DF07 /* NSAttributedString+KCExtension.m */; };
 		07F353BC1D8791760077383F /* UIVisualEffectView+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F353BB1D8791760077383F /* UIVisualEffectView+KCExtension.m */; };
-		887F8D591FBD3621005A869E /* NSData+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 887F8D571FBD3621005A869E /* NSData+KCExtension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,8 +74,6 @@
 		070090A91D18DC7D00142A76 /* UIImage+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+KCExtension.m"; sourceTree = "<group>"; };
 		070090AA1D18DC7D00142A76 /* UIImageView+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+KCExtension.h"; sourceTree = "<group>"; };
 		070090AB1D18DC7D00142A76 /* UIImageView+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+KCExtension.m"; sourceTree = "<group>"; };
-		070090AC1D18DC7D00142A76 /* UINavigationBar+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+KCExtension.h"; sourceTree = "<group>"; };
-		070090AD1D18DC7D00142A76 /* UINavigationBar+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+KCExtension.m"; sourceTree = "<group>"; };
 		070090AE1D18DC7D00142A76 /* UITextField+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+KCExtension.h"; sourceTree = "<group>"; };
 		070090AF1D18DC7D00142A76 /* UITextField+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+KCExtension.m"; sourceTree = "<group>"; };
 		070090B01D18DC7D00142A76 /* UITextView+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+KCExtension.h"; sourceTree = "<group>"; };
@@ -115,6 +115,14 @@
 		072BFB981CDC295C00551444 /* categoryDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = categoryDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		072BFB9C1CDC295C00551444 /* categoryDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = categoryDemoUITests.m; sourceTree = "<group>"; };
 		072BFB9E1CDC295C00551444 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07308A7A20B79B9B00DE8294 /* NSData+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+KCExtension.m"; sourceTree = "<group>"; };
+		07308A7B20B79B9B00DE8294 /* NSData+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+KCExtension.h"; sourceTree = "<group>"; };
+		07308A7D20B79BAE00DE8294 /* NSMutableSet+KCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableSet+KCExtension.h"; sourceTree = "<group>"; };
+		07308A7E20B79BAE00DE8294 /* NSMutableSet+KCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableSet+KCExtension.m"; sourceTree = "<group>"; };
+		07308A8020B79DCD00DE8294 /* UINavigationBar+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+KCExtension.h"; sourceTree = "<group>"; };
+		07308A8120B79DCD00DE8294 /* UINavigationController+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+KCExtension.h"; sourceTree = "<group>"; };
+		07308A8220B79DCD00DE8294 /* UINavigationController+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+KCExtension.m"; sourceTree = "<group>"; };
+		07308A8320B79DCD00DE8294 /* UINavigationBar+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+KCExtension.m"; sourceTree = "<group>"; };
 		0748815C1D572ED900322817 /* UIButton+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+KCExtension.h"; sourceTree = "<group>"; };
 		0748815D1D572ED900322817 /* UIButton+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+KCExtension.m"; sourceTree = "<group>"; };
 		0757198C1CFEDBCF00B37950 /* KCCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCCategory.h; sourceTree = "<group>"; };
@@ -132,8 +140,6 @@
 		07D9A5181DAE1D000000DF07 /* NSAttributedString+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+KCExtension.m"; sourceTree = "<group>"; };
 		07F353BA1D8791760077383F /* UIVisualEffectView+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIVisualEffectView+KCExtension.h"; sourceTree = "<group>"; };
 		07F353BB1D8791760077383F /* UIVisualEffectView+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIVisualEffectView+KCExtension.m"; sourceTree = "<group>"; };
-		887F8D571FBD3621005A869E /* NSData+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+KCExtension.m"; path = "../../../../../Project/Sugar/Pods/KCCategory/KCCategory/Category/Foundation/NSData+KCExtension.m"; sourceTree = "<group>"; };
-		887F8D581FBD3621005A869E /* NSData+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+KCExtension.h"; path = "../../../../../Project/Sugar/Pods/KCCategory/KCCategory/Category/Foundation/NSData+KCExtension.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +191,10 @@
 		070090A31D18DC7D00142A76 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				07308A8020B79DCD00DE8294 /* UINavigationBar+KCExtension.h */,
+				07308A8320B79DCD00DE8294 /* UINavigationBar+KCExtension.m */,
+				07308A8120B79DCD00DE8294 /* UINavigationController+KCExtension.h */,
+				07308A8220B79DCD00DE8294 /* UINavigationController+KCExtension.m */,
 				070090A41D18DC7D00142A76 /* UIColor+KCExtension.h */,
 				070090A51D18DC7D00142A76 /* UIColor+KCExtension.m */,
 				070090A61D18DC7D00142A76 /* UIDevice+KCExtension.h */,
@@ -193,8 +203,6 @@
 				070090A91D18DC7D00142A76 /* UIImage+KCExtension.m */,
 				070090AA1D18DC7D00142A76 /* UIImageView+KCExtension.h */,
 				070090AB1D18DC7D00142A76 /* UIImageView+KCExtension.m */,
-				070090AC1D18DC7D00142A76 /* UINavigationBar+KCExtension.h */,
-				070090AD1D18DC7D00142A76 /* UINavigationBar+KCExtension.m */,
 				070090AE1D18DC7D00142A76 /* UITextField+KCExtension.h */,
 				070090AF1D18DC7D00142A76 /* UITextField+KCExtension.m */,
 				070090B01D18DC7D00142A76 /* UITextView+KCExtension.h */,
@@ -230,8 +238,8 @@
 		070090CB1D18DD6F00142A76 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				887F8D581FBD3621005A869E /* NSData+KCExtension.h */,
-				887F8D571FBD3621005A869E /* NSData+KCExtension.m */,
+				07308A7B20B79B9B00DE8294 /* NSData+KCExtension.h */,
+				07308A7A20B79B9B00DE8294 /* NSData+KCExtension.m */,
 				070090CC1D18DD6F00142A76 /* NSArray+KCExtension.h */,
 				070090CD1D18DD6F00142A76 /* NSArray+KCExtension.m */,
 				070090CE1D18DD6F00142A76 /* NSDate+KCExtension.h */,
@@ -250,6 +258,8 @@
 				07D9A5181DAE1D000000DF07 /* NSAttributedString+KCExtension.m */,
 				070091111FD7DCA4008623A7 /* NSObject+KCExtension.h */,
 				070091121FD7DCA4008623A7 /* NSObject+KCExtension.m */,
+				07308A7D20B79BAE00DE8294 /* NSMutableSet+KCExtension.h */,
+				07308A7E20B79BAE00DE8294 /* NSMutableSet+KCExtension.m */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -462,9 +472,9 @@
 				070090CA1D18DC9E00142A76 /* KCConst.m in Sources */,
 				0748815E1D572ED900322817 /* UIButton+KCExtension.m in Sources */,
 				070090DC1D18DD6F00142A76 /* NSMutableDictionary+KCExtension.m in Sources */,
+				07308A7F20B79BAE00DE8294 /* NSMutableSet+KCExtension.m in Sources */,
 				075F11651D23F26200C2AFEE /* KCFunction.m in Sources */,
 				070090D81D18DD6F00142A76 /* NSArray+KCExtension.m in Sources */,
-				070090C11D18DC7D00142A76 /* UINavigationBar+KCExtension.m in Sources */,
 				072BFB7F1CDC295C00551444 /* ViewController.m in Sources */,
 				07F353BC1D8791760077383F /* UIVisualEffectView+KCExtension.m in Sources */,
 				070090D91D18DD6F00142A76 /* NSDate+KCExtension.m in Sources */,
@@ -477,11 +487,13 @@
 				0770D15F1D2F8209008C89D6 /* NSTimer+KCExtension.m in Sources */,
 				070090BF1D18DC7D00142A76 /* UIImage+KCExtension.m in Sources */,
 				070090C41D18DC7D00142A76 /* UIView+KCExtension.m in Sources */,
+				07308A7C20B79B9C00DE8294 /* NSData+KCExtension.m in Sources */,
 				0770D15C1D2F811D008C89D6 /* CADisplayLink+KCExtension.m in Sources */,
 				07D9A5191DAE1D000000DF07 /* NSAttributedString+KCExtension.m in Sources */,
-				887F8D591FBD3621005A869E /* NSData+KCExtension.m in Sources */,
+				07308A8420B79DCD00DE8294 /* UINavigationController+KCExtension.m in Sources */,
 				070090C31D18DC7D00142A76 /* UITextView+KCExtension.m in Sources */,
 				070090C51D18DC7D00142A76 /* UIViewController+KCExtension.m in Sources */,
+				07308A8520B79DCD00DE8294 /* UINavigationBar+KCExtension.m in Sources */,
 				070090DD1D18DD6F00142A76 /* NSString+KCExtension.m in Sources */,
 				07C7A78B1FCEAFAC007B91C8 /* UIAlertController+KCExtension.m in Sources */,
 				070090C01D18DC7D00142A76 /* UIImageView+KCExtension.m in Sources */,

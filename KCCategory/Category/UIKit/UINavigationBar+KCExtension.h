@@ -1,18 +1,17 @@
 //
-//  UINavigationBar+KCExtension.h
-//  categoryDemo
+//  UINavigationBar+KCTransition.h
+//  KCNavigationTransition
 //
-//  Created by zhangweiwei on 16/6/7.
-//  Copyright © 2016年 Erica. All rights reserved.
+//  Created by Erica on 2018/5/7.
+//  Copyright © 2018年 Erica. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
 @interface UINavigationBar (KCExtension)
 
-@property (nonatomic, assign) CGFloat kc_backgroundAlpha;
-@property (nonatomic, assign) BOOL kc_backgroundHidden;
+@property (nonatomic,assign) CGFloat kc_backgroundAlpha;
 
-- (void)kc_setBackgroundHidden:(BOOL)hidden animate:(BOOL)animate;
+@property (nonatomic,strong) UIColor *kc_backgroundColor;
 
 @end

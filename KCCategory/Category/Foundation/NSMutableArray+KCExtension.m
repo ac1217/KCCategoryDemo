@@ -11,7 +11,6 @@
 
 @implementation NSMutableArray (KCExtension)
 
-
 + (void)load
 {
     [self kc_swizzlingInstanceMethod:@selector(kc_addObject:) otherClass:NSClassFromString(@"__NSArrayM") otherClassSel:@selector(addObject:)];
@@ -20,8 +19,6 @@
     
     [self kc_swizzlingInstanceMethod:@selector(kc_replaceObjectAtIndex:withObject:) otherClass:NSClassFromString(@"__NSArrayM") otherClassSel:@selector(replaceObjectAtIndex:withObject:)];
     
-    
-    [self kc_swizzlingInstanceMethod:@selector(kc_removeObject:) otherClass:NSClassFromString(@"__NSArrayM") otherClassSel:@selector(removeObject:)];
     
     [self kc_swizzlingInstanceMethod:@selector(kc_removeObjectAtIndex:) otherClass:NSClassFromString(@"__NSArrayM") otherClassSel:@selector(removeObjectAtIndex:)];
 }
@@ -45,21 +42,6 @@
     
 }
 
-- (void)kc_removeObject:(id)anObject
-{
-    
-#if DEBUG
-    
-#else
-    if (!anObject) {
-        
-        NSLog(@"警告：(Array:%@)移除的对象为nil",self);
-        
-        return;
-    }
-#endif
-    [self kc_removeObject:anObject];
-}
 
 - (void)kc_addObject:(id)anObject
 {

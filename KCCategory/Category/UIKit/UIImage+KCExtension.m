@@ -318,11 +318,14 @@
     
     CIImage *filtered = [[[inputImage imageByClampingToExtent] imageByApplyingFilter:@"CIGaussianBlur" withInputParameters:@{kCIInputRadiusKey:@(ratio*100)}] imageByCroppingToRect:inputImage.extent];
     
-    CGImageRef renderImage = [[CIContext contextWithOptions:nil] createCGImage:filtered fromRect:inputImage.extent];
+    CIContext *ciCtx = [CIContext contextWithOptions:nil];
+    
+    CGImageRef renderImage = [ciCtx createCGImage:filtered fromRect:inputImage.extent];
     
     UIImage *img = [UIImage imageWithCGImage:renderImage];
     
     CGImageRelease(renderImage);
+//    [ciCtx clearCaches];
     
     return img;
 }
