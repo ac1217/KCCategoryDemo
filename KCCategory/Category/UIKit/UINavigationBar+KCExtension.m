@@ -63,6 +63,14 @@ static NSString *const kc_backgroundViewKey = @"kc_backgroundView";
                 backgroundEffectView.alpha = kc_backgroundAlpha;
 
                 return;
+                
+            }else {
+                UIView *backgroundImageView = [backgroundView valueForKey:@"backgroundImageView"];
+                
+                backgroundImageView.alpha = kc_backgroundAlpha;
+                backgroundImageView.hidden = kc_backgroundAlpha == 0;
+                
+                return;
             }
 
         }else {

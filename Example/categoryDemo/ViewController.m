@@ -21,12 +21,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.view.backgroundColor = [UIColor whiteColor];
     
-    self.kc_navigationBarBackgroundColor = [UIColor redColor];
+    self.kc_navigationBarBackgroundColor = [UIColor colorWithRed:arc4random_uniform(256)/255.0 green:arc4random_uniform(256)/255.0 blue:arc4random_uniform(256)/255.0 alpha:1];
+    
+    
+    self.kc_navigationBarHidden = arc4random_uniform(2);
+    
 //    NSString *str = nil;
-    NSMutableArray *arrM = @[].mutableCopy;
+//    NSMutableArray *arrM = @[].mutableCopy;
 //    [arrM addObject:str];
-    [arrM removeObject:nil];
+//    [arrM removeObject:nil];
 //
 //    [arrM insertObject:str atIndex:0];
 //    
@@ -41,12 +46,12 @@
 //    
 //    [dictM removeObjectForKey:nil];
     
-    NSMutableSet *set = [NSMutableSet set];
-    NSLog(@"%@", [set class]);
+//    NSMutableSet *set = [NSMutableSet set];
+//    NSLog(@"%@", [set class]);
     
 //    [set removeObject:nil];
     
-    [set addObject:nil];
+//    [set addObject:nil];
     
 //    [self.navigationController.navigationBar setBackgroundImage:[UIImage kc_pureColorImageWithColor:[UIColor redColor]] forBarMetrics:UIBarMetricsDefault];
     
@@ -87,6 +92,22 @@
     
     [self.navigationController pushViewController:[[self class] new] animated:YES];
 }
+- (IBAction)push:(id)sender {
+    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ViewController *vc = [sb instantiateViewControllerWithIdentifier:@"ViewController"];
+    
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+
+- (IBAction)pop:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)root:(id)sender {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
@@ -101,6 +122,23 @@
 //    }
     
     self.kc_navigationBarBackgroundAlpha = (offsetY + 64)/64;
+    
+}
+
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+//    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"sugar://openUserDetail?userID=12345"]];
+    
+//    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"sugar://openRecord"]];
+    
+    
+//    NSString *date = [NSString stringWithFormat:@"%.f", [[NSDate date] timeIntervalSince1970] * 1000];
+//
+//
+//    NSInteger n = [date integerValue];
+//
+//    NSLog(@"date = %@, n = %zd", date, n);
+    
     
 }
 

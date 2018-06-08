@@ -9,12 +9,47 @@
 #import "UIViewController+KCExtension.h"
 #import "UINavigationBar+KCExtension.h"
 #import <objc/runtime.h>
+#import "NSObject+KCExtension.h"
 
 static NSString *const kc_navigationBarBackgroundAlphaKey = @"kc_navigationBarBackgroundAlpha";
 static NSString *const kc_navigationBarBackgroundColorKey = @"kc_navigationBarBackgroundColor";
 static NSString *const kc_navigationBarTintColorKey = @"kc_navigationBarTintColor";
+static NSString *const kc_navigationBarHiddenKey = @"kc_navigationBarHidden";
 
 @implementation UIViewController (KCExtension)
+
++ (void)load
+{
+   
+    [self kc_swizzlingInstanceMethod:@selector(kc_viewWillAppear:) otherClass:self otherClassSel:@selector(viewWillAppear:)];
+    [self kc_swizzlingInstanceMethod:@selector(kc_viewWillDisappear:) otherClass:self otherClassSel:@selector(viewWillDisappear:)];
+    
+}
+
+- (void)kc_viewWillAppear:(BOOL)animated
+{
+    // Forward to primary implementation.
+    [self kc_viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:self.kc_navigationBarHidden animated:animated];
+//    [self.navigationController setNavigationBarHidden:viewController.fd_prefersNavigationBarHidden animated:animated];
+//    if (self.fd_willAppearInjectBlock) {
+//        self.fd_willAppearInjectBlock(self, animated);
+//    }
+}
+
+- (void)kc_viewWillDisappear:(BOOL)animated
+{
+    // Forward to primary implementation.
+    [self kc_viewWillDisappear:animated];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        UIViewController *viewController = self.navigationController.viewControllers.lastObject;
+        if (viewController && !viewController.kc_navigationBarHidden) {
+            [self.navigationController setNavigationBarHidden:NO animated:NO];
+        }
+    });
+}
 
 - (void)setKc_navigationBarTintColor:(UIColor *)kc_navigationBarTintColor
 {
@@ -66,6 +101,46 @@ static NSString *const kc_navigationBarTintColorKey = @"kc_navigationBarTintColo
     
 }
 
+- (BOOL)kc_interactivePopDisabled
+{
+    return [objc_getAssociatedObject(self, _cmd) boolValue];
+}
+
+- (void)setKc_interactivePopDisabled:(BOOL)disabled
+{
+    objc_setAssociatedObject(self, @selector(kc_interactivePopDisabled), @(disabled), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (void)setKc_navigationBarHidden:(BOOL)kc_navigationBarHidden
+{
+    objc_setAssociatedObject(self, (__bridge const void * _Nonnull)(kc_navigationBarHiddenKey), @(kc_navigationBarHidden), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    
+    self.navigationController.navigationBarHidden = kc_navigationBarHidden;
+}
+
+- (BOOL)kc_navigationBarHidden
+{
+    id value = objc_getAssociatedObject(self, (__bridge const void * _Nonnull)(kc_navigationBarHiddenKey));
+    
+    return [value boolValue];
+    
+}
+
+
+- (CGFloat)kc_interactivePopDistanceToLeftEdge
+{
+#if CGFLOAT_IS_DOUBLE
+    return [objc_getAssociatedObject(self, _cmd) doubleValue];
+#else
+    return [objc_getAssociatedObject(self, _cmd) floatValue];
+#endif
+}
+
+- (void)setKc_interactivePopDistanceToLeftEdge:(CGFloat)kc_interactivePopDistanceToLeftEdge
+{
+    SEL key = @selector(kc_interactivePopDistanceToLeftEdge);
+    objc_setAssociatedObject(self, key, @(MAX(0, kc_interactivePopDistanceToLeftEdge)), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
 
 + (instancetype)kc_viewControllerFromStoryboard:(NSString *)sbName
 {

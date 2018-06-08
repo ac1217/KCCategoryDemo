@@ -16,7 +16,11 @@
 
 @property (nonatomic,strong) UIColor *kc_navigationBarTintColor;
 
+@property (nonatomic, assign) BOOL kc_navigationBarHidden;
 
+@property (nonatomic, assign) BOOL kc_interactivePopDisabled;
+
+@property (nonatomic, assign) CGFloat kc_interactivePopDistanceToLeftEdge;
 /**
  *  快速从SB加载对应控制器
  *
