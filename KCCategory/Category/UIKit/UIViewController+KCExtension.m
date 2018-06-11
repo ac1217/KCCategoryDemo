@@ -15,6 +15,7 @@ static NSString *const kc_navigationBarBackgroundAlphaKey = @"kc_navigationBarBa
 static NSString *const kc_navigationBarBackgroundColorKey = @"kc_navigationBarBackgroundColor";
 static NSString *const kc_navigationBarTintColorKey = @"kc_navigationBarTintColor";
 static NSString *const kc_navigationBarHiddenKey = @"kc_navigationBarHidden";
+static NSString *const kc_navigationInteractivePushBlockKey = @"kc_navigationInteractivePushBlockKey";
 
 @implementation UIViewController (KCExtension)
 
@@ -49,6 +50,20 @@ static NSString *const kc_navigationBarHiddenKey = @"kc_navigationBarHidden";
             [self.navigationController setNavigationBarHidden:NO animated:NO];
         }
     });
+}
+
+- (void)setKc_navigationInteractivePushBlock:(void (^)(UIViewController *))kc_navigationInteractivePushBlock
+{
+    
+    objc_setAssociatedObject(self, (__bridge const void * _Nonnull)(kc_navigationInteractivePushBlockKey), kc_navigationInteractivePushBlock, OBJC_ASSOCIATION_COPY);
+    
+//    self.navigationController.navigationBar.tintColor = kc_navigationBarTintColor;
+}
+
+
+- (void (^)(UIViewController *))kc_navigationInteractivePushBlock
+{
+    return objc_getAssociatedObject(self, (__bridge const void * _Nonnull)(kc_navigationInteractivePushBlockKey));
 }
 
 - (void)setKc_navigationBarTintColor:(UIColor *)kc_navigationBarTintColor
@@ -101,14 +116,14 @@ static NSString *const kc_navigationBarHiddenKey = @"kc_navigationBarHidden";
     
 }
 
-- (BOOL)kc_interactivePopDisabled
+- (BOOL)kc_navigationInteractivePopDisabled
 {
     return [objc_getAssociatedObject(self, _cmd) boolValue];
 }
 
-- (void)setKc_interactivePopDisabled:(BOOL)disabled
+- (void)setKc_navigationInteractivePopDisabled:(BOOL)kc_navigationInteractivePopDisabled
 {
-    objc_setAssociatedObject(self, @selector(kc_interactivePopDisabled), @(disabled), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, @selector(kc_navigationInteractivePopDisabled), @(kc_navigationInteractivePopDisabled), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (void)setKc_navigationBarHidden:(BOOL)kc_navigationBarHidden
@@ -127,7 +142,7 @@ static NSString *const kc_navigationBarHiddenKey = @"kc_navigationBarHidden";
 }
 
 
-- (CGFloat)kc_interactivePopDistanceToLeftEdge
+- (CGFloat)kc_navigationInteractivePopDistanceToLeftEdge
 {
 #if CGFLOAT_IS_DOUBLE
     return [objc_getAssociatedObject(self, _cmd) doubleValue];
@@ -136,9 +151,9 @@ static NSString *const kc_navigationBarHiddenKey = @"kc_navigationBarHidden";
 #endif
 }
 
-- (void)setKc_interactivePopDistanceToLeftEdge:(CGFloat)kc_interactivePopDistanceToLeftEdge
+- (void)setKc_navigationInteractivePopDistanceToLeftEdge:(CGFloat)kc_interactivePopDistanceToLeftEdge
 {
-    SEL key = @selector(kc_interactivePopDistanceToLeftEdge);
+    SEL key = @selector(kc_navigationInteractivePopDistanceToLeftEdge);
     objc_setAssociatedObject(self, key, @(MAX(0, kc_interactivePopDistanceToLeftEdge)), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 

@@ -12,54 +12,198 @@
 #import <objc/runtime.h>
 #import "NSObject+KCExtension.h"
 
-
-@interface KC_FullscreenInteractivePopGestureRecognizerDelegate : NSObject <UIGestureRecognizerDelegate>
+@interface KC_FullscreenInteractiveGestureRecognizerDelegate : NSObject <UIGestureRecognizerDelegate, UINavigationControllerDelegate, UIViewControllerAnimatedTransitioning>
 
 @property (nonatomic, weak) UINavigationController *navigationController;
 
+@property (nonatomic, strong) UIPercentDrivenInteractiveTransition *interactivePopTransition;
 @end
 
-@implementation KC_FullscreenInteractivePopGestureRecognizerDelegate
+@implementation KC_FullscreenInteractiveGestureRecognizerDelegate
 
 - (BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)gestureRecognizer
 {
-    // Ignore when no view controller is pushed into the navigation stack.
-    if (self.navigationController.viewControllers.count <= 1) {
-        return NO;
-    }
-    
-    // Ignore when the active view controller doesn't allow interactive pop.
-    UIViewController *topViewController = self.navigationController.viewControllers.lastObject;
-    if (topViewController.kc_interactivePopDisabled) {
-        return NO;
-    }
-    
-    // Ignore when the beginning location is beyond max allowed initial distance to left edge.
-    CGPoint beginningLocation = [gestureRecognizer locationInView:gestureRecognizer.view];
-    CGFloat maxAllowedInitialDistance = topViewController.kc_interactivePopDistanceToLeftEdge;
-    if (maxAllowedInitialDistance > 0 && beginningLocation.x > maxAllowedInitialDistance) {
-        return NO;
-    }
-    
     // Ignore pan gesture when the navigation controller is currently in transition.
     if ([[self.navigationController valueForKey:@"_isTransitioning"] boolValue]) {
         return NO;
     }
     
-    // Prevent calling the handler when the gesture begins in an opposite direction.
+    UIViewController *topViewController = self.navigationController.viewControllers.lastObject;
+    
     CGPoint translation = [gestureRecognizer translationInView:gestureRecognizer.view];
-    BOOL isLeftToRight = [UIApplication sharedApplication].userInterfaceLayoutDirection == UIUserInterfaceLayoutDirectionLeftToRight;
-    CGFloat multiplier = isLeftToRight ? 1 : - 1;
-    if ((translation.x * multiplier) <= 0) {
-        return NO;
+
+    if (translation.x > 0) { // pop
+        
+        if (self.navigationController.viewControllers.count <= 1 || topViewController.kc_navigationInteractivePopDisabled) {
+            return NO;
+        }
+        
+        CGPoint beginningLocation = [gestureRecognizer locationInView:gestureRecognizer.view];
+        CGFloat maxAllowedInitialDistance = topViewController.kc_navigationInteractivePopDistanceToLeftEdge;
+        if (maxAllowedInitialDistance > 0 && beginningLocation.x > maxAllowedInitialDistance) {
+            return NO;
+        }
+        NSArray *internalTargets = [self.navigationController.interactivePopGestureRecognizer valueForKey:@"targets"];
+        id internalTarget = [internalTargets.firstObject valueForKey:@"target"];
+        SEL internalAction = NSSelectorFromString(@"handleNavigationTransition:");
+        
+        [gestureRecognizer removeTarget:self action:internalAction];
+        [gestureRecognizer addTarget:internalTarget action:internalAction];
+       
+        
+    }else { // push
+        
+        if (!topViewController.kc_navigationInteractivePushBlock) {
+            
+            return NO;
+        }
+        
+        NSArray *internalTargets = [self.navigationController.interactivePopGestureRecognizer valueForKey:@"targets"];
+        id internalTarget = [internalTargets.firstObject valueForKey:@"target"];
+        SEL internalAction = NSSelectorFromString(@"handleNavigationTransition:");
+        [gestureRecognizer removeTarget:internalTarget action:internalAction];
+        [gestureRecognizer addTarget:self action:internalAction];
+        
     }
     
     return YES;
 }
 
+- (UIPercentDrivenInteractiveTransition *)interactivePopTransition{
+    if (!_interactivePopTransition) {
+        _interactivePopTransition = [[UIPercentDrivenInteractiveTransition alloc] init];
+        _interactivePopTransition.completionCurve = UIViewAnimationCurveEaseOut;
+    }
+    return _interactivePopTransition;
+}
+
+- (void)handleNavigationTransition:(UIPanGestureRecognizer *)gestureRecognizer
+{
+    
+    CGPoint translation = [gestureRecognizer translationInView:gestureRecognizer.view];
+    
+    CGFloat progress = translation.x / gestureRecognizer.view.bounds.size.width;
+    
+    if (gestureRecognizer.state == UIGestureRecognizerStateBegan && translation.x < 0 && self.navigationController.topViewController.kc_navigationInteractivePushBlock) {
+        
+        self.navigationController.delegate = self;
+        
+        self.navigationController.topViewController.kc_navigationInteractivePushBlock(self.navigationController.topViewController);
+        
+        [self.interactivePopTransition updateInteractiveTransition:progress];
+        
+    }else if (gestureRecognizer.state == UIGestureRecognizerStateChanged) {
+        
+        if (!self.navigationController.delegate) {
+            return;
+        }
+        
+        if (progress <= 0) {
+            progress = fabs(progress);
+            progress = MIN(1.0, MAX(0.0, progress));
+        }
+        else{
+            progress = 0;
+        }
+        
+        [self.interactivePopTransition updateInteractiveTransition:progress];
+        
+        
+    }else if (gestureRecognizer.state == UIGestureRecognizerStateEnded || gestureRecognizer.state == UIGestureRecognizerStateCancelled || gestureRecognizer.state == UIGestureRecognizerStateFailed) {
+        
+        if (!self.navigationController.delegate) {
+            return;
+        }
+        
+        CGPoint velocity = [gestureRecognizer velocityInView:gestureRecognizer.view];
+        
+        if (velocity.x < -100 || fabs(progress) > 0.25) {
+            
+            [self.interactivePopTransition finishInteractiveTransition];
+            
+        }else {
+            
+            [self.interactivePopTransition cancelInteractiveTransition];
+        }
+        
+        self.navigationController.delegate = nil;
+        
+    }
+}
+
+
+- (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationControxller
+                                  animationControllerForOperation:(UINavigationControllerOperation)operation
+                                               fromViewController:(UIViewController *)fromVC
+                                                 toViewController:(UIViewController *)toVC {
+    
+    // return custom animation transition for given situtation.
+    if (operation == UINavigationControllerOperationPush) {
+        return self;
+    }
+    
+    return nil;
+}
+
+
+- (id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController
+                         interactionControllerForAnimationController:(id<UIViewControllerAnimatedTransitioning>)animationController {
+    
+    
+    return self.interactivePopTransition;
+}
+
+- (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext {
+    return 0.35;
+}
+
+
+- (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext
+{
+    
+    UIView *containerView = [transitionContext containerView];
+    UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    
+    toVC.view.frame = CGRectMake(containerView.frame.size.width, 0, containerView.frame.size.width, containerView.frame.size.height);
+    
+    fromVC.view.frame = [transitionContext initialFrameForViewController:fromVC];
+    
+    //    [containerView addSubview:fromVC.view];
+    [containerView addSubview:toVC.view];
+    //    UIView *toView = [transitionContext viewForKey:UITransitionContextToViewKey];
+    
+    [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        
+        CGRect fromViewFrame = fromVC.view.frame;
+        fromViewFrame.origin.x = -0.3 * fromViewFrame.size.width;
+        fromVC.view.frame = fromViewFrame;
+        
+        //        CGRect toViewframe = toVC.view.frame;
+        //        toViewframe.origin.x = 0;
+        toVC.view.frame = [transitionContext finalFrameForViewController:toVC];
+        
+    } completion:^(BOOL finished) {
+        
+        BOOL cancel = transitionContext.transitionWasCancelled;
+        //        [fromView removeFromSuperview];
+        //        [transitionContext completeTransition:YES];
+        [transitionContext completeTransition:!cancel];
+        
+        if (cancel) {
+            
+            [toVC.view removeFromSuperview];
+        }else {
+            [fromVC.view removeFromSuperview];
+        }
+        
+    }];
+    
+}
+
 @end
 
-@implementation UINavigationController (KCTransition)
+@implementation UINavigationController (KCExtension)
 
 + (void)load
 {
@@ -79,12 +223,13 @@
     
 }
 
-- (KC_FullscreenInteractivePopGestureRecognizerDelegate *)kc_interactivePopGestureRecognizerDelegate
+
+- (KC_FullscreenInteractiveGestureRecognizerDelegate *)kc_interactivePopGestureRecognizerDelegate
 {
-    KC_FullscreenInteractivePopGestureRecognizerDelegate *delegate = objc_getAssociatedObject(self, _cmd);
+    KC_FullscreenInteractiveGestureRecognizerDelegate *delegate = objc_getAssociatedObject(self, _cmd);
     
     if (!delegate) {
-        delegate = [[KC_FullscreenInteractivePopGestureRecognizerDelegate alloc] init];
+        delegate = [[KC_FullscreenInteractiveGestureRecognizerDelegate alloc] init];
         delegate.navigationController = self;
         
         objc_setAssociatedObject(self, _cmd, delegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -99,30 +244,32 @@
     if (!panGestureRecognizer) {
         panGestureRecognizer = [[UIPanGestureRecognizer alloc] init];
         panGestureRecognizer.maximumNumberOfTouches = 1;
+        // Add our own gesture recognizer to where the onboard screen edge pan gesture recognizer is attached to.
+        [self.interactivePopGestureRecognizer.view addGestureRecognizer:panGestureRecognizer];
+        
+        panGestureRecognizer.delegate = self.kc_interactivePopGestureRecognizerDelegate;
         
         objc_setAssociatedObject(self, _cmd, panGestureRecognizer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     return panGestureRecognizer;
 }
 
+- (void)setKc_fullscreenInteractivePopGestureRecognizerEnabled:(BOOL)kc_fullscreenInteractivePopGestureRecognizerEnabled
+{
+    self.kc_interactivePopGestureRecognizer.enabled = kc_fullscreenInteractivePopGestureRecognizerEnabled;
+    
+    self.interactivePopGestureRecognizer.enabled = !kc_fullscreenInteractivePopGestureRecognizerEnabled;
+    
+}
+
+- (BOOL)kc_fullscreenInteractivePopGestureRecognizerEnabled
+{
+    return self.kc_interactivePopGestureRecognizer.isEnabled;
+}
+
 
 - (void)kc_pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    if (![self.interactivePopGestureRecognizer.view.gestureRecognizers containsObject:self.kc_interactivePopGestureRecognizer]) {
-        
-        // Add our own gesture recognizer to where the onboard screen edge pan gesture recognizer is attached to.
-        [self.interactivePopGestureRecognizer.view addGestureRecognizer:self.kc_interactivePopGestureRecognizer];
-        
-        // Forward the gesture events to the private handler of the onboard gesture recognizer.
-        NSArray *internalTargets = [self.interactivePopGestureRecognizer valueForKey:@"targets"];
-        id internalTarget = [internalTargets.firstObject valueForKey:@"target"];
-        SEL internalAction = NSSelectorFromString(@"handleNavigationTransition:");
-        self.kc_interactivePopGestureRecognizer.delegate = self.kc_interactivePopGestureRecognizerDelegate;
-        [self.kc_interactivePopGestureRecognizer addTarget:internalTarget action:internalAction];
-        
-        // Disable the onboard gesture recognizer.
-        self.interactivePopGestureRecognizer.enabled = NO;
-    }
     
     [self kc_pushViewController:viewController animated:animated];
     
@@ -245,49 +392,6 @@
     
     return [UIColor colorWithRed:R green:G blue:B alpha:A];
 }
-
-/*
-- (BOOL)navigationBar:(UINavigationBar *)navigationBar shouldPopItem:(UINavigationItem *)item
-{
-    
-    NSLog(@"shouldPopItem");
-//    if (self.topViewController.transitionCoordinator) {
-    
-    if (self.topViewController.transitionCoordinator && self.topViewController.transitionCoordinator.initiallyInteractive) {
-        
-        [self.topViewController.transitionCoordinator notifyWhenInteractionEndsUsingBlock:^(id<UIViewControllerTransitionCoordinatorContext> context){
-            
-            
-            [self handleInteractionChanges:context];
-            
-        }];
-        
-        return YES;
-    }
-    
-    NSInteger count = (self.viewControllers.count >= self.navigationBar.items.count) ? 2 : 1;
-    
-    UIViewController *vc = self.viewControllers[self.viewControllers.count - count];
-    
-    [self popToViewController:vc animated:YES];
-    
-    return YES;
-}
-
-- (BOOL)navigationBar:(UINavigationBar *)navigationBar shouldPushItem:(UINavigationItem *)item
-{
-    NSLog(@"shouldPushItem");
-    
-    navigationBar.kc_backgroundAlpha = self.topViewController.kc_navigationBarBackgroundAlpha;
-    navigationBar.kc_backgroundColor = self.topViewController.kc_navigationBarBackgroundColor;
-    
-    navigationBar.tintColor
-    = self.topViewController.kc_navigationBarTintColor;
-    
-    self.navigationBarHidden = self.topViewController.kc_navigationBarHidden;
-    return YES;
-}*/
-
 
 - (void)handleInteractionChanges:(id<UIViewControllerTransitionCoordinatorContext>)context {
     

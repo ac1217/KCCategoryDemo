@@ -18,9 +18,13 @@
 
 @property (nonatomic, assign) BOOL kc_navigationBarHidden;
 
-@property (nonatomic, assign) BOOL kc_interactivePopDisabled;
+@property (nonatomic, assign) BOOL kc_navigationInteractivePopDisabled;
 
-@property (nonatomic, assign) CGFloat kc_interactivePopDistanceToLeftEdge;
+@property (nonatomic, assign) CGFloat kc_navigationInteractivePopDistanceToLeftEdge;
+
+
+@property (nonatomic, copy) void(^kc_navigationInteractivePushBlock)(UIViewController *vc);
+
 /**
  *  快速从SB加载对应控制器
  *

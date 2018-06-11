@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UINavigationController (KCTransition)<UINavigationBarDelegate, UINavigationControllerDelegate>
+@interface UINavigationController (KCExtension)<UINavigationBarDelegate, UINavigationControllerDelegate>
+
+@property (nonatomic,assign) BOOL kc_fullscreenInteractivePopGestureRecognizerEnabled;
 
 @end
