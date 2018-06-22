@@ -52,7 +52,7 @@ static NSString *const kc_navigationInteractivePushBlockKey = @"kc_navigationInt
     });
 }
 
-- (void)setKc_navigationInteractivePushBlock:(void (^)(UIViewController *))kc_navigationInteractivePushBlock
+- (void)setKc_navigationInteractivePushBlock:(void (^)(UIViewController *, UIPanGestureRecognizer *))kc_navigationInteractivePushBlock
 {
     
     objc_setAssociatedObject(self, (__bridge const void * _Nonnull)(kc_navigationInteractivePushBlockKey), kc_navigationInteractivePushBlock, OBJC_ASSOCIATION_COPY);
@@ -61,7 +61,7 @@ static NSString *const kc_navigationInteractivePushBlockKey = @"kc_navigationInt
 }
 
 
-- (void (^)(UIViewController *))kc_navigationInteractivePushBlock
+- (void (^)(UIViewController *, UIPanGestureRecognizer *))kc_navigationInteractivePushBlock
 {
     return objc_getAssociatedObject(self, (__bridge const void * _Nonnull)(kc_navigationInteractivePushBlockKey));
 }

@@ -21,6 +21,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSURL *url = [NSURL URLWithString:@"zyurl://TargetA/Action/type?name=zhangyu&age=10"];
+    
+    NSString *action = url.relativePath;
+    NSString *target = url.host;
+    
+    NSString *query = url.query;
+    
+    NSLog(@"%@---%@---%@",target, action, query);
+    
+    
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.kc_navigationBarBackgroundColor = [UIColor colorWithRed:arc4random_uniform(256)/255.0 green:arc4random_uniform(256)/255.0 blue:arc4random_uniform(256)/255.0 alpha:1];

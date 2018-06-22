@@ -11,6 +11,7 @@
 #import "UINavigationBar+KCExtension.h"
 #import <objc/runtime.h>
 #import "NSObject+KCExtension.h"
+#import "UIView+KCExtension.h"
 
 @interface KC_FullscreenInteractiveGestureRecognizerDelegate : NSObject <UIGestureRecognizerDelegate, UINavigationControllerDelegate, UIViewControllerAnimatedTransitioning>
 
@@ -88,7 +89,7 @@
         
         self.navigationController.delegate = self;
         
-        self.navigationController.topViewController.kc_navigationInteractivePushBlock(self.navigationController.topViewController);
+        self.navigationController.topViewController.kc_navigationInteractivePushBlock(self.navigationController.topViewController, gestureRecognizer);
         
         [self.interactivePopTransition updateInteractiveTransition:progress];
         
@@ -157,7 +158,6 @@
     return 0.35;
 }
 
-
 - (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext
 {
     
@@ -169,9 +169,26 @@
     
     fromVC.view.frame = [transitionContext initialFrameForViewController:fromVC];
     
-    //    [containerView addSubview:fromVC.view];
+    
+    UIImageView *tabBarView;
+    UITabBar *tabBar;
+    if (toVC.hidesBottomBarWhenPushed) {
+        
+        tabBar = fromVC.tabBarController.tabBar;
+        
+        UIImage *image = tabBar.kc_screenshot;
+        tabBarView = [[UIImageView alloc] initWithImage:image];
+        CGRect imgFrame = tabBarView.frame;
+        imgFrame.origin.x = fromVC.view.frame.origin.x;
+        imgFrame.origin.y = containerView.frame.size.height - imgFrame.size.height;
+        tabBarView.frame = imgFrame;
+        [containerView addSubview:tabBarView];
+        tabBar.hidden = YES;
+        
+    }
+    
+    
     [containerView addSubview:toVC.view];
-    //    UIView *toView = [transitionContext viewForKey:UITransitionContextToViewKey];
     
     [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         
@@ -179,15 +196,16 @@
         fromViewFrame.origin.x = -0.3 * fromViewFrame.size.width;
         fromVC.view.frame = fromViewFrame;
         
-        //        CGRect toViewframe = toVC.view.frame;
-        //        toViewframe.origin.x = 0;
         toVC.view.frame = [transitionContext finalFrameForViewController:toVC];
+        
+        CGRect imgFrame = tabBarView.frame;
+        imgFrame.origin.x = fromViewFrame.origin.x;
+        tabBarView.frame = imgFrame;
         
     } completion:^(BOOL finished) {
         
         BOOL cancel = transitionContext.transitionWasCancelled;
-        //        [fromView removeFromSuperview];
-        //        [transitionContext completeTransition:YES];
+        
         [transitionContext completeTransition:!cancel];
         
         if (cancel) {
@@ -196,6 +214,10 @@
         }else {
             [fromVC.view removeFromSuperview];
         }
+        
+        [tabBarView removeFromSuperview];
+//        tabBar.hidden = NO;
+        
         
     }];
     

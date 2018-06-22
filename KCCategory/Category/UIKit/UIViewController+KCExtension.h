@@ -23,7 +23,7 @@
 @property (nonatomic, assign) CGFloat kc_navigationInteractivePopDistanceToLeftEdge;
 
 
-@property (nonatomic, copy) void(^kc_navigationInteractivePushBlock)(UIViewController *vc);
+@property (nonatomic, copy) void(^kc_navigationInteractivePushBlock)(UIViewController *vc, UIPanGestureRecognizer *ges);
 
 /**
  *  快速从SB加载对应控制器
