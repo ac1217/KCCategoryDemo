@@ -44,12 +44,14 @@ static NSString *const kc_navigationInteractivePushBlockKey = @"kc_navigationInt
     // Forward to primary implementation.
     [self kc_viewWillDisappear:animated];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         UIViewController *viewController = self.navigationController.viewControllers.lastObject;
+    
         if (viewController && !viewController.kc_navigationBarHidden) {
+            
             [self.navigationController setNavigationBarHidden:NO animated:NO];
         }
-    });
+//    });
 }
 
 - (void)setKc_navigationInteractivePushBlock:(void (^)(UIViewController *, UIPanGestureRecognizer *))kc_navigationInteractivePushBlock

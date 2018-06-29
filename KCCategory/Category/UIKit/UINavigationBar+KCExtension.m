@@ -17,87 +17,95 @@ static NSString *const kc_backgroundViewKey = @"kc_backgroundView";
 {
     UIView *view = objc_getAssociatedObject(self, (__bridge const void * _Nonnull)(kc_backgroundViewKey));
     
-    return view;
+//    UIView *backgroundView = [self valueForKey:@"backgroundView"];
+    //    view.frame = backgroundView.frame;
+//    [backgroundView bringSubviewToFront:view];
     
+    return view;
     
 }
 
 - (void)kc_addBackgroundView
 {
-        UIView *view = [UIView new];
-        view.translatesAutoresizingMaskIntoConstraints = NO;
-        
-        UIView *backgroundView = [self valueForKey:@"backgroundView"];
-        //        [backgroundView insertSubview:view atIndex:0];
-        [self insertSubview:view aboveSubview:backgroundView];
-        
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:backgroundView attribute:NSLayoutAttributeTop multiplier:1 constant:0]];
-        
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:backgroundView attribute:NSLayoutAttributeLeft multiplier:1 constant:0]];
-        
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:backgroundView attribute:NSLayoutAttributeRight multiplier:1 constant:0]];
-        
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:backgroundView attribute:NSLayoutAttributeBottom multiplier:1 constant:0]];
-        
-        objc_setAssociatedObject(self, (__bridge const void * _Nonnull)(kc_backgroundViewKey), view, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        
+    UIView *view = [UIView new];
+    view.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    UIView *backgroundView = [self valueForKey:@"backgroundView"];
+    [backgroundView addSubview:view];
+    
+    [backgroundView addConstraint:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:backgroundView attribute:NSLayoutAttributeTop multiplier:1 constant:0]];
+    
+    [backgroundView addConstraint:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:backgroundView attribute:NSLayoutAttributeLeft multiplier:1 constant:0]];
+    
+    [backgroundView addConstraint:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:backgroundView attribute:NSLayoutAttributeRight multiplier:1 constant:0]];
+    
+    [backgroundView addConstraint:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:backgroundView attribute:NSLayoutAttributeBottom multiplier:1 constant:0]];
+    
+    objc_setAssociatedObject(self, (__bridge const void * _Nonnull)(kc_backgroundViewKey), view, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    
 }
+
 
 - (void)setKc_backgroundAlpha:(CGFloat)kc_backgroundAlpha
 {
-    UIView *backgroundView = [self valueForKey:@"backgroundView"];
-    UIView *shadowView = [backgroundView valueForKey:@"shadowView"];
+    UIView *backgroundView = [self valueForKey:@"_backgroundView"];
+    
+    UIView *shadowView = [backgroundView valueForKey:@"_shadowView"];
     shadowView.alpha = kc_backgroundAlpha;
     shadowView.hidden = kc_backgroundAlpha == 0;
     
     [self kc_backgroundView].alpha = kc_backgroundAlpha;
     
     if (self.isTranslucent) {
-
+        
         if (@available(iOS 10.0, *)) {
-
+            
             if (![self backgroundImageForBarMetrics:UIBarMetricsDefault]) {
-
-                UIView *backgroundEffectView = [backgroundView valueForKey:@"backgroundEffectView"];
-
+                
+                UIView *backgroundEffectView = [backgroundView valueForKey:@"_backgroundEffectView"];
+                
                 backgroundEffectView.alpha = kc_backgroundAlpha;
-
+                backgroundEffectView.hidden = kc_backgroundAlpha == 0;
+                
                 return;
                 
             }else {
-                UIView *backgroundImageView = [backgroundView valueForKey:@"backgroundImageView"];
+                
+                UIView *backgroundImageView = [backgroundView valueForKey:@"_backgroundImageView"];
                 
                 backgroundImageView.alpha = kc_backgroundAlpha;
                 backgroundImageView.hidden = kc_backgroundAlpha == 0;
                 
                 return;
             }
-
+            
         }else {
-
-            UIView *adaptiveBackdrop = [backgroundView valueForKey:@"adaptiveBackdrop"];
-            UIView *backdropEffectView = [adaptiveBackdrop valueForKey:@"backdropEffectView"];
-
+            
+            UIView *adaptiveBackdrop = [backgroundView valueForKey:@"_adaptiveBackdrop"];
+            UIView *backdropEffectView = [adaptiveBackdrop valueForKey:@"_backdropEffectView"];
             backdropEffectView.alpha = kc_backgroundAlpha;
-
+            backdropEffectView.hidden = kc_backgroundAlpha == 0;
+            
             return;
-
+            
         }
-
+        
     }
     
     backgroundView.alpha = kc_backgroundAlpha;
+    backgroundView.hidden = kc_backgroundAlpha == 0;
     
 }
 
 - (CGFloat)kc_backgroundAlpha
 {
-    UIView *backgroundView = [self valueForKey:@"backgroundView"];
+    UIView *backgroundView = [self valueForKey:@"_backgroundView"];
     return backgroundView.alpha;
 }
 
 - (void)setKc_backgroundColor:(UIColor *)kc_backgroundColor
 {
+    
     if (![self kc_backgroundView]) {
         [self kc_addBackgroundView];
     }

@@ -366,7 +366,9 @@
     
     UIViewController *toVC =  [self.topViewController.transitionCoordinator viewControllerForKey:UITransitionContextToViewControllerKey];
     
+    [self kc_updateInteractiveTransition:percentComplete];
     if (toVC.kc_navigationBarHidden) {
+//        [self kc_updateInteractiveTransition:percentComplete];
         return;
     }
     
@@ -387,7 +389,6 @@
     
     self.navigationBar.tintColor = [self kc_transitionFromColor:fromTintColor toColor:toTintColor percent:percentComplete];
     
-    [self kc_updateInteractiveTransition:percentComplete];
     
 }
 

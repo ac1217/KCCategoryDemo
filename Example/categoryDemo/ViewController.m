@@ -38,6 +38,8 @@
     
     self.kc_navigationBarHidden = arc4random_uniform(2);
     
+    self.navigationController.kc_fullscreenInteractivePopGestureRecognizerEnabled = YES;
+    
 //    NSString *str = nil;
 //    NSMutableArray *arrM = @[].mutableCopy;
 //    [arrM addObject:str];
