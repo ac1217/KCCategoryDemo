@@ -14,6 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
+@property (weak, nonatomic) UIView *showView;
 @end
 
 @implementation ViewController
@@ -150,6 +151,22 @@
 //    NSInteger n = [date integerValue];
 //
 //    NSLog(@"date = %@, n = %zd", date, n);
+    
+    if (self.showView) {
+        [self.showView kc_dismissWithCompletion:^{
+            
+        }];
+    }else {
+        
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 250, 150)];
+        view.layer.cornerRadius = 10;
+        view.clipsToBounds = YES;
+        view.backgroundColor = [UIColor orangeColor];
+//        view.kc_alert.dimBackground = YES;
+        view.kc_alert.animationStyle = KC_AlertAnimationStyleDropdown;
+        [view kc_showAlertInView:self.view];
+        self.showView = view;
+    }
     
     
 }

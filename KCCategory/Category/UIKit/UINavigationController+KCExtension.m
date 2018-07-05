@@ -346,17 +346,29 @@
 
 }
 
-- (void)updateNaigationBar
+- (void)updateNaigationBarWithViewController:(UIViewController *)vc
 {
-    if (self.topViewController.kc_navigationBarHidden) {
+    if (vc.kc_navigationBarHidden) {
         return;
     }
     
-    self.navigationBar.kc_backgroundAlpha = self.topViewController.kc_navigationBarBackgroundAlpha;
-    self.navigationBar.kc_backgroundColor = self.topViewController.kc_navigationBarBackgroundColor;
+    self.navigationBar.kc_backgroundAlpha = vc.kc_navigationBarBackgroundAlpha;
+    if (vc.kc_navigationBarBackgroundColor) {
+        
+        self.navigationBar.kc_backgroundColor = vc.kc_navigationBarBackgroundColor;
+    }
     
-    self.navigationBar.tintColor = self.topViewController.kc_navigationBarTintColor;
+    if (vc.kc_navigationBarTintColor) {
+        
+        self.navigationBar.tintColor = vc.kc_navigationBarTintColor;
+        
+    }
+}
+
+- (void)updateNaigationBar
+{
     
+    [self updateNaigationBarWithViewController:self.topViewController];
 }
 
 - (void)kc_updateInteractiveTransition:(CGFloat)percentComplete
@@ -382,12 +394,19 @@
     UIColor *fromColor = fromVC.kc_navigationBarBackgroundColor;
     UIColor *toColor = toVC.kc_navigationBarBackgroundColor;
     
-    self.navigationBar.kc_backgroundColor = [self kc_transitionFromColor:fromColor toColor:toColor percent:percentComplete];
+    if (toColor) {
+        
+        self.navigationBar.kc_backgroundColor = [self kc_transitionFromColor:fromColor toColor:toColor percent:percentComplete];
+    }
+    
     
     UIColor *fromTintColor = fromVC.kc_navigationBarTintColor;
     UIColor *toTintColor = toVC.kc_navigationBarTintColor;
     
-    self.navigationBar.tintColor = [self kc_transitionFromColor:fromTintColor toColor:toTintColor percent:percentComplete];
+    if (toTintColor) {
+        
+        self.navigationBar.tintColor = [self kc_transitionFromColor:fromTintColor toColor:toTintColor percent:percentComplete];
+    }
     
     
 }
@@ -425,11 +444,13 @@
         UIViewController *fromVC = [context viewControllerForKey:UITransitionContextFromViewControllerKey];
 
         [UIView animateWithDuration:duration animations:^{
-
-            self.navigationBar.kc_backgroundAlpha = fromVC.kc_navigationBarBackgroundAlpha;
-            self.navigationBar.kc_backgroundColor = fromVC.kc_navigationBarBackgroundColor;
-            self.navigationBar.tintColor
-            = fromVC.kc_navigationBarTintColor;
+            
+//            self.navigationBar.kc_backgroundAlpha = fromVC.kc_navigationBarBackgroundAlpha;
+            [self updateNaigationBarWithViewController:fromVC];
+            
+//            self.navigationBar.kc_backgroundColor = fromVC.kc_navigationBarBackgroundColor;
+//            self.navigationBar.tintColor
+//            = fromVC.kc_navigationBarTintColor;
             
         }];
         
@@ -444,12 +465,13 @@
         
         [UIView animateWithDuration:duration animations:^{
             
+            [self updateNaigationBarWithViewController:toVC];
             
-            self.navigationBar.kc_backgroundAlpha = toVC.kc_navigationBarBackgroundAlpha;
-            
-            self.navigationBar.kc_backgroundColor = toVC.kc_navigationBarBackgroundColor;
-            self.navigationBar.tintColor
-            = toVC.kc_navigationBarTintColor;
+//            self.navigationBar.kc_backgroundAlpha = toVC.kc_navigationBarBackgroundAlpha;
+//            
+//            self.navigationBar.kc_backgroundColor = toVC.kc_navigationBarBackgroundColor;
+//            self.navigationBar.tintColor
+//            = toVC.kc_navigationBarTintColor;
             
         }];
         
