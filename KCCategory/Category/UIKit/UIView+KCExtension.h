@@ -8,29 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum : NSUInteger {
-    KC_AlertAnimationStyleAlpha,
-    KC_AlertAnimationStyleDropdown,
-    KC_AlertAnimationStyleZooming,
-    KC_AlertAnimationStyleRotation
-} KC_AlertAnimationStyle;
-
-
-@interface KC_Alert: NSObject
-
-@property (nonatomic,assign) BOOL dimBackground;
-@property (nonatomic,strong) UIColor *dimBackgroundColor;
-
-@property (nonatomic,assign) BOOL tapBackgroundDismiss;
-
-@property (nonatomic,assign) KC_AlertAnimationStyle animationStyle;
-
-@property (nonatomic,assign) float animationDuration;
-
-@end
-
-
-
 @interface UIView (KCExtension)
 /*
  * 快速设置frame、center、size
@@ -131,17 +108,12 @@ typedef enum : NSUInteger {
  */
 - (UINavigationController *)kc_topNavigationController;
 
-- (KC_Alert *)kc_alert;
-
 /**
  *  indicator
  */
 - (void)kc_showActivityIndicator;
 - (void)kc_hideActivityIndicator;
 - (void)kc_setActivityIndicatorStyle:(UIActivityIndicatorViewStyle)style;
-
-- (void)kc_showAlertInView:(UIView *)view;
-- (void)kc_dismissWithCompletion:(void(^)(void))completion;
 
 @end
 

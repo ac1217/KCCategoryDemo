@@ -10,27 +10,11 @@
 #import "CALayer+KCExtension.h"
 #import <objc/message.h>
 
-@implementation KC_Alert
-
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        self.dimBackgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
-        self.animationDuration = 0.5;
-    }
-    return self;
-}
-
-@end
-
 static NSString *const KCBadgeValueLabelKey = @"kc_badgeValueLabel";
 static NSString *const KCBorderLayerKey = @"kc_borderLayer";
 static NSString *KCViewTapBlockKey = @"KCViewTapBlockKey";
 
 static NSString *const KCActivityIndicatorViewKey = @"kc_activityIndicatorView";
-static NSString *const KCAlertKey = @"kc_alert";
-static NSString *const KCAlertDimBackgroundViewKey = @"kc_alertDimBackgroundView";
 
 @interface UIView ()
 
@@ -38,7 +22,6 @@ static NSString *const KCAlertDimBackgroundViewKey = @"kc_alertDimBackgroundView
 @property (nonatomic, strong) CAShapeLayer *kc_borderLayer;
 
 @property (nonatomic,strong) UIActivityIndicatorView *kc_activityIndicatorView;
-
 @end
 
 @implementation UIView (KCExtension)
@@ -548,181 +531,6 @@ static NSString *const KCAlertDimBackgroundViewKey = @"kc_alertDimBackgroundView
 - (void)kc_setActivityIndicatorStyle:(UIActivityIndicatorViewStyle)style
 {
     self.kc_activityIndicatorView.activityIndicatorViewStyle = style;
-}
-
-
-- (void)kc_showAlertInView:(UIView *)view
-{
-    UIView *containerView = [UIView new];
-    containerView.frame = view.frame;
-    [view addSubview:containerView];
-    
-    if (self.kc_alert.tapBackgroundDismiss) {
-        
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(kc_dismissWithCompletion:)];
-        [containerView addGestureRecognizer:tap];
-    }
-    
-    UIView *dimBgView;
-    
-    if (self.kc_alert.dimBackground) {
-        
-        dimBgView = [UIView new];
-        dimBgView.backgroundColor = self.kc_alert.dimBackgroundColor;
-        dimBgView.frame = containerView.frame;
-        dimBgView.alpha = 0;
-        [containerView addSubview:dimBgView];
-        
-        objc_setAssociatedObject(self, (__bridge const void * _Nonnull)(KCAlertDimBackgroundViewKey), dimBgView, OBJC_ASSOCIATION_ASSIGN);
-        
-        
-        
-    }
-    
-    [containerView addSubview:self];
-    self.center = CGPointMake(containerView.frame.size.width * 0.5, containerView.frame.size.height * 0.5);
-    
-    switch (self.kc_alert.animationStyle) {
-        case KC_AlertAnimationStyleAlpha:
-        {
-            self.alpha = 0;
-            [UIView animateWithDuration:self.kc_alert.animationDuration delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-                
-                dimBgView.alpha = 1;
-                self.alpha = 1;
-            } completion:^(BOOL finished) {
-                
-            }];
-            
-        }
-            break;
-        case KC_AlertAnimationStyleDropdown:
-        {
-            self.transform = CGAffineTransformMakeTranslation(0, -containerView.frame.size.height);
-            
-            [UIView animateWithDuration:self.kc_alert.animationDuration delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0.5 options:UIViewAnimationOptionCurveEaseIn animations:^{
-                
-                dimBgView.alpha = 1;
-                
-                self.transform = CGAffineTransformIdentity;
-                
-            } completion:^(BOOL finished) {
-                
-            }];
-            
-        }
-            
-            break;
-        case KC_AlertAnimationStyleZooming:
-            
-        {
-            self.transform = CGAffineTransformMakeScale(0.0001, 0.0001);
-            [UIView animateWithDuration:self.kc_alert.animationDuration delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0.5 options:UIViewAnimationOptionCurveEaseIn animations:^{
-                
-                dimBgView.alpha = 1;
-                
-                self.transform = CGAffineTransformIdentity;
-                
-            } completion:^(BOOL finished) {
-                
-            }];
-            
-        }
-            break;
-        case KC_AlertAnimationStyleRotation:
-            
-        {
-//            self.transform = CGAffineTransformMakeScale(0.0001, 0.0001);
-            
-            self.layer.transform = CATransform3DMakeRotation(-M_PI * 0.5, 1, 0, 0);
-//            self.layer.anchorPoint = CGPointMake(0.5, 1);
-            
-            [UIView animateWithDuration:self.kc_alert.animationDuration delay:0 usingSpringWithDamping:0.75 initialSpringVelocity:0.5 options:UIViewAnimationOptionCurveEaseIn animations:^{
-                
-                dimBgView.alpha = 1;
-                
-                self.layer.transform = CATransform3DIdentity;
-//                self.transform = CGAffineTransformIdentity;
-                
-            } completion:^(BOOL finished) {
-                
-            }];
-            
-        }
-            break;
-            
-        default:
-            break;
-    }
-    
-    
-    
-}
-
-
-- (void)kc_dismissWithCompletion:(void(^)(void))completion
-{
-    
-    UIView *dimBgView = objc_getAssociatedObject(self, (__bridge const void * _Nonnull)(KCAlertDimBackgroundViewKey));
-    
-    [UIView animateWithDuration:self.kc_alert.animationDuration delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        
-        dimBgView.alpha = 0;
-        
-        switch (self.kc_alert.animationStyle) {
-            case KC_AlertAnimationStyleAlpha:
-            {
-                self.alpha = 0;
-            }
-                break;
-            case KC_AlertAnimationStyleDropdown:
-            {
-                self.transform = CGAffineTransformMakeTranslation(0, self.superview.frame.size.height);
-            }
-                
-                break;
-            case KC_AlertAnimationStyleZooming:
-                
-            {
-                
-                self.transform = CGAffineTransformMakeScale(0.0001, 0.0001);
-            }
-                break;
-            case KC_AlertAnimationStyleRotation:
-                
-            {
-                
-                self.layer.transform = CATransform3DMakeRotation(-M_PI * 0.5, 1, 0, 0);
-            }
-                break;
-                
-                
-            default:
-                break;
-        }
-        
-        
-    } completion:^(BOOL finished) {
-        [self.superview removeFromSuperview];
-        [self removeFromSuperview];
-        !completion ? : completion();
-    }];
-    
-    
-}
-
-- (KC_Alert *)kc_alert
-{
-    
-    KC_Alert *alert = objc_getAssociatedObject(self, (__bridge const void * _Nonnull)(KCAlertKey));
-    
-    if (!alert) {
-        alert = [KC_Alert new];
-        objc_setAssociatedObject(self, (__bridge const void * _Nonnull)(KCAlertKey), alert, OBJC_ASSOCIATION_RETAIN);
-    }
-    
-    return alert;
-    
 }
 
 @end

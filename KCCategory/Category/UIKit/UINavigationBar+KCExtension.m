@@ -8,10 +8,24 @@
 
 #import "UINavigationBar+KCExtension.h"
 #import <objc/runtime.h>
+#import "NSObject+KCExtension.h"
 
 static NSString *const kc_backgroundViewKey = @"kc_backgroundView";
 
-@implementation UINavigationBar (KCTransition)
+@implementation UINavigationBar (KCExtension)
+
++ (void)load
+{
+     [self kc_swizzlingInstanceMethod:@selector(kc_layoutSubviews) otherClass:self otherClassSel:@selector(layoutSubviews)];
+}
+
+- (void)kc_layoutSubviews
+{
+    [self kc_layoutSubviews];
+    UIView *backgroundView = [self valueForKey:@"backgroundView"];
+    self.kc_backgroundView.frame = backgroundView.bounds;
+    
+}
 
 - (UIView *)kc_backgroundView
 {
@@ -32,14 +46,16 @@ static NSString *const kc_backgroundViewKey = @"kc_backgroundView";
     
     UIView *backgroundView = [self valueForKey:@"backgroundView"];
     [backgroundView addSubview:view];
+//    [self addSubview:view];
+//    [self insertSubview:view belowSubview:backgroundView];
     
-    [backgroundView addConstraint:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:backgroundView attribute:NSLayoutAttributeTop multiplier:1 constant:0]];
-    
-    [backgroundView addConstraint:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:backgroundView attribute:NSLayoutAttributeLeft multiplier:1 constant:0]];
-    
-    [backgroundView addConstraint:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:backgroundView attribute:NSLayoutAttributeRight multiplier:1 constant:0]];
-    
-    [backgroundView addConstraint:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:backgroundView attribute:NSLayoutAttributeBottom multiplier:1 constant:0]];
+//    [backgroundView addConstraint:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:backgroundView attribute:NSLayoutAttributeTop multiplier:1 constant:0]];
+//
+//    [backgroundView addConstraint:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:backgroundView attribute:NSLayoutAttributeLeft multiplier:1 constant:0]];
+//
+//    [backgroundView addConstraint:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:backgroundView attribute:NSLayoutAttributeRight multiplier:1 constant:0]];
+//
+//    [backgroundView addConstraint:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:backgroundView attribute:NSLayoutAttributeBottom multiplier:1 constant:0]];
     
     objc_setAssociatedObject(self, (__bridge const void * _Nonnull)(kc_backgroundViewKey), view, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
