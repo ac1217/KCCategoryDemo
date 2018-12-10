@@ -10,14 +10,6 @@
 
 @interface UIViewController (KCExtension)
 
-@property (nonatomic, assign) CGFloat kc_navigationBarBackgroundAlpha;
-
-@property (nonatomic,strong) UIColor *kc_navigationBarBackgroundColor;
-
-@property (nonatomic,strong) UIColor *kc_navigationBarTintColor;
-
-@property (nonatomic, assign) BOOL kc_navigationBarHidden;
-
 @property (nonatomic, assign) BOOL kc_navigationInteractivePopDisabled;
 
 @property (nonatomic, assign) CGFloat kc_navigationInteractivePopDistanceToLeftEdge;

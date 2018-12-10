@@ -35,7 +35,6 @@
 		07308A7C20B79B9C00DE8294 /* NSData+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 07308A7A20B79B9B00DE8294 /* NSData+KCExtension.m */; };
 		07308A7F20B79BAE00DE8294 /* NSMutableSet+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 07308A7E20B79BAE00DE8294 /* NSMutableSet+KCExtension.m */; };
 		07308A8420B79DCD00DE8294 /* UINavigationController+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 07308A8220B79DCD00DE8294 /* UINavigationController+KCExtension.m */; };
-		07308A8520B79DCD00DE8294 /* UINavigationBar+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 07308A8320B79DCD00DE8294 /* UINavigationBar+KCExtension.m */; };
 		0748815E1D572ED900322817 /* UIButton+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0748815D1D572ED900322817 /* UIButton+KCExtension.m */; };
 		075F11651D23F26200C2AFEE /* KCFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 075F11641D23F26200C2AFEE /* KCFunction.m */; };
 		0770D15C1D2F811D008C89D6 /* CADisplayLink+KCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0770D15B1D2F811D008C89D6 /* CADisplayLink+KCExtension.m */; };
@@ -119,10 +118,8 @@
 		07308A7B20B79B9B00DE8294 /* NSData+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+KCExtension.h"; sourceTree = "<group>"; };
 		07308A7D20B79BAE00DE8294 /* NSMutableSet+KCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableSet+KCExtension.h"; sourceTree = "<group>"; };
 		07308A7E20B79BAE00DE8294 /* NSMutableSet+KCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableSet+KCExtension.m"; sourceTree = "<group>"; };
-		07308A8020B79DCD00DE8294 /* UINavigationBar+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+KCExtension.h"; sourceTree = "<group>"; };
 		07308A8120B79DCD00DE8294 /* UINavigationController+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+KCExtension.h"; sourceTree = "<group>"; };
 		07308A8220B79DCD00DE8294 /* UINavigationController+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+KCExtension.m"; sourceTree = "<group>"; };
-		07308A8320B79DCD00DE8294 /* UINavigationBar+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+KCExtension.m"; sourceTree = "<group>"; };
 		0748815C1D572ED900322817 /* UIButton+KCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+KCExtension.h"; sourceTree = "<group>"; };
 		0748815D1D572ED900322817 /* UIButton+KCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+KCExtension.m"; sourceTree = "<group>"; };
 		0757198C1CFEDBCF00B37950 /* KCCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCCategory.h; sourceTree = "<group>"; };
@@ -191,8 +188,6 @@
 		070090A31D18DC7D00142A76 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				07308A8020B79DCD00DE8294 /* UINavigationBar+KCExtension.h */,
-				07308A8320B79DCD00DE8294 /* UINavigationBar+KCExtension.m */,
 				07308A8120B79DCD00DE8294 /* UINavigationController+KCExtension.h */,
 				07308A8220B79DCD00DE8294 /* UINavigationController+KCExtension.m */,
 				070090A41D18DC7D00142A76 /* UIColor+KCExtension.h */,
@@ -493,7 +488,6 @@
 				07308A8420B79DCD00DE8294 /* UINavigationController+KCExtension.m in Sources */,
 				070090C31D18DC7D00142A76 /* UITextView+KCExtension.m in Sources */,
 				070090C51D18DC7D00142A76 /* UIViewController+KCExtension.m in Sources */,
-				07308A8520B79DCD00DE8294 /* UINavigationBar+KCExtension.m in Sources */,
 				070090DD1D18DD6F00142A76 /* NSString+KCExtension.m in Sources */,
 				07C7A78B1FCEAFAC007B91C8 /* UIAlertController+KCExtension.m in Sources */,
 				070090C01D18DC7D00142A76 /* UIImageView+KCExtension.m in Sources */,
