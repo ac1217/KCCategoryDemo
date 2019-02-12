@@ -17,6 +17,7 @@
 @property (nonatomic, weak) UINavigationController *navigationController;
 
 @property (nonatomic, strong) UIPercentDrivenInteractiveTransition *interactivePopTransition;
+
 @end
 
 @implementation KC_FullscreenInteractiveGestureRecognizerDelegate
